@@ -30,12 +30,7 @@ public class Participant : MonoBehaviour
     
     private void SetScale(int score)
     {
-        // Debug.Log("AAA-7-1 OnScoreChanged : " + score);
-        // Debug.Log("AAA-7-1a score/(float)10 : " + score/(float)10);
-        // Debug.Log("AAA-7-1b _scale * score/(float)10 : " + _scale * score/(float)10);
-        _scale += _scale * score/(float)200;
-        // Debug.Log("AAA-7-2 OnScoreChanged : " + score);
-        // Debug.Log("AAA-7-3 _scale : " + _scale);
+        _scale += _scale * score/(float)450;
         transform.localScale = _scale;
     }
 
