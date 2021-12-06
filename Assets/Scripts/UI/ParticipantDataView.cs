@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerDataView : MonoBehaviour
+public class ParticipantDataView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _score;
     [SerializeField] private float _offsetY;

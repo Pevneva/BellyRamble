@@ -11,6 +11,6 @@ public class Rope : MonoBehaviour
     {
         _startScale = transform.localScale;
         
-        Debug.Log("AAA-3 _startScale : " + _startScale);
+        // Debug.Log("AAA-3 _startScale : " + _startScale);
     }
 }
