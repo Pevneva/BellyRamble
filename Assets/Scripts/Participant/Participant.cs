@@ -13,7 +13,7 @@ public class Participant : MonoBehaviour
     public event UnityAction<int> ScoreChanged;
     public event UnityAction RopeTouchStarted;
     public event UnityAction RopeTouchEnded;
-    public event UnityAction BotTouched;
+    public event UnityAction<Participant> ParticipantsTouched;
     public bool IsRopeTouching;
     
     private Vector3 _scale;
@@ -43,7 +43,7 @@ public class Participant : MonoBehaviour
 
     private void OnScoreChanged(int score)
     {
-        SetScale(score);
+        // SetScale(score); //to improve
     }
     
     private void SetScale(int score)
@@ -86,7 +86,8 @@ public class Participant : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Bot bot))
         {
             Debug.Log("AAA-138 BOT !!!");
-            BotTouched?.Invoke();
+            ParticipantsTouched?.Invoke(GetLoser(bot, this));
+            Debug.Log("AAA-138 WINNER : " + GetLoser(bot, this));
         }
     }
 
@@ -126,6 +127,11 @@ public class Participant : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         _collisionGameObject.SetActive(true);
+    }
+
+    private Participant GetLoser(Participant first, Participant second)
+    {
+        return first.Score < second.Score ? first : second;
     }
 
     // private void OnCollisionEnter(Collision other)

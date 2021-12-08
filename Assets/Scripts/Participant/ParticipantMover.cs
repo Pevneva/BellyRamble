@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -33,7 +34,7 @@ public class ParticipantMover : MonoBehaviour
 
         _participant.RopeTouchStarted += OnRopeTouchStarted;
         _participant.RopeTouchEnded += OnRopeTouchEnded;
-        _participant.BotTouched += AddForceFly;
+        _participant.ParticipantsTouched += AddForceFly;
     }
 
     public void TryMove(Vector2 direction)
@@ -45,7 +46,7 @@ public class ParticipantMover : MonoBehaviour
     private void Rotate(Vector2 direction)
     {
         _lookRotation = Quaternion.LookRotation(GetWorldDirection(direction));
-        transform.rotation = _lookRotation;
+        transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.05f);
     }
 
     private Vector3 GetWorldDirection(Vector2 direction)
@@ -82,8 +83,13 @@ public class ParticipantMover : MonoBehaviour
     private void OnRopeTouchStarted()
     {
         Debug.Log("AAA-13 STARTED");
-        _rigidbody.isKinematic = false;
+        SetPhysicInteraction();
         _participant.RopeTouchStarted -= OnRopeTouchStarted;
+    }
+
+    private void SetPhysicInteraction()
+    {
+        _rigidbody.isKinematic = false;
     }
 
     private void OnRopeTouchEnded()
@@ -141,18 +147,22 @@ public class ParticipantMover : MonoBehaviour
         _participant.RopeTouchEnded += OnRopeTouchEnded;
     }
 
-    private void AddForceFly()
+    private void AddForceFly(Participant participant)
     {
-        _rigidbody.constraints = RigidbodyConstraints.None;
-        // _rigidbody.constraints == RigidbodyConstraints.FreezePosition 
-        AddForce(new Vector3(1, 25, 1));
-        _rigidbody.isKinematic = false;
-    }
+        // _rigidbody.constraints = RigidbodyConstraints.None;
+        // // _rigidbody.constraints == RigidbodyConstraints.FreezePosition 
+        // AddForce(new Vector3(1, 25, 1));
+        // _rigidbody.isKinematic = false;
+        
+      //===================================================
+        
+        // Camera.main.gameObject.GetComponent<CameraMover>().SetTrack(participant.gameObject.transform);
 
-    // private IEnumerator StartAddForce(Vector3 direction)
-    // {
-    //     yield return new WaitForSeconds(0.5f);
-    //     // AddForce(direction);
-    //     yield break;
-    // }
+        var startPosition = participant.gameObject.transform.position;
+        // Sequence sequence = DOTween.Sequence();
+        // sequence.Append(participant.transform.DOMove(new Vector3(3, 5, 3), 1).SetEase(Ease.Linear));
+        // sequence.Append(participant.transform.DOMove(new Vector3(startPosition.x, startPosition.y, startPosition.z), 1).SetEase(Ease.Linear));
+        // participant.transform.DOMove(new Vector3(1, 3, 1), 1);
+        // participant.transform.DOMove(new Vector3(3, -9, 3), 3);
+    }
 }

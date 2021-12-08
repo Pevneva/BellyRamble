@@ -17,7 +17,7 @@ public class BotRuler : MonoBehaviour
     {
         _participantMover = GetComponent<ParticipantMover>();
         
-        InvokeRepeating(nameof(SetRandomDirection), 0.5f, 0.5f);
+        InvokeRepeating(nameof(SetRandomDirection), 0.5f, 0.75f);
     }
 
     private void SetRandomDirection()
@@ -35,7 +35,7 @@ public class BotRuler : MonoBehaviour
     {
         if (_isDirectionChosen)
         {
-            _participantMover.TryMove(_direction * 10);
+            _participantMover.TryMove(_direction * 100);
             // _isDirectionChosen = false;
         }
     }

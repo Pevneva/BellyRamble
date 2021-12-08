@@ -4,36 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Fixed project setting.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Added food generation. Added bots and animated bots.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Food/Burger.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Food/Burger.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Food/Hotdog.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Food/Hotdog.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Location/Rope.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Location/Rope.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerInput.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMover.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMover.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerDataView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerDataView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Walk.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Walk.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +61,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/BotRuler.cs" />
@@ -89,6 +68,10 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
     </changedPaths>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -103,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638436467070</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added food generation. Added bots and animated bots.">
+      <created>1638789884244</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638789884244</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -122,6 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed project setting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed project setting." />
+    <MESSAGE value="Added food generation. Added bots and animated bots." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added food generation. Added bots and animated bots." />
   </component>
 </project>
