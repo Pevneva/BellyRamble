@@ -71,17 +71,17 @@ public class Participant : MonoBehaviour
         
         if (other.gameObject.TryGetComponent(out BorderPrev borderPrev))
         {
-            Debug.Log("AAA-135 Border Prev Enter");
-            GetComponent<Rigidbody>().isKinematic = false;
+            // Debug.Log("AAA-135 Border PREV Enter");
+            // GetComponent<Rigidbody>().isKinematic = false; //todo uncomment
         } 
         
-        if (other.gameObject.TryGetComponent(out Border border))
-        {
-            Debug.Log("AAA-135 Border Enter " + Time.time );
-            RopeTouchStarted?.Invoke();
-            IsRopeTouching = true;
-            _collisionCounter = 0;
-        } 
+        // if (other.gameObject.TryGetComponent(out Rope rope))
+        // {
+        //     Debug.Log("DOC TRIGGER");
+        //     // RopeTouchStarted?.Invoke();
+        //     // IsRopeTouching = true;
+        //     // _collisionCounter = 0;
+        // } 
         
         if (other.gameObject.TryGetComponent(out Bot bot))
         {
@@ -134,13 +134,35 @@ public class Participant : MonoBehaviour
         return first.Score < second.Score ? first : second;
     }
 
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.gameObject.TryGetComponent(out Rope rope))
-    //     {
-    //         RopeTouchStarted?.Invoke();
-    //     }
-    // }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.TryGetComponent(out Border border))
+        {
+            // Debug.Log("AAA-135 Border Enter " + Time.time );
+            RopeTouchStarted?.Invoke();
+            IsRopeTouching = true;
+            _collisionCounter = 0;
+        } 
+        
+        if (other.gameObject.TryGetComponent(out Rope rope))
+        {
+            Debug.Log("DOC COLLISION");
+            var next1 = other.gameObject.GetComponent<HingeJoint>().connectedBody.gameObject;
+            Debug.Log("DOC next1 : " + next1);
+            var distance = Vector3.Distance(other.gameObject.transform.position, next1.transform.position);
+            Debug.Log("DOC distance : " + distance);
+
+            if (distance > 0.4f)
+            {
+                Destroy(rope.gameObject);
+                Destroy(rope.gameObject.transform.parent.gameObject, 0.35f);
+            }
+
+            // RopeTouchStarted?.Invoke();
+            // IsRopeTouching = true;
+            // _collisionCounter = 0;
+        }         
+    }
     //
     // private void OnCollisionExit(Collision other)
     // {

@@ -12,23 +12,25 @@ public class BotRuler : MonoBehaviour
     private Vector2 _direction;
     private Vector2 _startPosition;
     private bool _isDirectionChosen;
+    private float _repeatTime;
 
     private void Start()
     {
         _participantMover = GetComponent<ParticipantMover>();
+        _repeatTime = 0.75f;
         
-        InvokeRepeating(nameof(SetRandomDirection), 0.5f, 0.75f);
+        InvokeRepeating(nameof(SetRandomDirection), 0.5f, _repeatTime);
     }
 
     private void SetRandomDirection()
     {
         float randomX = Random.Range(-1.0001f, 1.001f);
         float randomY = Random.Range(-1.0001f, 1.001f);
+        _repeatTime = Random.Range(0.65f, 1.25f);
 
         _direction = new Vector2(randomX, randomY);
         _isDirectionChosen = true;
-        
-        Debug.Log("AAA-136 _direction : " + _direction);
+        // Debug.Log("AAA-136 _direction : " + _direction);
     }
 
     private void FixedUpdate()

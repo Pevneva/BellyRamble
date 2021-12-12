@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    private Vector3 _startScale;
+    // private Vector3 _startScale;
 
     private void Start()
     {
-        _startScale = transform.localScale;
+        // _startScale = transform.localScale;
         
         // Debug.Log("AAA-3 _startScale : " + _startScale);
     }
+
+    // private void Update()
+    // {
+    //     // Debug.Log("DAD transform.rotation : " + transform.rotation.eulerAngles);
+    //     if (transform.rotation.eulerAngles.y > 90)// || transform.rotation.eulerAngles.y < -90)
+    //         Destroy(transform.parent.gameObject);
+    // }
 }

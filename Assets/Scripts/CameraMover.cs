@@ -9,6 +9,8 @@ public class CameraMover : MonoBehaviour
 {
     [FormerlySerializedAs("_target")] [SerializeField] private Transform _horizontalTrackTarget;
 
+    public bool IsBlockedMoving { get; set; }
+
     private bool _isHorizontalTracking;
     private Transform _trackTarget;
     private float _startY;
@@ -19,8 +21,11 @@ public class CameraMover : MonoBehaviour
         _isHorizontalTracking = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        if (IsBlockedMoving)
+            return;
+        
         if (_isHorizontalTracking)
             HorizontalTrack(_horizontalTrackTarget);
         else
