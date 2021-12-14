@@ -86,10 +86,10 @@ public class RopeCreater : MonoBehaviour
         var posY = startPosition.y;
         var posZ = startPosition.z;
 
-        Debug.Log("localScaleSegment : " + localScaleSegment);
-        Debug.Log("_segments : " + _segments);
-        Debug.Log("wholeDistanceRB : " + wholeDistanceRb);
-        Debug.Log("segmentDistanceRB : " + segmentDistanceRb);
+        // Debug.Log("localScaleSegment : " + localScaleSegment);
+        // Debug.Log("_segments : " + _segments);
+        // Debug.Log("wholeDistanceRB : " + wholeDistanceRb);
+        // Debug.Log("segmentDistanceRB : " + segmentDistanceRb);
 
         float offsetKoef = 1.5f;
         for (int i = 0; i < _segments; i++)

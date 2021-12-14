@@ -29,14 +29,14 @@ public class FoodGeneration : MonoBehaviour
         _startPosition = _leftDownPoint.position;
         _endPosition = _rightUpPoint.position;
         _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; //to do replace 5 by cell count from inspector
-        Debug.Log("BBB cellSize: " + _cellSize);
-        Debug.Log("BBB start position world: " + _startPosition);
-        Debug.Log("BBB start position grid: " + WorldToGridPosition(_startPosition));
-        Debug.Log("BBB end position world: " +_endPosition);
-        Debug.Log("BBB end position grid: " + WorldToGridPosition(_endPosition));
+        // Debug.Log("BBB cellSize: " + _cellSize);
+        // Debug.Log("BBB start position world: " + _startPosition);
+        // Debug.Log("BBB start position grid: " + WorldToGridPosition(_startPosition));
+        // Debug.Log("BBB end position world: " +_endPosition);
+        // Debug.Log("BBB end position grid: " + WorldToGridPosition(_endPosition));
         
         _foodDestroying = new Queue<Vector3Int>();
-        _generationHeight = _ground.position.y + 0.7f;
+        _generationHeight = _ground.position.y + 0.7f + 2.56f;
         FillArea(_startPosition, _endPosition, 1);
     }
 
@@ -73,9 +73,8 @@ public class FoodGeneration : MonoBehaviour
         {
             for (int z = startPoint.z ; z < _cellCount ; z++)
             {
-                Debug.Log("BBB x=" + x + "; z=" + z);
+                // Debug.Log("BBB x=" + x + "; z=" + z);
                 TryCreate(_foodPrefabs[0],new Vector3Int(x, 0, z));
-                // TryCreate(_primaryFoodPrefabs[0], new Vector3Int(x, 0, z));
             }
         }
     }
@@ -116,7 +115,7 @@ public class FoodGeneration : MonoBehaviour
 
     private void OnDied(Vector3Int gridPosition)
     {
-        Debug.Log("AAA-3 DIED !");
+        // Debug.Log("AAA-3 DIED !");
         TryRemoveFromCollisionsMatrix(gridPosition);
         _foodDestroying.Enqueue(gridPosition);
         
@@ -149,7 +148,6 @@ public class FoodGeneration : MonoBehaviour
         //     ? GridToWorldPosition(gridPosition) + GetRandomOffset()
         //     : GridToWorldPosition(gridPosition);
         
-        Debug.Log("BBB result position : " + position);
         var gridObject = Instantiate(template, position + new Vector3(0, _generationHeight, 0), quaternionY, transform);
         
         Vector3 scale = gridObject.transform.localScale;

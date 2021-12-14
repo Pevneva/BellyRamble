@@ -11,19 +11,22 @@ public class Participant : MonoBehaviour
     [SerializeField] private ParticipantDataView _view;
 
     public event UnityAction<int> ScoreChanged;
-    public event UnityAction RopeTouchStarted;
+    public event UnityAction RopeTouchDuringMoving;
     public event UnityAction RopeTouchEnded;
     public event UnityAction<Participant> ParticipantsTouched;
     public bool IsRopeTouching;
-    
+
     private Vector3 _scale;
     private Rigidbody _rigidbody;
     private float _collisionCounter;
     private float _collisionDelay;
     private GameObject _collisionGameObject;
 
-    public int Score { get { return _score; } }
-    
+    public int Score
+    {
+        get { return _score; }
+    }
+
     private void Start()
     {
         IsRopeTouching = false;
@@ -45,11 +48,11 @@ public class Participant : MonoBehaviour
     {
         // SetScale(score); //to improve
     }
-    
+
     private void SetScale(int score)
     {
         // _scale += _scale * score/(float)450;
-        _scale += new Vector3(1f,0.1f,1f) *  0.01f/(float)score;
+        _scale += new Vector3(1f, 0.1f, 1f) * 0.01f / (float) score;
         transform.localScale = _scale;
     }
 
@@ -60,7 +63,7 @@ public class Participant : MonoBehaviour
         // Debug.Log("SCORE: " + Score);
         ScoreChanged?.Invoke(score);
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Food food))
@@ -68,21 +71,21 @@ public class Participant : MonoBehaviour
             Destroy(other.gameObject);
             AddScore(food.Reward);
         }
-        
+
         if (other.gameObject.TryGetComponent(out BorderPrev borderPrev))
         {
             // Debug.Log("AAA-135 Border PREV Enter");
             // GetComponent<Rigidbody>().isKinematic = false; //todo uncomment
-        } 
-        
+        }
+
         // if (other.gameObject.TryGetComponent(out Rope rope))
         // {
         //     Debug.Log("DOC TRIGGER");
-        //     // RopeTouchStarted?.Invoke();
+        //     // RopeTouchDuringMoving?.Invoke();
         //     // IsRopeTouching = true;
         //     // _collisionCounter = 0;
         // } 
-        
+
         if (other.gameObject.TryGetComponent(out Bot bot))
         {
             Debug.Log("AAA-138 BOT !!!");
@@ -93,13 +96,12 @@ public class Participant : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-                
         if (other.gameObject.TryGetComponent(out BorderPrev2 borderPrev2))
         {
             // Debug.Log("AAA-135 Border Prev 222 Stay");
             GetComponent<Rigidbody>().isKinematic = true;
-        }   
-        
+        }
+
         if (other.gameObject.TryGetComponent(out Border border))
         {
             _collisionCounter += Time.deltaTime;
@@ -139,29 +141,43 @@ public class Participant : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Border border))
         {
             // Debug.Log("AAA-135 Border Enter " + Time.time );
-            RopeTouchStarted?.Invoke();
+            RopeTouchDuringMoving?.Invoke();
             IsRopeTouching = true;
             _collisionCounter = 0;
-        } 
-        
+        }
+
         if (other.gameObject.TryGetComponent(out Rope rope))
         {
             Debug.Log("DOC COLLISION");
-            var next1 = other.gameObject.GetComponent<HingeJoint>().connectedBody.gameObject;
-            Debug.Log("DOC next1 : " + next1);
-            var distance = Vector3.Distance(other.gameObject.transform.position, next1.transform.position);
-            Debug.Log("DOC distance : " + distance);
 
+            if (GetComponent<ParticipantMover>().IsPushing)
+            {
+                // RopeTouchDuringMoving?.Invoke();
+            }
+
+            HingeJoint hinge = other.gameObject.GetComponent<HingeJoint>();
+            if (hinge == null)
+                return;
+
+            if (hinge.connectedBody == null)
+                return;
+
+            var next1 = hinge.connectedBody.gameObject;
+
+            // Debug.Log("DOC next1 : " + next1);
+            var distance = Vector3.Distance(other.gameObject.transform.position, next1.transform.position);
+            // Debug.Log("DOC distance : " + distance);
             if (distance > 0.4f)
             {
                 Destroy(rope.gameObject);
                 Destroy(rope.gameObject.transform.parent.gameObject, 0.35f);
             }
 
-            // RopeTouchStarted?.Invoke();
+
+            // RopeTouchDuringMoving?.Invoke();
             // IsRopeTouching = true;
             // _collisionCounter = 0;
-        }         
+        }
     }
     //
     // private void OnCollisionExit(Collision other)
