@@ -1,91 +1,125 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(ParticipantMover))]
 public class BotRuler : MonoBehaviour
 {
     private ParticipantMover _participantMover;
+    private FoodGeneration _foodGeneration;
+    private Food[] _foods;
     private Vector2 _direction;
     private Vector2 _startPosition;
     private bool _isDirectionChosen;
     private float _repeatTime;
+    private Food _nearestFood;
+    private Transform _targetFood;
+    private Transform _target;
+    private Quaternion _lookRotation;
+    private Animator _animator;
+    private Vector3 _moveDirection;
 
     private void Start()
     {
+        _moveDirection = Vector3.zero;
         _participantMover = GetComponent<ParticipantMover>();
+        _foodGeneration = FindObjectOfType<FoodGeneration>();
         _repeatTime = 0.75f;
-        
-        InvokeRepeating(nameof(SetRandomDirection), 0.5f, _repeatTime);
+        _animator = GetComponentInChildren<Animator>();
+        _animator.SetFloat("Speed", _participantMover.Speed);
+        // InvokeRepeating(nameof(SetRandomDirection), 0.5f, _repeatTime);
+        // InvokeRepeating(nameof(GoToFood), 0.5f, _repeatTime);
+        GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
+        _targetFood = GetNearestFood().transform;
+
+        InvokeRepeating(nameof(Rotate), 0, 0.05f);
     }
 
-    private void SetRandomDirection()
+    private void Update()
     {
-        float randomX = Random.Range(-1.0001f, 1.001f);
-        float randomY = Random.Range(-1.0001f, 1.001f);
-        _repeatTime = Random.Range(0.65f, 1.25f);
-
-        _direction = new Vector2(randomX, randomY);
-        _isDirectionChosen = true;
-        // Debug.Log("AAA-136 _direction : " + _direction);
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isDirectionChosen)
+        if (_targetFood != null)
         {
-            _participantMover.TryMove(_direction * 100);
-            // _isDirectionChosen = false;
+            _moveDirection = (_targetFood.position - transform.position).normalized;
+            transform.Translate(Time.deltaTime * _participantMover.Speed * _moveDirection, Space.World);
+        }
+        else
+        {
+            _targetFood = GetNearestFood();
         }
     }
 
+    private void OnFoodEaten(Food food)
+    {
+        Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
+        Debug.Log("AAA Food Eaten!!! index : " + Array.IndexOf(_foods, food));
+        List<Food> temp = _foods.ToList();
+        temp.Clear();
+        _foods = temp.ToArray();
+        Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
+        // if (IsRopeNextTo(out TouchBorder touchBorder) == false)
+        Invoke(nameof(SetNewTarget), Time.deltaTime);
+        // else
+        // {
+        //     // _participantMover.DoRopeRepulsion(_moveDirection, touchBorder);
+        //     // _participantMover.DoRopeRepulsion(_moveDirection, );
+        //     // MoveToRope(Vector3 direction);
+        // }
+    }
 
-    // private void FixedUpdate()
-    // {
-    //     TrySetDirection();
-    //
-    //     if (_isDirectionChosen)
-    //         _participantMover.TryMove(_direction);
-    // }
-    //
-    // private void Update()
-    // {
-    //     TrySaveStartData();
-    //     TryResetStartData();
-    // }
-    //
-    // private void TrySaveStartData()
-    // {
-    //     if (Input.GetMouseButtonDown(0))
-    //     {
-    //         _startPosition = Input.mousePosition;
-    //         _isDirectionChosen = false;
-    //     }
-    // }
-    //
-    // private void TryResetStartData()
-    // {
-    //     if (Input.GetMouseButtonUp(0))
-    //     {
-    //         _isDirectionChosen = false;
-    //         _participantMover.StopMoving();            
-    //     }
-    // }
-    //
-    // private void TrySetDirection()
-    // {
-    //     if (Input.GetMouseButton(0))
-    //     {
-    //         Vector2 currentMousePosition = Input.mousePosition;
-    //         
-    //         if (Vector2.Distance(_startPosition, currentMousePosition) > 5f) //to do radius variable instead of number
-    //         {
-    //             _direction = currentMousePosition - _startPosition;
-    //             _isDirectionChosen = true;
-    //         }            
-    //     }
-    // }
+
+    private bool IsRopeNextTo(out TouchBorder touchBorder)
+    {
+        Vector3 newPosition = 1.8f * _moveDirection + transform.position;
+
+        if (_participantMover.IsOutField(newPosition, out TouchBorder touchBorder2))
+        {
+            touchBorder = touchBorder2;
+            // return true;
+        }
+
+        touchBorder = TouchBorder.NULL;
+        return false;
+    }
+
+    private TouchBorder GetTouchBorder()
+    {
+        return TouchBorder.NULL;
+    }
+
+    private void SetNewTarget()
+    {
+        _targetFood = GetNearestFood();
+    }
+
+    private void Rotate()
+    {
+        _lookRotation = Quaternion.LookRotation(_targetFood.position - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.5f);
+    }
+    
+    private Transform GetNearestFood()
+    {
+        _foods = _foodGeneration.gameObject.GetComponentsInChildren<Food>();
+        Debug.Log("AAA Count  of food : " + _foods.Length);
+        float shortestDistance = Mathf.Infinity;
+        _nearestFood = null;
+
+        foreach (Food food in _foods)
+        {
+            float distanceToFood = Vector3.Distance(transform.position, food.gameObject.transform.position);
+            if (distanceToFood < shortestDistance)
+            {
+                shortestDistance = distanceToFood;
+                _nearestFood = food;
+            }
+        }
+        return _nearestFood != null ? _nearestFood.transform : null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        if (_targetFood != null) Gizmos.DrawWireSphere(_targetFood.transform.position, 0.5f);
+    }
 }

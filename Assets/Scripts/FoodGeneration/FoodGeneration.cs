@@ -23,7 +23,7 @@ public class FoodGeneration : MonoBehaviour
     private Vector3 _startPosition;
     private Vector3 _endPosition;
     
-    private void Start()
+    private void Awake()
     {
 
         _startPosition = _leftDownPoint.position;

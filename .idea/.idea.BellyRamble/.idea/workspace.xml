@@ -4,47 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Improved ropes.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Added shaders and effects.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/Material.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/Material.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/Pilliar.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Pilliar.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/Rope.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Rope.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Food/Burger.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Food/Burger.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Food/Hotdog.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Food/Hotdog.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Location/Rope.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Location/Rope.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Location/RopePartPrefab.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Location/RopePartPrefab.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Bots.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Bots.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Canvas.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Canvas.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Pilliars.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Pilliars.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Player.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Ring.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Ring.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/RopeCreater.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/RopeCreater.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/RopeCylinder.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/RopeCylinder.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Sphere.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/Sphere.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/SpheresPrefab.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Prefabs/SpheresPrefab.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Slow Run(2).fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/Slow Run(2).fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/mixamo.com.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestTemp/mixamo.com.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +33,7 @@
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ads@3.7.5/Runtime/Advertisement/Platform/iOS/IosNativeObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scenes/Test.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
@@ -79,22 +47,28 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/EditorGameService/EditorGameServiceFlagEnabler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Window/TimelineWindow_StateChange.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/DirectorStyles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestParent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteGlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD0A7939-8190-48A0-A161-F66558C98867/e6/b089f8b7/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.visualstudio@2.0.11/Editor/VisualStudioInstallation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BorderPrev2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Extensions/AnimatedParameterExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_GlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/Sequence/TrackZoom.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" root0="FORCE_HIGHLIGHTING" />
@@ -119,13 +93,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TestParent.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
