@@ -51,12 +51,13 @@ public class BotRuler : MonoBehaviour
 
     private void OnFoodEaten(Food food)
     {
-        Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
-        Debug.Log("AAA Food Eaten!!! index : " + Array.IndexOf(_foods, food));
+        // Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
+        // Debug.Log("AAA Food Eaten!!! index : " + Array.IndexOf(_foods, food));
         List<Food> temp = _foods.ToList();
         temp.Clear();
         _foods = temp.ToArray();
-        Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
+        // Debug.Log("AAA Food Eaten!!! _foods: " + _foods);
+        
         // if (IsRopeNextTo(out TouchBorder touchBorder) == false)
         Invoke(nameof(SetNewTarget), Time.deltaTime);
         // else
@@ -101,7 +102,7 @@ public class BotRuler : MonoBehaviour
     private Transform GetNearestFood()
     {
         _foods = _foodGeneration.gameObject.GetComponentsInChildren<Food>();
-        Debug.Log("AAA Count  of food : " + _foods.Length);
+        // Debug.Log("AAA Count  of food : " + _foods.Length);
         float shortestDistance = Mathf.Infinity;
         _nearestFood = null;
 

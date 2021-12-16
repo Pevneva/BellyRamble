@@ -83,7 +83,7 @@ public class Participant : MonoBehaviour
         {
             Debug.Log("AAA-138 BOT !!!");
             ParticipantsTouched?.Invoke(GetLoser(bot, this));
-            Debug.Log("AAA-138 WINNER : " + GetLoser(bot, this));
+            Debug.Log("AAA-138 LOSER : " + GetLoser(bot, this));
         }
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
@@ -60,12 +61,14 @@ public class ParticipantMover : MonoBehaviour
     private float _movingCounter;
     private Vector3 _newPosition;
     private float _pushingDistance;
+    private bool _isFlying;
 
     private Sequence _turnOverSequence;
     // private Vector3 _newPosition;
 
     private void Start()
     {
+        _isFlying = false;
         _touchBorder = TouchBorder.NULL;
         IsMoving = false;
         _isForcing = false;
@@ -104,10 +107,26 @@ public class ParticipantMover : MonoBehaviour
         _planeStartPoint = new Vector2(_leftDownPointBorder.position.x + _offsetMovingArea,
             _leftDownPointBorder.position.z + _offsetMovingArea);
         _radius = Vector2.Distance(_centerPositionXZ, _planeStartPoint);
+
+        // _participant.ParticipantsTouched += AddForceFly;
     }
 
     private void Update()
     {
+        // if (Input.GetKeyUp(KeyCode.A))
+        // {
+        //     Participant participant = GetComponent<Player>();
+        //     Debug.Log("SOS A pressed; participant : " + participant);
+        //     if (participant != null)
+        //     {
+        //         AddForceFly(participant, _moveDirection);
+        //         _isFlying = true;
+        //     }
+        // }
+
+        if (_isFlying)
+            return;
+        
         if (IsOutField(transform.position, out TouchBorder touchBorder))
         {
             if (IsPushing == false)
@@ -415,13 +434,15 @@ public class ParticipantMover : MonoBehaviour
 
         // Camera.main.gameObject.GetComponent<CameraMover>().SetTrack(participant.gameObject.transform);
 
+        _animator.SetBool("Fly", true);
         var startPosition = participant.gameObject.transform.position;
-        // Sequence sequence = DOTween.Sequence();
-        // sequence.Append(participant.transform.DOMove(new Vector3(3, 5, 3), 1).SetEase(Ease.Linear));
-        // sequence.Append(participant.transform.DOMove(new Vector3(startPosition.x, startPosition.y, startPosition.z), 1).SetEase(Ease.Linear));
-        // participant.transform.DOMove(new Vector3(1, 3, 1), 1);
-        // participant.transform.DOMove(new Vector3(3, -9, 3), 3);
+        var heihgestPosition = startPosition + _moveDirection.normalized * 6 + new Vector3(0, 5, 0);
+        var endPosition = heihgestPosition + _moveDirection.normalized * 12 + new Vector3(0, -10, 0);
+        Debug.Log("startPosition : " + startPosition);
+        Debug.Log("direction : " + _moveDirection);
+        Debug.Log("heihgestPosition : " + heihgestPosition);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(participant.transform.DOMove(heihgestPosition, 0.75f).SetEase(Ease.Linear));
+        sequence.Append(participant.transform.DOMove(endPosition, 1.5f).SetEase(Ease.Linear));
     }
-
-
 }
