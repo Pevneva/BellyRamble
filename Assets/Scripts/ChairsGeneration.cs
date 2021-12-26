@@ -40,11 +40,6 @@ public class ChairsGeneration : MonoBehaviour
         _offsetFromPoints += 1.5f;
         InitBorderPoints(_offsetFromPoints);
         CreateChairs();
-
-        // _startPosition = _leftDownPilliar.position + new Vector3(-_offsetFromPoints, _height, -_offsetFromPoints);
-
-
-        
     }
 
     private void InitBorderPoints(float offset)

@@ -74,7 +74,7 @@ public class Participant : MonoBehaviour
 
             if (this is Bot)
             {
-                Debug.Log("AAA I'm bot!");
+                // Debug.Log("AAA I'm bot!");
                 FoodEatenByBot?.Invoke(food);
             }
         }
@@ -82,9 +82,35 @@ public class Participant : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Bot bot))
         {
             Debug.Log("AAA-138 BOT !!!");
-            ParticipantsTouched?.Invoke(GetLoser(bot, this));
-            Debug.Log("AAA-138 LOSER : " + GetLoser(bot, this));
+
+            var mover = gameObject.GetComponent<ParticipantMover>();
+            var otherMover = other.gameObject.GetComponent<ParticipantMover>();
+
+            if (mover.IsFlying || otherMover.IsFlying)
+                return;
+            
+            if (mover.IsBoosting || otherMover.IsBoosting)
+            {
+                GetLoser(bot, this).gameObject.GetComponent<ParticipantMover>().AddForceFly(GetLoser(bot, this));
+                // ParticipantsTouched?.Invoke(GetLoser(bot, this));
+                Debug.Log("AAA-138 LOSER : " + GetLoser(bot, this));
+                return;
+            } 
+
+            Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
+            otherRigidbody.isKinematic = false;
+            _rigidbody.isKinematic = false;
+
+            StartCoroutine(DoKinematic(0.5f, otherRigidbody, _rigidbody));
+
         }
+    }
+    
+    private IEnumerator DoKinematic(float delay, Rigidbody rigidbody1, Rigidbody rigidbody2)
+    {
+        yield return new WaitForSeconds(delay);
+        rigidbody1.isKinematic = true;
+        rigidbody2.isKinematic = true;
     }
 
     private IEnumerator DoActiveCollisionObject(float delay)

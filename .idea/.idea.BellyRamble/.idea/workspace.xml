@@ -4,13 +4,151 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Added the bots' moving.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Boy.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Boy.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering2.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Cheering2.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Excited.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Excited.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Sitting Clap(1).controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Sitting Clap(1).controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Sitting1.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/Sitting1.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/boy_2.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Audience/boy_2.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/CheeringBoy.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/CheeringBoy.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/SittingGirl.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/SittingGirl.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/batuts.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/3DModels/batuts.obj.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Batut.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Batut.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/BigPillar1.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/BigPillar1.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/BigPillar2.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/BigPillar2.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Food.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Food/HotDog.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Food/HotDog.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/clothes 1.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/clothes 1.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/clothes.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/clothes.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/skin 1.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/skin 1.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/skin.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Stickmans/skin.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Temp.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Temp/BigPillar.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Temp/BigPillar.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Trail.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Trail/TrailCubeMaterial.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Trail/TrailCubeMaterial.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Trail/YellowTrail.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Materials/Trail/YellowTrail.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Textures/dinosaur.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Textures/dinosaur.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Textures/picture_dino.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Graphics/Textures/picture_dino.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Base_Material.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Base_Material.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Base_Texture.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Base_Texture.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Skin_Material.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Skin_Material.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Skin_Material_Zombie.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials/StickmanPack2_Skin_Material_Zombie.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW).meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Base_Material_pipelines.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Base_Material_pipelines.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Skin_Material_pipelines.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Skin_Material_pipelines.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Skin_Zombie_Material_pipelines.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Materials_pipelines (HD + LW)/StickmanPack2_Skin_Zombie_Material_pipelines.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Boy.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Boy.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Girl.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Girl.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Grandfather.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Grandfather.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Hero.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Hero.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Ninja.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Ninja.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Pirat.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Pirat.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Punk.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Punk.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Santa.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Santa.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Skeleton.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Skeleton.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Zombie.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Models/Zombie.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Boy.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Boy.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Girl.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Girl.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Grandfather.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Grandfather.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Hero.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Hero.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Ninja.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Ninja.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Pirat.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Pirat.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Punk.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Punk.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Santa.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Santa.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Skeleton.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Skeleton.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Zombie.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Prefabs/Zombie.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Scenes/Demo.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Scenes/Demo.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Scenes/Ground.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Scenes/Ground.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Base_Texture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Base_Texture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Skin_Texture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Skin_Texture.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Skin_Texture_Zombie.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HyperCasual - Stickman Pack 2/Textures/StickmanPack2_Skin_Texture_Zombie.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TestTemp/Excited.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TestTemp/Excited.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/HotDog.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/HotDog.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/TrailCubeMaterial.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/TrailCubeMaterial.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/YellowTrail.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/Materials/YellowTrail.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,52 +168,51 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scenes/Test.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ads@3.7.5/Runtime/Advertisement/Platform/iOS/IosNativeObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestLaunchers/RemotePlayerLogController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Utilities/TrackResourceCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.purchasing@4.0.3/Runtime/Common/VersionCheck.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/EditorGameService/EditorGameServiceFlagEnabler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Window/TimelineWindow_StateChange.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/DirectorStyles.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Bot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/ServiceActivationPopup/Visuals/ExceptionVisual.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteGlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.visualstudio@2.0.11/Editor/VisualStudioInstallation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD0A7939-8190-48A0-A161-F66558C98867/e6/b089f8b7/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BorderPrev2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Extensions/AnimatedParameterExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_GlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/Sequence/TrackZoom.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_PreBuildProcessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.recorder@2.5.7/Editor/Sources/RecorderOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.recorder@2.5.7/Editor/Sources/Recorders/_Legacy/FrameCapturer/Scripts/Encoder/WEBMEncoder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ads@3.7.5/Runtime/Advertisement/Platform/iOS/IosNativeObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD0A7939-8190-48A0-A161-F66558C98867/e6/b089f8b7/Animator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Extensions/AnimatedParameterExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/Sequence/TrackZoom.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Tests/Editor/Collaborate/Models/Providers/MockSourceControlProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Editor/PlasticSCM/WebApi/TokenExchangeResponse.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -92,18 +229,19 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TestParent.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -113,6 +251,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.349689" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -132,10 +272,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="11416">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="11416" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -174,6 +314,11 @@
       <updated>1639126176881</updated>
       <workItem from="1639126193576" duration="2874000" />
       <workItem from="1639152716773" duration="70620000" />
+      <workItem from="1639746761825" duration="5000" />
+      <workItem from="1639746805176" duration="3538000" />
+      <workItem from="1640086973412" duration="598000" />
+      <workItem from="1640250908790" duration="2403000" />
+      <workItem from="1640294249423" duration="33985000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -189,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639588603637</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added chair generation.">
+      <created>1639654994621</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639654994621</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +368,14 @@
     <MESSAGE value="Improved food generation. Decreased speed of participants." />
     <MESSAGE value="Improved ropes." />
     <MESSAGE value="Added the bots' moving." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the bots' moving." />
+    <MESSAGE value="Added chair generation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added chair generation." />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="_target" language="C#" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

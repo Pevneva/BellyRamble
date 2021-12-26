@@ -7,53 +7,95 @@ using UnityEngine.Serialization;
 
 public class CameraMover : MonoBehaviour
 {
-    [FormerlySerializedAs("_target")] [SerializeField] private Transform _horizontalTrackTarget;
+    [SerializeField] private Transform _trackTarget;
+    [SerializeField] private float _trackingSpeed = 1.5f;
 
-    public bool IsBlockedMoving { get; set; }
-
+    private Vector3 _target;
+    private Vector3 _currentPosition;
+    private float _positionY;
+    private float _positionZ;
     private bool _isHorizontalTracking;
-    private Transform _trackTarget;
-    private float _startY;
-    private float _startZ;
 
     private void Start()
     {
         _isHorizontalTracking = true;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (IsBlockedMoving)
-            return;
-        
-        if (_isHorizontalTracking)
-            HorizontalTrack(_horizontalTrackTarget);
-        else
-            Track(_trackTarget);
+        _currentPosition = Vector3.Lerp(transform.position, _target, _trackingSpeed * Time.deltaTime);
+        transform.position = _currentPosition;
+
+        _positionY = _isHorizontalTracking ? transform.position.y : _trackTarget.position.y + 16.5f;
+        _positionZ = _isHorizontalTracking ? transform.position.z : _trackTarget.position.z - 10;
+        _target = new Vector3(_trackTarget.position.x, _positionY, _positionZ);
     }
 
-    private void HorizontalTrack(Transform target)
+    public void SetKindMoving(bool isHorizontal)
     {
-        Vector3 position = transform.position;
-        var newPosition = new Vector3(target.position.x, position.y, position.z);
-        transform.position = newPosition;
+        _isHorizontalTracking = isHorizontal;
     }
 
-    public void SetTrack(Transform target)
+    public void SetTarget(Transform newTarget)
     {
-        _isHorizontalTracking = false;
-        _trackTarget = target;
-        _startY = target.position.y;
-        _startZ = target.position.z;
+        _trackTarget = newTarget;
     }
-    
-    private void Track(Transform target)
-    {
-        Vector3 position = target.position;
-        // var startY = target.position.y;
-        // var startZ = target.position.z;
 
-        Debug.Log("AAA-138 ");
-        transform.position = new Vector3(position.x, position.y - _startY, position.z - _startZ);
-    }
 }
+
+//     public bool IsBlockedMoving { get; set; }
+//
+//     private bool _isHorizontalTracking;
+//     private Transform _trackTarget;
+//     private float _startY;
+//     private float _startZ;
+//     private float _startTargetY;
+//     private float _startTargetZ;
+//
+//     private void Start()
+//     {
+//         // _isHorizontalTracking = false;
+//         _isHorizontalTracking = true;
+//         _startY = transform.position.y;
+//         _startZ = transform.position.z;
+//         _trackTarget = FindObjectOfType<Player>().transform;
+//         _startTargetZ = _trackTarget.position.z;
+//     }
+//
+//     private void LateUpdate()
+//     {
+//         if (IsBlockedMoving)
+//             return;
+//         
+//         if (_isHorizontalTracking)
+//             HorizontalTrack(_horizontalTrackTarget);
+//         else
+//             Track(_trackTarget);
+//     }
+//
+//     private void HorizontalTrack(Transform target)
+//     {
+//         Vector3 position = transform.position;
+//         var newPosition = new Vector3(target.position.x, position.y, position.z);
+//         transform.position = newPosition;
+//     }
+//
+//     public void SetTrack(Transform target)
+//     {
+//         _isHorizontalTracking = false;
+//         _trackTarget = target;
+//     }
+//     
+//     private void Track(Transform target)
+//     {
+//         Vector3 position = target.position;
+//         // var startY = target.position.y;
+//         // var startZ = target.position.z;
+//
+//         // Debug.Log("AAA-138 ");
+//         // transform.position = new Vector3(position.x, position.y - _startY, position.z - _startZ);
+//         
+//         var newPosition = new Vector3(target.position.x, _startY, target.position.z - _startTargetZ  + transform.position.z);
+//         transform.position = newPosition;
+//     }
+// }

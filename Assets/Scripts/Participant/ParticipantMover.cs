@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -18,7 +14,16 @@ public class ParticipantMover : MonoBehaviour
 
     public bool IsMoving { get; private set; }
     public bool IsPushing { get; private set; }
+    public bool IsBoosting { get; private set; }
+    public bool IsFlying { get; private set; }
+
+
     public float Speed => _speed;
+    public float BoostTime => _boostTime;
+    public float RepulsionTime { get { return _turnOverTime + _preparingPushTime + _pushTime; } }
+    public Vector3 NewPosition { get; private set; }
+
+    //{ get { return turretToBuild != null; } }
 
     private TouchBorder _touchBorder;
     private bool _isForcing;
@@ -36,10 +41,9 @@ public class ParticipantMover : MonoBehaviour
     private Vector3 _startPosition;
     private float _turnOverTime;
     private float _preparingPushTime;
-    private bool _isBoosting;
     private float _offsetToPush;
 
-    private float _delayTime;
+    // private float _delayTime;
     private float _pushDistanceKoef;
     private float _pushTime;
     private bool _isTouchBreak;
@@ -59,16 +63,15 @@ public class ParticipantMover : MonoBehaviour
     private float _rotateStep;
     private float _rotateCounter;
     private float _movingCounter;
-    private Vector3 _newPosition;
     private float _pushingDistance;
-    private bool _isFlying;
 
     private Sequence _turnOverSequence;
-    // private Vector3 _newPosition;
+    // private Vector3 NewPosition;
+    private Camera _mainCamera;
 
     private void Start()
     {
-        _isFlying = false;
+        IsFlying = false;
         _touchBorder = TouchBorder.NULL;
         IsMoving = false;
         _isForcing = false;
@@ -78,15 +81,22 @@ public class ParticipantMover : MonoBehaviour
         _rotateCounter = 0;
         _offsetToPush = -0.1f;
         _delayCounter = 0;
+        
+        // _turnOverTime = 1f;
+        // _preparingPushTime = 1f;
+        // _angleRotateBeforePushing = 45;
+        // _pushTime = 1f; 
+        
         _turnOverTime = 0.2f;
         _preparingPushTime = 0.3f;
-        _delayTime = 0.55f;
         _angleRotateBeforePushing = 15;
-        _angleRotation = 180;
+        _pushTime = 0.2f;
+        
+        // _delayTime = 0.55f;
         // _pushDistanceKoef = 0.25f;
         // _pushTime = 0.025f;
+        _angleRotation = 180;
         _pushDistanceKoef = 2f;
-        _pushTime = 0.2f;
         _positionY = transform.position.y;
         _startSpeed = _speed;
         _rigidbody = GetComponent<Rigidbody>();
@@ -101,12 +111,13 @@ public class ParticipantMover : MonoBehaviour
 
         IsPushing = false;
         _isTouchBreak = false;
-        _isBoosting = false;
+        IsBoosting = false;
         _offsetMovingArea = 0.35f;
         _centerPositionXZ = GetRingCenter();
         _planeStartPoint = new Vector2(_leftDownPointBorder.position.x + _offsetMovingArea,
             _leftDownPointBorder.position.z + _offsetMovingArea);
         _radius = Vector2.Distance(_centerPositionXZ, _planeStartPoint);
+        _mainCamera = Camera.main;
 
         // _participant.ParticipantsTouched += AddForceFly;
     }
@@ -120,39 +131,43 @@ public class ParticipantMover : MonoBehaviour
         //     if (participant != null)
         //     {
         //         AddForceFly(participant, _moveDirection);
-        //         _isFlying = true;
+        //         IsFlying = true;
         //     }
         // }
 
-        if (_isFlying)
+        if (IsFlying)
             return;
         
         if (IsOutField(transform.position, out TouchBorder touchBorder))
         {
             if (IsPushing == false)
             {
-                if (_isBoosting == false)
+                if (IsBoosting == false)
                 {
                     DoRopeRepulsion(_moveDirection, touchBorder);
                 }
                 else
                 {
-                    _discardingDirection = GetDiscardingDirection(_moveDirection).normalized;
-                    Vector3 newPosition = transform.position + _discardingDirection * _pushDistanceKoef / 5;
-                    transform.DOMove(newPosition, _pushTime).SetEase(Ease.Flash);
+                    DoSimpleRepulsion(_moveDirection);
                 }
             }
         }
     }
 
-    public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder)
+    public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
     {
         _discardingDirection = GetDiscardingDirection(moveDirection).normalized;
+        Debug.Log("SAS _discardingDirection : " + _discardingDirection);
         _startPosition = transform.position;
-        _newPosition = transform.position + _discardingDirection * _pushDistanceKoef;
-        _pushingDistance = Vector3.Distance(_startPosition, _newPosition);
+        _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.25f : _pushDistanceKoef;
+        NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
+        Debug.Log("SAS NewPosition : " + NewPosition);
+        
+        _pushingDistance = Vector3.Distance(_startPosition, NewPosition);
+        Debug.Log("SAS _pushingDistance : " + _pushingDistance);
+        
         _turnOverSequence = DOTween.Sequence();
-        _angleRotation = GetTurnOverAngle(_discardingDirection, touchBorder);
+        _angleRotation = GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
         _turnOverSequence.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
@@ -162,7 +177,7 @@ public class ParticipantMover : MonoBehaviour
             .DOMove(transform.position - _discardingDirection * 0.15f, _turnOverTime)
             .SetEase(Ease.Linear));
         RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), _turnOverSequence);
-        _turnOverSequence.Append(transform.DOMove(_newPosition, _pushTime).SetEase(Ease.Flash)); //to do uncomment <<==
+        _turnOverSequence.Append(transform.DOMove(NewPosition, _pushTime).SetEase(Ease.Flash)); //to do uncomment <<==
                     
         StartCoroutine(StartRunAnimation(_turnOverTime + _preparingPushTime, _pushTime));
         _boostCoroutine = StartCoroutine(StartBoost(_turnOverTime + _preparingPushTime + _pushTime));
@@ -171,43 +186,42 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = true;        
     }
 
+    private void DoSimpleRepulsion(Vector3 moveDirection)
+    {
+        _discardingDirection = GetDiscardingDirection(moveDirection).normalized;
+        Vector3 newPosition = transform.position + _discardingDirection * _pushDistanceKoef / 5;
+        transform.DOMove(newPosition, _pushTime).SetEase(Ease.Flash);        
+    }
+
     private bool IsOutsideMovingArea(Vector2 positionXZ)
     {
         return Vector2.Distance(_centerPositionXZ, positionXZ) > (_radius - _offsetMovingArea);
     }
 
-    private float GetTurnOverAngle(Vector3 discardingDirection, TouchBorder touchBorder)
+    private float GetTurnOverAngle(Vector3 moveDirection, Vector3 discardingDirection, TouchBorder touchBorder)
     {
-        if (touchBorder == TouchBorder.LEFT && _moveDirection.z > 0)
-        // if (_isLeftBorder && _moveDirection.z > 0)
+        if (touchBorder == TouchBorder.LEFT && moveDirection.z > 0)
             return 2 * Vector3.Angle(Vector3.forward, discardingDirection);
 
-        // if (_isLeftBorder && _moveDirection.z < 0)
-        if (touchBorder == TouchBorder.LEFT && _moveDirection.z < 0)
+        if (touchBorder == TouchBorder.LEFT && moveDirection.z < 0)
             return -2 * Vector3.Angle(Vector3.back, discardingDirection);
 
-        // if (_isRightBorder && _moveDirection.z > 0)
-        if (touchBorder == TouchBorder.RIGHT && _moveDirection.z > 0)
+        if (touchBorder == TouchBorder.RIGHT && moveDirection.z > 0)
             return -2 * Vector3.Angle(Vector3.forward, discardingDirection);
 
-        // if (_isRightBorder && _moveDirection.z < 0)
-        if (touchBorder == TouchBorder.RIGHT && _moveDirection.z < 0)
+        if (touchBorder == TouchBorder.RIGHT && moveDirection.z < 0)
             return 2 * Vector3.Angle(Vector3.back, discardingDirection);
 
-        // if (_isUpBorder && _moveDirection.x > 0)
-        if (touchBorder == TouchBorder.UP && _moveDirection.x > 0)
+        if (touchBorder == TouchBorder.UP && moveDirection.x > 0)
             return 2 * Vector3.Angle(Vector3.right, discardingDirection);
 
-        // if (_isUpBorder && _moveDirection.x < 0)
-        if (touchBorder == TouchBorder.UP && _moveDirection.x < 0)
+        if (touchBorder == TouchBorder.UP && moveDirection.x < 0)
             return -2 * Vector3.Angle(Vector3.left, discardingDirection);
 
-        // if (_isDownBorder && _moveDirection.x > 0)
-        if (touchBorder == TouchBorder.DOWN && _moveDirection.x > 0)
+        if (touchBorder == TouchBorder.DOWN && moveDirection.x > 0)
             return -2 * Vector3.Angle(Vector3.right, discardingDirection);
 
-        // if (_isDownBorder && _moveDirection.x < 0)
-        if (touchBorder == TouchBorder.DOWN && _moveDirection.x < 0)
+        if (touchBorder == TouchBorder.DOWN && moveDirection.x < 0)
             return 2 * Vector3.Angle(Vector3.left, discardingDirection);
 
         return 0;
@@ -218,6 +232,9 @@ public class ParticipantMover : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(new Vector3(_centerPositionXZ.x, transform.position.y, _centerPositionXZ.y),
             _radius - _offsetMovingArea);
+        
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(NewPosition, Vector3.one);
     }
 
     private Vector2 GetRingCenter()
@@ -324,7 +341,7 @@ public class ParticipantMover : MonoBehaviour
     {
         _rigidbody.isKinematic = true;
 
-        if (_isBoosting)
+        if (IsBoosting)
             _speed /= _boost;
             // yield break;
 
@@ -337,33 +354,33 @@ public class ParticipantMover : MonoBehaviour
         yield return new WaitForSeconds(delay);
         _fxContainer.PlayParticipantEffects();
         _speed *= _boost;
-        _isBoosting = true;
+        IsBoosting = true;
         _rigidbody.isKinematic = true;
-        // Debug.Log("SAS _speed 1 : " + _speed);
+        Debug.Log("SASA speed 1 : " + _speed);
         _animator.SetFloat("Speed", _speed);
         yield return new WaitForSeconds(_boostTime);
         _speed = _startSpeed;
-        _isBoosting = false;
+        Debug.Log("SASA speed 2 : " + _speed);
+        IsBoosting = false;
         _rigidbody.isKinematic = true;
         _fxContainer.StopParticipantEffects();
+        _animator.SetFloat("Speed", _speed);
         // Debug.Log("DAD SAS _speed 2 : " + _startSpeed);
     }
 
     private IEnumerator StartRunAnimation(float delayTime, float runnigTime)
     {
         yield return new WaitForSeconds(delayTime);
-        // IsMoving = true;
         IsPushing = true;
-        // Debug.Log("DAD StartRunAnimation !");
         _fxContainer.PlayParticipantEffects();
         _animator.SetFloat("Speed", 2f);
         yield return new WaitForSeconds(0.05f);
         IsMoving = true;
         yield return new WaitForSeconds(runnigTime);
         // _fxContainer.StopParticipantEffects();
-        _animator.SetFloat("Speed", _speed);
-        // IsMoving = false;
-        // Debug.Log("DAD STOP !");
+        Debug.Log("SAS StartRunAnimation : _speed : " + _startSpeed);
+        // _animator.SetFloat("Speed", _startSpeed);
+        // _animator.SetFloat("Speed", _speed);
         yield break;
     }
 
@@ -400,7 +417,7 @@ public class ParticipantMover : MonoBehaviour
 
         if (_speed < _startSpeed)
         {
-            _speed = _isBoosting ? _boost * _startSpeed : _startSpeed;
+            _speed = IsBoosting ? _boost * _startSpeed : _startSpeed;
         }
 
         _animator.SetFloat("Speed", _moveDirection.normalized.magnitude * _speed);
@@ -423,7 +440,7 @@ public class ParticipantMover : MonoBehaviour
         }
     }
 
-    private void AddForceFly(Participant participant)
+    public void AddForceFly(Participant participant)
     {
         // _rigidbody.constraints = RigidbodyConstraints.None;
         // // _rigidbody.constraints == RigidbodyConstraints.FreezePosition 
@@ -432,10 +449,14 @@ public class ParticipantMover : MonoBehaviour
 
         //===================================================
 
-        // Camera.main.gameObject.GetComponent<CameraMover>().SetTrack(participant.gameObject.transform);
-
+        _mainCamera.gameObject.GetComponent<CameraMover>().SetKindMoving(false);
+        IsFlying = true;
+        Debug.Log("AAA AddForceFly : " + gameObject.name);
         _animator.SetBool("Fly", true);
         var startPosition = participant.gameObject.transform.position;
+        // var heihgestPosition = startPosition + new Vector3(0, 5, 0);
+        // var endPosition = startPosition;
+        
         var heihgestPosition = startPosition + _moveDirection.normalized * 6 + new Vector3(0, 5, 0);
         var endPosition = heihgestPosition + _moveDirection.normalized * 12 + new Vector3(0, -10, 0);
         Debug.Log("startPosition : " + startPosition);
@@ -444,5 +465,6 @@ public class ParticipantMover : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Append(participant.transform.DOMove(heihgestPosition, 0.75f).SetEase(Ease.Linear));
         sequence.Append(participant.transform.DOMove(endPosition, 1.5f).SetEase(Ease.Linear));
+        Destroy(gameObject, 2);
     }
 }
