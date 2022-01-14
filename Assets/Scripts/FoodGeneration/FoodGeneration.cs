@@ -25,55 +25,22 @@ public class FoodGeneration : MonoBehaviour
     
     private void Awake()
     {
-
         _startPosition = _leftDownPoint.position;
         _endPosition = _rightUpPoint.position;
-        _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; //to do replace 5 by cell count from inspector
-        // Debug.Log("BBB cellSize: " + _cellSize);
-        // Debug.Log("BBB start position world: " + _startPosition);
-        // Debug.Log("BBB start position grid: " + WorldToGridPosition(_startPosition));
-        // Debug.Log("BBB end position world: " +_endPosition);
-        // Debug.Log("BBB end position grid: " + WorldToGridPosition(_endPosition));
-        
+        _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; 
         _foodDestroying = new Queue<Vector3Int>();
         _generationHeight = _ground.position.y + 0.7f + 2.56f;
-        FillArea(_startPosition, _endPosition, 1);
+        FillArea(_startPosition);
     }
-
-    private void Update()
-    {
-        // FillArea(_leftDownPoint.position, _rightUpPoint.position, 1);
-    }
-
-    private void CreateFoodRandomPosition(Vector3 leftDownPoint, Vector3 rightUpPoint)
-    {
-        var startPoint = WorldToGridPosition(leftDownPoint);
-        var endPoint = WorldToGridPosition(rightUpPoint);
-
-        bool isFoodCreated = false;
-        int counter = 0;
-        while (isFoodCreated == false && counter++  < 10000)
-        {
-            var randomX = Random.Range(startPoint.x, endPoint.x);
-            var randomZ = Random.Range(startPoint.z, endPoint.z);
-            Debug.Log("AAA-4 counter : " + counter);
-            isFoodCreated = TryCreate(_foodPrefabs[0],new Vector3Int(randomX, 0, randomZ));
-        }
-    }
-
-    private void FillArea(Vector3 leftDownPoint, Vector3 rightUpPoint, float delay)
-    {
-        var startPoint = WorldToGridPosition(leftDownPoint);
-        var endPoint = WorldToGridPosition(rightUpPoint);
-        
-        // Debug.Log("startPoint : " + startPoint);
-        // Debug.Log("endPoint : " + endPoint);
     
+    private void FillArea(Vector3 leftDownPoint)
+    {
+        var startPoint = WorldToGridPosition(leftDownPoint);
+
         for (int x = startPoint.x ; x < _cellCount ; x++)
         {
             for (int z = startPoint.z ; z < _cellCount ; z++)
             {
-                // Debug.Log("BBB x=" + x + "; z=" + z);
                 TryCreate(_foodPrefabs[0],new Vector3Int(x, 0, z));
             }
         }
@@ -115,7 +82,6 @@ public class FoodGeneration : MonoBehaviour
 
     private void OnDied(Vector3Int gridPosition)
     {
-        // Debug.Log("AAA-3 DIED !");
         TryRemoveFromCollisionsMatrix(gridPosition);
         _foodDestroying.Enqueue(gridPosition);
         
@@ -123,7 +89,7 @@ public class FoodGeneration : MonoBehaviour
             CreateItemFromFoodQueue();
     }
 
-    public void TryRemoveFromCollisionsMatrix(Vector3Int gridPosition)
+    private void TryRemoveFromCollisionsMatrix(Vector3Int gridPosition)
     {
         if (_collisionsMatrix.Contains(gridPosition))
             _collisionsMatrix.Remove(gridPosition);
@@ -164,10 +130,22 @@ public class FoodGeneration : MonoBehaviour
     {
         float offsetX = Random.Range(0.5f, _cellSize - 0.3f);
         float offsetZ = Random.Range(0.5f, _cellSize - 0.3f);
-        // float offsetX = Random.Range(-0.15f, 0.15f);
-        // float offsetZ = Random.Range(-0.15f, 0.15f);
-
-        // return new Vector3(offsetX + 0.25f, 0, offsetZ + 0.45f); //cellSize = 1.25f
         return new Vector3(offsetX, 0, offsetZ);
     }
 }
+
+// private void CreateFoodRandomPosition(Vector3 leftDownPoint, Vector3 rightUpPoint)
+// {
+//     var startPoint = WorldToGridPosition(leftDownPoint);
+//     var endPoint = WorldToGridPosition(rightUpPoint);
+//
+//     bool isFoodCreated = false;
+//     int counter = 0;
+//     while (isFoodCreated == false && counter++  < 10000)
+//     {
+//         var randomX = Random.Range(startPoint.x, endPoint.x);
+//         var randomZ = Random.Range(startPoint.z, endPoint.z);
+//         Debug.Log("AAA-4 counter : " + counter);
+//         isFoodCreated = TryCreate(_foodPrefabs[0],new Vector3Int(randomX, 0, randomZ));
+//     }
+// }

@@ -9,6 +9,10 @@ public class Participant : MonoBehaviour
 {
     [SerializeField] private int _score;
     [SerializeField] private ParticipantDataView _view;
+    [SerializeField] private GameObject _crown;
+    [SerializeField] private GameObject _lefLegParticipant;
+    [SerializeField] private GameObject _rightLegParticipant;
+    [SerializeField] private GameObject _backParticipant;
 
     public event UnityAction<int> ScoreChanged;
     public event UnityAction RopeTouchDuringMoving;
@@ -22,6 +26,7 @@ public class Participant : MonoBehaviour
     private float _collisionCounter;
     private float _collisionDelay;
     private GameObject _collisionGameObject;
+    private BattleController _battleController;
 
     public int Score
     {
@@ -38,6 +43,7 @@ public class Participant : MonoBehaviour
         _scale = transform.localScale;
         _rigidbody.isKinematic = true;
         ScoreChanged += OnScoreChanged;
+        _battleController = FindObjectOfType<BattleController>();
     }
 
     private void Update()
@@ -91,9 +97,11 @@ public class Participant : MonoBehaviour
             
             if (mover.IsBoosting || otherMover.IsBoosting)
             {
-                GetLoser(bot, this).gameObject.GetComponent<ParticipantMover>().AddForceFly(GetLoser(bot, this));
-                // ParticipantsTouched?.Invoke(GetLoser(bot, this));
-                Debug.Log("AAA-138 LOSER : " + GetLoser(bot, this));
+                bot.GetComponent<ParticipantMover>().StopBoost();
+                GetComponent<ParticipantMover>().StopBoost();
+
+                _battleController.DoImpact(bot, this); //uncomment to do
+
                 return;
             } 
 
@@ -122,5 +130,37 @@ public class Participant : MonoBehaviour
     private Participant GetLoser(Participant first, Participant second)
     {
         return first.Score < second.Score ? first : second;
+    }
+
+    private void OnDestroy()
+    {
+        // _battleController.RemoveParticipant(this);
+        Debug.Log("QAZ OnDestroy ");
+        Destroy(_view.gameObject);
+    }
+    
+    public void PlayParticipantEffects()
+    {
+        Debug.Log("QQQ START FX");
+        _lefLegParticipant.SetActive(true);
+        _rightLegParticipant.SetActive(true);
+        _backParticipant.SetActive(true);
+    }
+
+    public void StopParticipantEffects()
+    {
+        Debug.Log("QQQ STOP FX");
+        _lefLegParticipant.SetActive(false);
+        _rightLegParticipant.SetActive(false);
+        _backParticipant.SetActive(false);        
+    }
+
+    public void TurnOnCrown()
+    {
+        _crown.SetActive(true);
+    }
+    public void TurnOffCrown()
+    {
+        _crown.SetActive(false);
     }
 }
