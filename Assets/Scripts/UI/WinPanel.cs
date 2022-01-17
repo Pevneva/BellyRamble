@@ -6,20 +6,76 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(MoneyAnimator))]
 public class WinPanel : MonoBehaviour
 {
+    [SerializeField] private Button _getMoneyButton;
+    [SerializeField] private Button _adsGetMoneyButton;
+    
     [SerializeField] private Image _getMoneyButtonImage;
     [SerializeField] private Image _getMoneyOutlinenImage;
     [SerializeField] private TMP_Text _getMoneyText;
     [SerializeField] private Image _getMoneyButtonMoneyIcon;
     [SerializeField] private float _showingDuration;
 
+    public float ShowingDuration => _showingDuration;
+    
+    private MoneyAnimator _moneyAnimator;
+    private bool _isResetMoney;
+    private float _rewardValue;
+    private float _countMoneyTime;
+    private float _flyMoneyTime;
+    private float _changeMoneyStep;
+    
+
     private void OnEnable()
     {
-        _showingDuration = 4;
+        _isResetMoney = false;
+        _rewardValue = 90;
+        _getMoneyText.text = _rewardValue.ToString();
+        _countMoneyTime = 0.75f;
+        _flyMoneyTime = 1;
+        _changeMoneyStep = _rewardValue / _countMoneyTime;
+        
+        _moneyAnimator = GetComponent<MoneyAnimator>();
+        _getMoneyButton.onClick.AddListener(GetMoney);
+        _adsGetMoneyButton.onClick.AddListener(ShowGetMoneyButton);
+        _showingDuration = 3;
         Debug.Log("EEE OnEnable WinPanel");
         ShowGetMoneyButton();
+        
     }
+
+    private void Update()
+    {
+        if (_isResetMoney)
+        {
+            _rewardValue -= _changeMoneyStep * Time.deltaTime;
+            if (_rewardValue <= 0)
+            {
+                _getMoneyText.text = 0.ToString();
+                _isResetMoney = false;
+                return;
+            }
+            
+            Debug.Log("RRR _rewardValue : " + Mathf.Round(_rewardValue));
+            _getMoneyText.text = Mathf.Round(_rewardValue).ToString();
+
+        }
+            
+    }
+
+    private void GetMoney()
+    {
+        _moneyAnimator.CreateAndAnimateMoney(_countMoneyTime, _flyMoneyTime); 
+        _getMoneyButton.onClick.RemoveListener(GetMoney);
+        _isResetMoney = true;
+    }
+
+    private void ResetMoney()
+    {
+        
+    } 
 
     private void ShowGetMoneyButton()
     {
@@ -35,5 +91,7 @@ public class WinPanel : MonoBehaviour
         _getMoneyOutlinenImage.DOFade(1, _showingDuration);
         _getMoneyText.DOFade(1, _showingDuration);
         _getMoneyButtonMoneyIcon.DOFade(1, _showingDuration);
+        
+        // _getMoneyOutlinenImage.gameObject.transform.DOMoveY(_getMoneyOutlinenImage.gameObject.transform.position.y + 100, 3).SetDelay(2);
     }
 }

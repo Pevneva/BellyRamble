@@ -6,4 +6,5 @@ using UnityEngine.PlayerLoop;
 
 public class Player : Participant
 {
+    private int _money;
 }
