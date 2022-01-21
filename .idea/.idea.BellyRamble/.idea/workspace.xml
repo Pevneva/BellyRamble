@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Added the flying of participant and Win panel.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI Kit Casual Game/ResourcesData/Fonts/LilitaOne-Regular SDF - without - outline.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI Kit Casual Game/ResourcesData/Fonts/LilitaOne-Regular SDF - without - outline.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -103,17 +109,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/GreySetter.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -199,7 +206,8 @@
       <workItem from="1641823219788" duration="12122000" />
       <workItem from="1641960724672" duration="40534000" />
       <workItem from="1642251780670" duration="12924000" />
-      <workItem from="1642401572820" duration="3274000" />
+      <workItem from="1642401572820" duration="9804000" />
+      <workItem from="1642444188638" duration="46651000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -236,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642163276805</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated Win Panel.">
+      <created>1642406894417</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642406894417</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +281,8 @@
     <MESSAGE value="Added chair generation." />
     <MESSAGE value="Added audience." />
     <MESSAGE value="Added the flying of participant and Win panel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the flying of participant and Win panel." />
+    <MESSAGE value="Updated Win Panel." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Win Panel." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -33,12 +33,13 @@ public class Participant : MonoBehaviour
         get { return _score; }
     }
 
-    private void Start()
+    protected void Start()
     {
         IsRopeTouching = false;
         _collisionCounter = 0;
         _collisionDelay = 0.75f;
         _rigidbody = GetComponent<Rigidbody>();
+        Debug.Log("[PARTICIPANT_AAA] Start _rigidbody : " + _rigidbody);
         _view.Render(this);
         _scale = transform.localScale;
         _rigidbody.isKinematic = true;
@@ -107,6 +108,8 @@ public class Participant : MonoBehaviour
 
             Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
             otherRigidbody.isKinematic = false;
+            Debug.Log("[PARTICIPANT_AAA] _rigidbody : " + _rigidbody +"; gameObject : " + gameObject.name);
+            Debug.Log("[PARTICIPANT_AAA] otherRigidbody : " + otherRigidbody);
             _rigidbody.isKinematic = false;
 
             StartCoroutine(DoKinematic(0.5f, otherRigidbody, _rigidbody));

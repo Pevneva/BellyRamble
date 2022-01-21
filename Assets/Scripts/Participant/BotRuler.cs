@@ -44,13 +44,20 @@ public class BotRuler : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("[MOVING] _isRepulsion : " + _isRepulsion);
+        Debug.Log("[MOVING] _participantMover.IsFlying : " + _participantMover.IsFlying);
+        Debug.Log("[MOVING] Distance (transform, _target) : " + Vector3.Distance(transform.position, _newPosition));
+        Debug.Log("[MOVING] < 0.15f : " + (Vector3.Distance(transform.position, _newPosition) < 0.15f));
+        Debug.Log("[MOVING] _target : " + _target);
+        Debug.Log("[MOVING] _newPosition : " + _newPosition);
+        
         if (_isRepulsion)
             return;
 
         if (_participantMover.IsFlying)
             return;
 
-        if (Vector3.Distance(transform.position, _newPosition) < 0.15f)
+        if (Vector3.Distance(transform.position, _newPosition) < 0.35f)
         {
             Debug.Log("QA DoRopeRepulsion MovingDirection : " + MovingDirection);
             _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
@@ -70,10 +77,12 @@ public class BotRuler : MonoBehaviour
         {
             MovingDirection = (_target.position - transform.position).normalized;
             transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
+            Debug.Log("[MOVING] _target != null; MovingDirection : " + MovingDirection);
         }
         else
         {
             _target = GetNearestFood();
+            Debug.Log("[MOVING] _target = null; GetNearestFood : " + _target);
         }
     }
 

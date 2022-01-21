@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -11,39 +8,35 @@ public class WinPanel : MonoBehaviour
 {
     [SerializeField] private Button _getMoneyButton;
     [SerializeField] private Button _adsGetMoneyButton;
-    
-    [SerializeField] private Image _getMoneyButtonImage;
-    [SerializeField] private Image _getMoneyOutlinenImage;
-    [SerializeField] private TMP_Text _getMoneyText;
-    [SerializeField] private Image _getMoneyButtonMoneyIcon;
-    [SerializeField] private float _showingDuration;
 
-    public float ShowingDuration => _showingDuration;
-    
+    [SerializeField] private CanvasGroup _getMoneyButtonGroup;
+    [SerializeField] private float _showingDuration;
+    [SerializeField] private TMP_Text _getMoneyText;
+    [SerializeField] private Transform _targetPoint;
+
+    [SerializeField] private Transform _beforeFlyInPoint;
+
     private MoneyAnimator _moneyAnimator;
     private bool _isResetMoney;
     private float _rewardValue;
-    private float _countMoneyTime;
-    private float _flyMoneyTime;
     private float _changeMoneyStep;
-    
+    private Player _player;
 
     private void OnEnable()
     {
         _isResetMoney = false;
         _rewardValue = 90;
         _getMoneyText.text = _rewardValue.ToString();
-        _countMoneyTime = 0.75f;
-        _flyMoneyTime = 1;
-        _changeMoneyStep = _rewardValue / _countMoneyTime;
-        
-        _moneyAnimator = GetComponent<MoneyAnimator>();
-        _getMoneyButton.onClick.AddListener(GetMoney);
-        _adsGetMoneyButton.onClick.AddListener(ShowGetMoneyButton);
+
+        _moneyAnimator = FindObjectOfType<MoneyAnimator>();
+        _moneyAnimator.SetTargets(_targetPoint, _beforeFlyInPoint);
+        _changeMoneyStep = _rewardValue / _moneyAnimator.CountMoneyTime;
+        _moneyAnimator.InitializePool();
+        _player = FindObjectOfType<Player>();
         _showingDuration = 3;
         Debug.Log("EEE OnEnable WinPanel");
-        ShowGetMoneyButton();
-        
+        ShowGetMoneyButton(_showingDuration);
+        Invoke(nameof(AddListenerGetMoneyButton), _showingDuration - _showingDuration / 4);
     }
 
     private void Update()
@@ -57,41 +50,46 @@ public class WinPanel : MonoBehaviour
                 _isResetMoney = false;
                 return;
             }
-            
+
             Debug.Log("RRR _rewardValue : " + Mathf.Round(_rewardValue));
             _getMoneyText.text = Mathf.Round(_rewardValue).ToString();
-
         }
-            
+    }
+
+    private void AddListenerGetMoneyButton()
+    {
+        _getMoneyButton.onClick.AddListener(GetMoney);
     }
 
     private void GetMoney()
     {
-        _moneyAnimator.CreateAndAnimateMoney(_countMoneyTime, _flyMoneyTime); 
-        _getMoneyButton.onClick.RemoveListener(GetMoney);
+        Debug.Log("GetMoney");
+        string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
+        int rewardMoney;
+        if (int.TryParse(rewardMoneyText, out rewardMoney))
+        {
+            Debug.Log("[ZAZ] rewardMoney : " + rewardMoney); 
+        }
+        else
+        {
+            rewardMoney = 0;
+        }
+
+        _moneyAnimator.CreateAndAnimateMoney();
+        // _moneyAnimator.CreateAndAnimateMoney(_countMoneyTime, _flyMoneyTime);
         _isResetMoney = true;
+
+        _player.AddMoney(rewardMoney);
+        // PlayerMoneyChanged?.Invoke(rewardMoney);
+
+        _getMoneyButton.onClick.RemoveListener(GetMoney); //uncomment to do
     }
 
-    private void ResetMoney()
-    {
-        
-    } 
-
-    private void ShowGetMoneyButton()
+    private void ShowGetMoneyButton(float duration)
     {
         Debug.Log("EEE ShowGetMoneyButton!");
-        Debug.Log("EEE ShowGetMoneyButton! _showingDuration : "+ _showingDuration);
-        _getMoneyButtonImage.DOFade(0, 0);
-        _getMoneyOutlinenImage.DOFade(0, 0);
-        _getMoneyText.DOFade(0, 0);
-        _getMoneyButtonMoneyIcon.DOFade(0, 0);
-        
-        Debug.Log("EEE ShowGetMoneyButton 2 " + _getMoneyButtonImage.color.grayscale);
-        _getMoneyButtonImage.DOFade(1, _showingDuration);
-        _getMoneyOutlinenImage.DOFade(1, _showingDuration);
-        _getMoneyText.DOFade(1, _showingDuration);
-        _getMoneyButtonMoneyIcon.DOFade(1, _showingDuration);
-        
-        // _getMoneyOutlinenImage.gameObject.transform.DOMoveY(_getMoneyOutlinenImage.gameObject.transform.position.y + 100, 3).SetDelay(2);
+        Debug.Log("EEE ShowGetMoneyButton! _showingDuration : " + _showingDuration);
+        _getMoneyButtonGroup.DOFade(0, 0);
+        _getMoneyButtonGroup.DOFade(1, duration);
     }
 }

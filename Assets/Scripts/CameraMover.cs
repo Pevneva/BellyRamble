@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraMover : MonoBehaviour
@@ -10,10 +11,12 @@ public class CameraMover : MonoBehaviour
     private float _positionY;
     private float _positionZ;
     private bool _isHorizontalTracking;
+    private Camera _camera;
 
     private void Start()
     {
         _isHorizontalTracking = true;
+        _camera = GetComponent<Camera>();
     }
 
     private void Update()
@@ -37,5 +40,15 @@ public class CameraMover : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         _trackTarget = newTarget;
+    }
+
+    private void ZoomIn()
+    {
+        _camera.fieldOfView -= 30;
+    }
+
+    private void ZoomOut()
+    {
+        _camera.DOFieldOfView(_camera.fieldOfView + 30, 1.5f);
     }
 }
