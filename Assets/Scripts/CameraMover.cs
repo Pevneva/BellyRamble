@@ -12,11 +12,17 @@ public class CameraMover : MonoBehaviour
     private float _positionZ;
     private bool _isHorizontalTracking;
     private Camera _camera;
+    private float _zoom;
+    private float _offsetY;
 
     private void Start()
     {
         _isHorizontalTracking = true;
         _camera = GetComponent<Camera>();
+        _camera.fieldOfView = 40;
+        _zoom = 20;
+        _offsetY = 16.5f;
+        // _offsetY = 14.5f;
     }
 
     private void Update()
@@ -24,7 +30,7 @@ public class CameraMover : MonoBehaviour
         if (_trackTarget == null)
             return; 
 
-        _positionY = _isHorizontalTracking ? transform.position.y : _trackTarget.position.y + 16.5f;
+        _positionY = _isHorizontalTracking ? transform.position.y : _trackTarget.position.y + _offsetY;
         _positionZ = _isHorizontalTracking ? transform.position.z : _trackTarget.position.z - 8;
         _target = new Vector3(_trackTarget.position.x, _positionY, _positionZ);
         
@@ -37,18 +43,26 @@ public class CameraMover : MonoBehaviour
         _isHorizontalTracking = isHorizontal;
     }
 
+    public void SetPosition(Vector3 position)
+    {
+        _positionY = _isHorizontalTracking ? transform.position.y : position.y + _offsetY;
+        _positionZ = _isHorizontalTracking ? transform.position.z : position.z - 8;
+        transform.position = new Vector3(position.x, _positionY, _positionZ);        
+    }
+
     public void SetTarget(Transform newTarget)
     {
         _trackTarget = newTarget;
     }
 
-    private void ZoomIn()
+    public void ZoomIn()
     {
-        _camera.fieldOfView -= 30;
+        // _camera.DOFieldOfView(_camera.fieldOfView - _zoom, 0).SetDelay(delay);
+        _camera.fieldOfView -= 20;
     }
 
-    private void ZoomOut()
+    public void ZoomOut()
     {
-        _camera.DOFieldOfView(_camera.fieldOfView + 30, 1.5f);
+        _camera.DOFieldOfView(_camera.fieldOfView + _zoom, 1f).SetDelay(1);
     }
 }

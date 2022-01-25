@@ -12,10 +12,14 @@ public class MoneyAnimator : MonoBehaviour
     [SerializeField] private Image _moneyPrefab;
     [SerializeField] private GameObject _moneyIconContainer;
     [SerializeField] private int _itemsAmount;
+    [FormerlySerializedAs("_countMouneyTime")] [SerializeField] private float _countMoneyTime;
+    [SerializeField] private float _flyMoneyTime;
+    [SerializeField] private float _flyInMoneyTime;
 
-    public float CountMoneyTime { get; private set; }
-    public float FlyInMoneyTime { get; private set; }
-
+    public float CountMoneyTime => _countMoneyTime;
+    // public float CountMoneyTime { get; private set; }
+    public float FlyInMoneyTime => _flyInMoneyTime;
+    // public float FlyInMoneyTime { get; private set; }
     public float BeforeFlyInMoneyTime
     {
         get { return _flyMoneyTime + CountMoneyTime; }
@@ -23,28 +27,46 @@ public class MoneyAnimator : MonoBehaviour
 
     private Transform _targetPoint;
     private Transform _beforeFlyInPoint;
-    private float _flyMoneyTime;
     private ObjectPool _pool = new ObjectPool();
     private int _capacityPool = 20;
     private Image _currentMoneyIcon;
     private float _countingPlayerTimeDelayStep;
     private static float s_delayPlayerTimeItem;
-    // private float _flyingTime;
 
-    private void OnEnable()
+    private void Start()
     {
-        CountMoneyTime = 0.35f;
-        _flyMoneyTime = 1;
-        FlyInMoneyTime = 0.55f;
+        // CountMoneyTime = 0.35f;
+        // _flyMoneyTime = 1;
+        // FlyInMoneyTime = 0.55f;
         s_delayPlayerTimeItem = 0;
         // _flyingTime = _flyMoneyTime + CountMoneyTime;
-        Debug.Log("SEE: OnEnable MoneyAnimator; FlyInMoneyTime : " + FlyInMoneyTime + "; BeforeFlyInMoneyTime : " + BeforeFlyInMoneyTime);
+        Debug.Log("==============================================================================");
+        Debug.Log("SEE: Start MoneyAnimator; FlyInMoneyTime : " + FlyInMoneyTime + "; BeforeFlyInMoneyTime : " + BeforeFlyInMoneyTime);
+        Debug.Log("SEE: Start CountMoneyTime : " + CountMoneyTime + "; _flyMoneyTime : " + _flyMoneyTime);
+        Debug.Log("==============================================================================");
         _countingPlayerTimeDelayStep = FlyInMoneyTime / _itemsAmount;
     }
+    //
+    // private void Start()
+    // {
+    //     throw new NotImplementedException();
+    // }
 
     public void InitializePool()
     {
         _pool.Initialize(_moneyPrefab, _moneyIconContainer, _capacityPool);
+    }
+
+    public void InitFlyingData()
+    {
+        _countMoneyTime = 0.35f;
+        _flyMoneyTime = 1;
+        _flyInMoneyTime = 0.55f;
+        _countingPlayerTimeDelayStep = FlyInMoneyTime / _itemsAmount;
+        Debug.Log("SEE InitFlyingData CountMoneyTime : " + CountMoneyTime);
+        Debug.Log("SEE InitFlyingData CountMoneyTime : " + FlyInMoneyTime);
+        Debug.Log("SEE InitFlyingData _flyMoneyTime : " + _flyMoneyTime);
+        Debug.Log("SEE InitFlyingData _countingPlayerTimeDelayStep : " + _countingPlayerTimeDelayStep);
     }
 
     public void SetTargets(Transform target, Transform beforeFlyIn)
@@ -56,6 +78,10 @@ public class MoneyAnimator : MonoBehaviour
 
     public void CreateAndAnimateMoney()
     {
+        Debug.Log("SEE CreateAndAnimateMoney CountMoneyTime : " + CountMoneyTime);
+        Debug.Log("SEE CreateAndAnimateMoney CountMoneyTime : " + FlyInMoneyTime);
+        Debug.Log("SEE CreateAndAnimateMoney _flyMoneyTime : " + _flyMoneyTime);
+        
         for (int i = 0; i < _itemsAmount; i++)
         {
             if (_pool.TryGetObject(out _currentMoneyIcon))
@@ -67,41 +93,53 @@ public class MoneyAnimator : MonoBehaviour
 
     private void SetMoneyIcon(Image image, GameObject parent, float countMoneyTime, float flyMoneyTime)
     {
+        Debug.Log("SEE SetMoneyIcon countMoneyTime : " + countMoneyTime);
+        Debug.Log("SEE SetMoneyIcon flyMoneyTime : " + flyMoneyTime);
         image.gameObject.SetActive(true);
         image.transform.localScale *= 1.1f;
+        Debug.Log("SEE image : " + image);
         // image.gameObject.transform.parent = parent.transform;
         FlyMoney(image, countMoneyTime, flyMoneyTime);
     }
 
     private void FlyMoney(Image image, float countMoneyTime, float flyMoneyTime)
     {
-        // _flyingTime = countMoneyTime + flyMoneyTime;
+        // Vector2 startPosition = image.gameObject.transform.position;
+        Vector2 startPosition = Vector2.zero;
 
-        Vector2 startPosition = image.gameObject.transform.position;
-
-        Debug.Log("SEE countMoneyTime : " + countMoneyTime);
-        Debug.Log("SEE flyMoneyTime : " + flyMoneyTime);
-        Debug.Log("MONEY_PLAYER SEE startPosition : " + startPosition);
-        float randomX = Random.Range(startPosition.x - 200, startPosition.x + 125);
-        float randomY = Random.Range(startPosition.y + 200, startPosition.y + 350);
+        Debug.Log("SEE CountMoneyTime : " + CountMoneyTime);
+        Debug.Log("SEE _flyMoneyTime : " + _flyMoneyTime);
+        Debug.Log("MONEY_PLAYER startPosition : " + startPosition);
+        // float randomX = Random.Range(startPosition.x - 200, startPosition.x + 125);
+        // float randomY = Random.Range(startPosition.y + 200, startPosition.y + 350);
+        float randomX = Random.Range(- 200, 125);
+        float randomY = Random.Range ( 200, 350);
         // float randomX = startPosition.x - 200;
         // float randomY = startPosition.y + 200;
+        
+        Debug.Log("SEE startPosition.x : " + startPosition.x);
+        Debug.Log("SEE startPosition.y : " + startPosition.y);        
+        Debug.Log("SEE randomX : " + randomX);
+        Debug.Log("SEE randomY : " + randomY);
+        Debug.Log("SEE _flyMoneyTime : " + _flyMoneyTime);
 
         Sequence moving = DOTween.Sequence();
         moving.Append(
             _currentMoneyIcon.transform
-                .DOMove(new Vector3(randomX, randomY, 0), countMoneyTime)
+                // .DOLocalMove(new Vector3(-100, 200, 0), CountMoneyTime)
+                .DOLocalMove(new Vector3(randomX, randomY, 0), CountMoneyTime)
                 .SetEase(Ease.Flash)
+            
         );
+        
         s_delayPlayerTimeItem += _countingPlayerTimeDelayStep;
-
-
+        
         moving.Append(
-            _currentMoneyIcon.transform.DOMove(_beforeFlyInPoint.position, flyMoneyTime)
+            _currentMoneyIcon.transform.DOMove(_beforeFlyInPoint.position, _flyMoneyTime)
                 .SetDelay(0.35f)
                 .SetEase(Ease.Linear)
         );
-
+        
         moving.Insert(countMoneyTime + flyMoneyTime - 0.15f,
             _currentMoneyIcon.transform
                 .DOMove(_targetPoint.position, FlyInMoneyTime + s_delayPlayerTimeItem)
@@ -113,31 +151,5 @@ public class MoneyAnimator : MonoBehaviour
                     image.gameObject.transform.parent = null;
                 })
         );
-    }
-
-    private void FlyToPoint(Image item, Transform targetObj, float time, int index, long amount, float delay)
-    {
-        Vector3 target = targetObj.transform.position;
-
-        var scaleSequence = DOTween.Sequence();
-
-        scaleSequence.Append(item.transform.DOScale(0.7f, 0));
-
-        scaleSequence.Append(item.transform.DOScale(Random.Range(1.5f, 2f), 0.75f * time)
-            .SetDelay(time / amount * index + delay));
-        scaleSequence.Append(item.transform.DOScale(0.2f, 0.25f * time).SetDelay(time / amount * index + delay));
-
-        // Context.DelayedCallback.Invoke(time - 0.2f, () =>
-        // {
-        //     item.transform.SetParent(targetObj.parent);
-        //     item.transform.SetSiblingIndex(targetObj.GetSiblingIndex() - 1);
-        // });
-        //
-        // item.transform.DOJump(target, -5, 1, time).SetDelay(time / amount * index + delay).OnComplete(() =>
-        // {
-        //     if(_callBacks.ContainsKey(item.transform))
-        //         _callBacks[item.transform]?.Invoke();
-        //     _objectsPool.Free(item);
-        // });
     }
 }

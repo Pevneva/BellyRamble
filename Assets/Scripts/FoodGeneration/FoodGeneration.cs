@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using DG.Tweening;
@@ -29,7 +26,8 @@ public class FoodGeneration : MonoBehaviour
         _endPosition = _rightUpPoint.position;
         _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; 
         _foodDestroying = new Queue<Vector3Int>();
-        _generationHeight = _ground.position.y + 0.7f + 2.56f;
+        // _generationHeight = _ground.position.y + 0.7f + 2.56f;
+        _generationHeight = _ground.position.y + 0.35f + 2.56f;
         FillArea(_startPosition);
     }
     
@@ -133,19 +131,3 @@ public class FoodGeneration : MonoBehaviour
         return new Vector3(offsetX, 0, offsetZ);
     }
 }
-
-// private void CreateFoodRandomPosition(Vector3 leftDownPoint, Vector3 rightUpPoint)
-// {
-//     var startPoint = WorldToGridPosition(leftDownPoint);
-//     var endPoint = WorldToGridPosition(rightUpPoint);
-//
-//     bool isFoodCreated = false;
-//     int counter = 0;
-//     while (isFoodCreated == false && counter++  < 10000)
-//     {
-//         var randomX = Random.Range(startPoint.x, endPoint.x);
-//         var randomZ = Random.Range(startPoint.z, endPoint.z);
-//         Debug.Log("AAA-4 counter : " + counter);
-//         isFoodCreated = TryCreate(_foodPrefabs[0],new Vector3Int(randomX, 0, randomZ));
-//     }
-// }

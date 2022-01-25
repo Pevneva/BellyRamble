@@ -39,7 +39,6 @@ public class Participant : MonoBehaviour
         _collisionCounter = 0;
         _collisionDelay = 0.75f;
         _rigidbody = GetComponent<Rigidbody>();
-        Debug.Log("[PARTICIPANT_AAA] Start _rigidbody : " + _rigidbody);
         _view.Render(this);
         _scale = transform.localScale;
         _rigidbody.isKinematic = true;
@@ -54,7 +53,7 @@ public class Participant : MonoBehaviour
 
     private void OnScoreChanged(int score)
     {
-        // SetScale(score); //to improve
+        SetScale(score); //to improve
     }
 
     private void SetScale(int score)
@@ -81,15 +80,12 @@ public class Participant : MonoBehaviour
 
             if (this is Bot)
             {
-                // Debug.Log("AAA I'm bot!");
                 FoodEatenByBot?.Invoke(food);
             }
         }
 
         if (other.gameObject.TryGetComponent(out Bot bot))
         {
-            Debug.Log("AAA-138 BOT !!!");
-
             var mover = gameObject.GetComponent<ParticipantMover>();
             var otherMover = other.gameObject.GetComponent<ParticipantMover>();
 
@@ -108,12 +104,9 @@ public class Participant : MonoBehaviour
 
             Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
             otherRigidbody.isKinematic = false;
-            Debug.Log("[PARTICIPANT_AAA] _rigidbody : " + _rigidbody +"; gameObject : " + gameObject.name);
-            Debug.Log("[PARTICIPANT_AAA] otherRigidbody : " + otherRigidbody);
             _rigidbody.isKinematic = false;
 
             StartCoroutine(DoKinematic(0.5f, otherRigidbody, _rigidbody));
-
         }
     }
     
@@ -138,13 +131,11 @@ public class Participant : MonoBehaviour
     private void OnDestroy()
     {
         // _battleController.RemoveParticipant(this);
-        Debug.Log("QAZ OnDestroy ");
         Destroy(_view.gameObject);
     }
     
     public void PlayParticipantEffects()
     {
-        Debug.Log("QQQ START FX");
         _lefLegParticipant.SetActive(true);
         _rightLegParticipant.SetActive(true);
         _backParticipant.SetActive(true);
@@ -152,7 +143,6 @@ public class Participant : MonoBehaviour
 
     public void StopParticipantEffects()
     {
-        Debug.Log("QQQ STOP FX");
         _lefLegParticipant.SetActive(false);
         _rightLegParticipant.SetActive(false);
         _backParticipant.SetActive(false);        

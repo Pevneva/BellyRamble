@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -11,7 +12,7 @@ public class ParticipantMover : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _boost;
     [SerializeField] private float _boostTime = 0.65f;
-    [SerializeField] private float _flyingTime = 2.1f;
+    // [SerializeField]
 
     public bool IsMoving { get; private set; }
     public bool IsPushing { get; private set; }
@@ -68,6 +69,7 @@ public class ParticipantMover : MonoBehaviour
     private bool _isNotBot;
     private BattleController _battleController;
     private bool _isBottleEnded;
+    private float _flyingTime;
 
     private void Start()
     {
@@ -110,6 +112,7 @@ public class ParticipantMover : MonoBehaviour
             _animator.SetFloat("Speed", 0f);
         _movingCounter = 0;
         _pushingDistance = 0;
+        _flyingTime = _battleController.ParticipantFlyingTime;
 
         IsPushing = false;
         _isTouchBreak = false;
@@ -165,7 +168,6 @@ public class ParticipantMover : MonoBehaviour
     {
         if (IsBoosting == false)
         {
-            Debug.Log("AAA DO REPULSION moveDirection : " + moveDirection);
             DoRopeRepulsion(moveDirection, touchBorder);
         }
         else
@@ -177,18 +179,12 @@ public class ParticipantMover : MonoBehaviour
 
     public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
     {
-        Debug.Log("AAA Do Rope Repulsion !!! ");
-        Debug.Log("SAS moveDirection : " + moveDirection);
         _discardingDirection = GetDiscardingDirection(moveDirection).normalized;
-        Debug.Log("SAS _discardingDirection : " + _discardingDirection);
         _startPosition = transform.position;
         _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.75f : _pushDistanceKoef;
         NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
-        Debug.Log("SAS NewPosition : " + NewPosition);
-
         _pushingDistance = Vector3.Distance(_startPosition, NewPosition);
-        Debug.Log("SAS _pushingDistance : " + _pushingDistance);
-
+        
         _turnOverSequence = DOTween.Sequence();
         _angleRotation = GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
@@ -311,7 +307,6 @@ public class ParticipantMover : MonoBehaviour
 
     private Vector3 GetDiscardingDirection(Vector3 direction)
     {
-        Debug.Log("AAA DiscardingDirection direction = " + direction);
         Vector3 position = transform.position;
         float positionX = position.x;
         float positionZ = position.z;
@@ -327,17 +322,14 @@ public class ParticipantMover : MonoBehaviour
 
         if (positionX < _leftDownPointBorder.position.x + 0.65f || positionX > _rightUpPointBorder.position.x - 0.65f)
         {
-            Debug.Log("AAA DiscardingDirection = " + new Vector3(-direction.x, direction.y, direction.z));
             return new Vector3(-direction.x, direction.y, direction.z);
         }
 
         if (positionZ < _leftDownPointBorder.position.z + 0.65f || positionZ > _rightUpPointBorder.position.z - 0.65f)
         {
-            Debug.Log("AAA DiscardingDirection = " + new Vector3(direction.x, direction.y, -direction.z));
             return new Vector3(direction.x, direction.y, -direction.z);
         }
 
-        Debug.Log("AAA GetDiscardingDirection : Vector3.zero ========================= ");
         /*Debug.Log("AAA positionX :  " + positionX);
         Debug.Log("AAA positionZ :  " + positionZ);
         Debug.Log("AAA _leftDownPointBorder.position.x + 0.5f :  " + (_leftDownPointBorder.position.x + 0.5f));
@@ -418,7 +410,6 @@ public class ParticipantMover : MonoBehaviour
         IsMoving = true;
         yield return new WaitForSeconds(runnigTime);
         // _participant.StopParticipantEffects();
-        Debug.Log("SAS StartRunAnimation : _speed : " + _startSpeed);
         // _animator.SetFloat("Speed", _startSpeed);
         // _animator.SetFloat("Speed", _speed);
         yield break;
@@ -488,7 +479,6 @@ public class ParticipantMover : MonoBehaviour
         }
 
         IsFlying = true;
-        Debug.Log("QA AAA AddForceFly : " + gameObject.name);
         _animator.SetBool("Fly", true);
 
         var startPosition = transform.position;
@@ -505,18 +495,13 @@ public class ParticipantMover : MonoBehaviour
 
     private IEnumerator CheckBottleEnded(float delay)
     {
-        Debug.Log("QA2 CheckBottleEnded coroutine");
         yield return new WaitForSeconds(delay);
-        Debug.Log("QA2 CheckBottleEnded coroutine 2");
         if (_battleController.IsBottleEnded() == false)
         {
-            Debug.Log("QA2 CheckBottleEnded coroutine 3 destroy");
             Destroy(gameObject);
         }
         else
         {
-            Debug.Log("QA2 CheckBottleEnded coroutine 4 show panel");
-            _battleController.ShowWinPanel();
             Destroy(gameObject);
         }
     }

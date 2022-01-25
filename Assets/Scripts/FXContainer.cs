@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class FXContainer : MonoBehaviour
 {
-    [SerializeField] private GameObject _lefLegParticipant;
-    [SerializeField] private GameObject _rightLegParticipant;
-    [SerializeField] private GameObject _backParticipant;
+    [SerializeField] private GameObject _winPanelFx;
 
-    public void PlayParticipantEffects()
+    public void ShowWinPanelFx()
     {
-        _lefLegParticipant.SetActive(true);
-        _rightLegParticipant.SetActive(true);
-        _backParticipant.SetActive(true);
+        _winPanelFx.SetActive(true);
     }
-
-    public void StopParticipantEffects()
+    
+    public void HideWinPanelFx()
     {
-        _lefLegParticipant.SetActive(false);
-        _rightLegParticipant.SetActive(false);
-        _backParticipant.SetActive(false);        
+        _winPanelFx.SetActive(false);
     }
 }

@@ -20,7 +20,9 @@ public class BotRuler : MonoBehaviour
     private Animator _animator;
     private Vector3 _newPosition;
     private TouchBorder _touchBorder;
+
     private bool _isRepulsion;
+
     // private bool _isFlying;
     private Participant[] _participants;
     private bool _isRopeNextTo;
@@ -38,19 +40,12 @@ public class BotRuler : MonoBehaviour
         _animator.SetFloat("Speed", _participantMover.Speed);
         GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
         _target = GetNearestFood().transform;
-        
+
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
     }
 
     private void Update()
     {
-        Debug.Log("[MOVING] _isRepulsion : " + _isRepulsion);
-        Debug.Log("[MOVING] _participantMover.IsFlying : " + _participantMover.IsFlying);
-        Debug.Log("[MOVING] Distance (transform, _target) : " + Vector3.Distance(transform.position, _newPosition));
-        Debug.Log("[MOVING] < 0.15f : " + (Vector3.Distance(transform.position, _newPosition) < 0.15f));
-        Debug.Log("[MOVING] _target : " + _target);
-        Debug.Log("[MOVING] _newPosition : " + _newPosition);
-        
         if (_isRepulsion)
             return;
 
@@ -59,12 +54,7 @@ public class BotRuler : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _newPosition) < 0.35f)
         {
-            Debug.Log("QA DoRopeRepulsion MovingDirection : " + MovingDirection);
             _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
-            Debug.Log("AAAA DoRopeRepulsion MovingDirection : " + MovingDirection);
-            Debug.Log("SAS DoRopeRepulsion _touchBorder : " + _touchBorder);
-            Debug.Log("SASA RepulsionTime : " + _participantMover.RepulsionTime);
-            Debug.Log("SASA BoostTime : " + _participantMover.BoostTime);
             _participantMover.DoRepulsion(MovingDirection * 100, _touchBorder, true);
             _target.position = _participantMover.NewPosition;
             _isRepulsion = true;
@@ -72,23 +62,27 @@ public class BotRuler : MonoBehaviour
             Invoke(nameof(SetNewTarget), _participantMover.RepulsionTime + _participantMover.BoostTime);
         }
 
-        
         if (_target != null)
         {
-            MovingDirection = (_target.position - transform.position).normalized;
-            transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
-            Debug.Log("[MOVING] _target != null; MovingDirection : " + MovingDirection);
+            bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
+            if (isParticipant && participantMover.IsFlying == false || isParticipant == false)
+            {
+                MovingDirection = (_target.position - transform.position).normalized;
+                transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
+            }
+            else
+            {
+                _target = GetNearestFood();
+            }
         }
         else
         {
             _target = GetNearestFood();
-            Debug.Log("[MOVING] _target = null; GetNearestFood : " + _target);
         }
     }
 
     private void OnFoodEaten(Food food)
     {
-        Debug.Log("AAAA Food Eaten");
         List<Food> temp = _foods.ToList();
         temp.Clear();
         _foods = temp.ToArray();
@@ -99,7 +93,6 @@ public class BotRuler : MonoBehaviour
         }
         else if (_isRopeNextTo == false && IsNextToAngle(2) == false)
         {
-            Debug.Log("QA OnFoodEaten 1");
             _isRopeNextTo = true;
             Transform targetTransform = new GameObject().transform;
             targetTransform.position = _newPosition;
@@ -109,11 +102,10 @@ public class BotRuler : MonoBehaviour
         }
         else if (_isRopeNextTo == false && IsNextToAngle(2))
         {
-            Debug.Log("QA OnFoodEaten 2");
             Invoke(nameof(SetNewTarget), Time.deltaTime);
         }
     }
-    
+
     private bool IsRopeNextTo(out TouchBorder touchBorder)
     {
         if (_participantMover.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
@@ -121,19 +113,15 @@ public class BotRuler : MonoBehaviour
             touchBorder = TouchBorder.NULL;
             return false;
         }
-        
-        Debug.Log("AAAA IsRopeNextTo MovingDirection : " + MovingDirection);
+
         Vector3 newPosition = 1.3f * MovingDirection.normalized + transform.position;
         if (_participantMover.IsOutField(newPosition, out TouchBorder touchBorder2))
         {
-            
-            Debug.Log("AAAA Rope is next to me ! Border = " + touchBorder2);
-
             _newPosition = newPosition;
             touchBorder = touchBorder2;
             return true;
         }
-        
+
         touchBorder = TouchBorder.NULL;
         return false;
     }
@@ -141,8 +129,6 @@ public class BotRuler : MonoBehaviour
     private void SetNewTarget()
     {
         _isRopeNextTo = false;
-        
-        Debug.Log("SASA SetNewTarget");
         _target = GetNearestFood();
     }
 
@@ -157,9 +143,9 @@ public class BotRuler : MonoBehaviour
                 listTargetParticipants.Remove(participant);
             }
         }
-        
+
         Participant targetParticipant = listTargetParticipants[0];
-        var distanceTarget =  Vector3.Distance(transform.position, targetParticipant.gameObject.transform.position);
+        var distanceTarget = Vector3.Distance(transform.position, targetParticipant.gameObject.transform.position);
         foreach (var participant in listTargetParticipants)
         {
             var distance = Vector3.Distance(transform.position, participant.gameObject.transform.position);
@@ -171,7 +157,6 @@ public class BotRuler : MonoBehaviour
         }
 
         _target = targetParticipant.gameObject.transform;
-        Debug.Log("AAA SetParticipantDirection _target : " + _target);
         _isRepulsion = false;
     }
 
@@ -182,14 +167,14 @@ public class BotRuler : MonoBehaviour
 
         if (_isRepulsion)
             return;
-        
+
         if (_participantMover.IsFlying)
             return;
-                
+
         _lookRotation = Quaternion.LookRotation(_target.position - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.85f);
     }
-    
+
     private Transform GetNearestFood()
     {
         _foods = _foodGeneration.gameObject.GetComponentsInChildren<Food>();
@@ -205,6 +190,7 @@ public class BotRuler : MonoBehaviour
                 _nearestFood = food;
             }
         }
+
         return _nearestFood != null ? _nearestFood.transform : null;
     }
 
@@ -212,7 +198,7 @@ public class BotRuler : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         if (_target != null) Gizmos.DrawWireSphere(_target.transform.position, 0.5f);
-        
+
         Gizmos.color = Color.green;
         if (_newPosition != null) Gizmos.DrawWireSphere(_newPosition, 0.35f);
     }
@@ -221,27 +207,28 @@ public class BotRuler : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _leftDownAngle.position) < distance)
         {
-            Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftDownAngle.position));
+            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftDownAngle.position));
             return true;
         }
-        
+
         if (Vector3.Distance(transform.position, _leftUpAngle.position) < distance)
         {
-            Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftUpAngle.position));
+            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftUpAngle.position));
             return true;
         }
-        
+
         if (Vector3.Distance(transform.position, _rightUpAngle.position) < distance)
         {
-            Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightUpAngle.position));
+            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightUpAngle.position));
             return true;
         }
-        
+
         if (Vector3.Distance(transform.position, _rightDownAngle.position) < distance)
         {
-            Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightDownAngle.position));
+            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightDownAngle.position));
             return true;
         }
+
         return false;
     }
 }

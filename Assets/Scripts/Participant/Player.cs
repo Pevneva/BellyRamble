@@ -9,13 +9,17 @@ using UnityEngine.UI;
 public class Player : Participant
 {
     [SerializeField] private int _startMoney;
+    
     public int Money { get; private set; }
     public event UnityAction<int> MoneyAdded;
 
-    private void Start()
+    private Vector3 _startPosition;
+    
+    private void OnEnable()
     {
-        base.Start();
+        // base.Start();
         Money = _startMoney;
+        _startPosition = transform.position;
         // MoneyAdded?.Invoke(Money);
     }
 
@@ -23,5 +27,10 @@ public class Player : Participant
     {
         Money += money;
         MoneyAdded?.Invoke(money);
+    }
+
+    public void ResetPlayer()
+    {
+        transform.position = _startPosition;
     }
 }

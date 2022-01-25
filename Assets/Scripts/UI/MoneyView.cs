@@ -20,13 +20,13 @@ public class MoneyView : MonoBehaviour
     private void Start()
     {
         _tempAddedMoney = 0;
+        _isCounting = false;
         _moneyAnimator = FindObjectOfType<MoneyAnimator>();
         _startMoney = _player.Money;
         _moneyText.text = _player.Money.ToString();
         Debug.Log("MONEY_PLAYER SEE: _moneyAnimator :" + _moneyAnimator);
         Debug.Log("MONEY_PLAYER SEE: FlyInMoneyTime :" + _moneyAnimator.FlyInMoneyTime);
         _countTime = _moneyAnimator.FlyInMoneyTime;
-        _isCounting = false;
 
         _player.MoneyAdded += OnMoneyAdded;
     }
@@ -45,12 +45,7 @@ public class MoneyView : MonoBehaviour
     {
         _startMoney = _player.Money - addedMoney;
         _addedMoney = addedMoney;
-        // _countingMoneyTimeStepPerFrame = _addedMoney / _countTime * Time.deltaTime;
-        
-        Debug.Log("[MONEY_PLAYER] _startMoney : " + _startMoney);
-        Debug.Log("[MONEY_PLAYER] _addedMoney : " + _addedMoney);
-        Debug.Log("[MONEY_PLAYER] _countTime : " + _countTime);
-        
+
         Invoke(nameof(StartCounting), _moneyAnimator.BeforeFlyInMoneyTime);
     }
 
@@ -65,22 +60,14 @@ public class MoneyView : MonoBehaviour
         {
             _tempAddedMoney +=  _addedMoney / (_countTime * 2 - 0.25f)  * Time.deltaTime;
             
-            
             if (_tempAddedMoney >= _addedMoney)
             {
                 _moneyText.text = _player.Money.ToString();
                 _isCounting = false;
                 return;
             }
-
-            // Debug.Log("[MONEY_PLAYER] addedMoney : " + _addedMoney);
             
-            Debug.Log("[MONEY_PLAYER_CHECK] _startMoney : " + _startMoney);
-            Debug.Log("[MONEY_PLAYER_CHECK_TEMP] tempAddedMoney : " + _tempAddedMoney);
-            Debug.Log("[MONEY_PLAYER_CHECK] addedMoney / countTime * Time.deltaTime : " + (_addedMoney / _countTime * Time.deltaTime));
             _moneyText.text = (Mathf.Round(_tempAddedMoney) + _startMoney).ToString();
-            
-            // _moneyText.text = (Mathf.Round(_tempAddedMoney) + _countingMoneyTimeStepPerFrame * _countTime).ToString();
         }
     }
 }

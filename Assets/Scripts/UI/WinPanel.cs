@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(MoneyAnimator))]
@@ -16,6 +17,8 @@ public class WinPanel : MonoBehaviour
 
     [SerializeField] private Transform _beforeFlyInPoint;
 
+    public event UnityAction GetMoneyButtonPressed;
+    
     private MoneyAnimator _moneyAnimator;
     private bool _isResetMoney;
     private float _rewardValue;
@@ -32,6 +35,7 @@ public class WinPanel : MonoBehaviour
         _moneyAnimator.SetTargets(_targetPoint, _beforeFlyInPoint);
         _changeMoneyStep = _rewardValue / _moneyAnimator.CountMoneyTime;
         _moneyAnimator.InitializePool();
+        _moneyAnimator.InitFlyingData();
         _player = FindObjectOfType<Player>();
         _showingDuration = 3;
         Debug.Log("EEE OnEnable WinPanel");
@@ -58,12 +62,12 @@ public class WinPanel : MonoBehaviour
 
     private void AddListenerGetMoneyButton()
     {
-        _getMoneyButton.onClick.AddListener(GetMoney);
+        _getMoneyButton.onClick.AddListener(OnGetMoneyButton);
     }
 
-    private void GetMoney()
+    private void OnGetMoneyButton()
     {
-        Debug.Log("GetMoney");
+        Debug.Log("OnGetMoneyButton");
         string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
         int rewardMoney;
         if (int.TryParse(rewardMoneyText, out rewardMoney))
@@ -76,19 +80,16 @@ public class WinPanel : MonoBehaviour
         }
 
         _moneyAnimator.CreateAndAnimateMoney();
-        // _moneyAnimator.CreateAndAnimateMoney(_countMoneyTime, _flyMoneyTime);
         _isResetMoney = true;
 
         _player.AddMoney(rewardMoney);
-        // PlayerMoneyChanged?.Invoke(rewardMoney);
 
-        _getMoneyButton.onClick.RemoveListener(GetMoney); //uncomment to do
+        _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton); //uncomment to do
+        GetMoneyButtonPressed?.Invoke();
     }
 
     private void ShowGetMoneyButton(float duration)
     {
-        Debug.Log("EEE ShowGetMoneyButton!");
-        Debug.Log("EEE ShowGetMoneyButton! _showingDuration : " + _showingDuration);
         _getMoneyButtonGroup.DOFade(0, 0);
         _getMoneyButtonGroup.DOFade(1, duration);
     }

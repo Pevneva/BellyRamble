@@ -51,7 +51,6 @@ public class ObjectPool : MonoBehaviour
     public bool TryGetObject(out Image result)
     {
         result = _imagePool.FirstOrDefault(t => t.gameObject.activeSelf == false);
-        Debug.Log("EEE result image : " + result);
         return result != null;
     }
 }
