@@ -22,7 +22,6 @@ public class CameraMover : MonoBehaviour
         _camera.fieldOfView = 40;
         _zoom = 20;
         _offsetY = 16.5f;
-        // _offsetY = 14.5f;
     }
 
     private void Update()
@@ -57,8 +56,7 @@ public class CameraMover : MonoBehaviour
 
     public void ZoomIn()
     {
-        // _camera.DOFieldOfView(_camera.fieldOfView - _zoom, 0).SetDelay(delay);
-        _camera.fieldOfView -= 20;
+        _camera.fieldOfView -= _zoom;
     }
 
     public void ZoomOut()

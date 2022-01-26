@@ -7,7 +7,6 @@ public class BattleController : MonoBehaviour
 {
     [SerializeField] private List<Participant> _participants;
     [SerializeField] private Game _game;
-
     [SerializeField] private float _participantFlyingTime;
 
     public float ParticipantFlyingTime => _participantFlyingTime;

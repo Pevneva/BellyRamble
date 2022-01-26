@@ -6,6 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Removed unnecessary data.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run2.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run2.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX/ParticipantEffects.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX/ParticipantEffects.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Food.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Food.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +52,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Participant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/MoneyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Rope/Rope.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,6 +87,7 @@
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Editor/PlasticSCM/Views/Welcome/DownloadAndInstallOperation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/WinPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/GUI/Views/EditModeTestListGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/ServiceActivationPopup/Visuals/ExceptionVisual.cs" root0="SKIP_HIGHLIGHTING" />
@@ -117,27 +136,30 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
       <option value="$PROJECT_DIR$/Assets/GreySetter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Border.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev2.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
       <option value="$PROJECT_DIR$/../../TestProject/Assets/Scripts/ScoreView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Food.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorParticipantController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -226,7 +248,7 @@
       <workItem from="1642401572820" duration="9804000" />
       <workItem from="1642444188638" duration="95242000" />
       <workItem from="1643147068017" duration="1787000" />
-      <workItem from="1643186154756" duration="8531000" />
+      <workItem from="1643186154756" duration="10197000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -298,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643199535551</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Removed unnecessary data.">
+      <created>1643200252808</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643200252808</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

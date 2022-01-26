@@ -24,10 +24,4 @@ public class Rope : MonoBehaviour
             Destroy(_parent, 0.05f);
         }
     }
-    //
-    // private void DestroyParent()
-    // {
-    //     Debug.Log("SASA DESTROY _parent!" );
-    //     Destroy(_parent);
-    // }
 }

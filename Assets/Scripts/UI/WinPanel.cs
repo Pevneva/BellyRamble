@@ -67,13 +67,7 @@ public class WinPanel : MonoBehaviour
         string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
         int rewardMoney;
         if (int.TryParse(rewardMoneyText, out rewardMoney) == false)
-        {
             rewardMoney = 0;
-        }
-        // else
-        // {
-        //     rewardMoney = 0;
-        // } AAA
 
         _moneyAnimator.CreateAndAnimateMoney();
         _isResetMoney = true;

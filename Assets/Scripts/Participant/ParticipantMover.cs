@@ -1,8 +1,6 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ParticipantMover : MonoBehaviour
@@ -92,7 +90,7 @@ public class ParticipantMover : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _participant.StopParticipantEffects();
         if (GetComponent<PlayerInput>() != null)
-            _animator.SetFloat("Speed", 0f);
+            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
         _movingCounter = 0;
         _pushingDistance = 0;
         _flyingTime = _battleController.ParticipantFlyingTime;
@@ -220,16 +218,6 @@ public class ParticipantMover : MonoBehaviour
         return 0;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(new Vector3(_centerPositionXZ.x, transform.position.y, _centerPositionXZ.y),
-            _radius - _offsetMovingArea);
-
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireCube(NewPosition, Vector3.one);
-    }
-
     private Vector2 GetRingCenter()
     {
         Vector2 startPosition = new Vector2(_leftDownPointBorder.position.x, _leftDownPointBorder.position.z);
@@ -313,7 +301,7 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = false;
         if (_isTouchBreak)
         {
-            _animator.SetFloat("Speed", 0);
+            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
             _speed = 0;
         }
 
@@ -330,7 +318,7 @@ public class ParticipantMover : MonoBehaviour
             StopCoroutine(_boostCoroutine);
 
         _speed = _startSpeed;
-        _animator.SetFloat("Speed", _speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
         IsBoosting = false;
         _isRuling = true;
         IsPushing = false;
@@ -355,13 +343,13 @@ public class ParticipantMover : MonoBehaviour
         _speed *= _boost;
         IsBoosting = true;
         _rigidbody.isKinematic = true;
-        _animator.SetFloat("Speed", _speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
         yield return new WaitForSeconds(_boostTime);
         _speed = _startSpeed;
         IsBoosting = false;
         _rigidbody.isKinematic = true;
         _participant.StopParticipantEffects();
-        _animator.SetFloat("Speed", _speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
     }
 
     private IEnumerator StartRunAnimation(float delayTime, float runnigTime)
@@ -369,7 +357,7 @@ public class ParticipantMover : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
         _participant.PlayParticipantEffects();
-        _animator.SetFloat("Speed", 2f);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
         IsMoving = true;
         yield return new WaitForSeconds(runnigTime);
@@ -410,7 +398,7 @@ public class ParticipantMover : MonoBehaviour
             _speed = IsBoosting ? _boost * _startSpeed : _startSpeed;
         }
 
-        _animator.SetFloat("Speed", MovingDirection.normalized.magnitude * _speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, MovingDirection.normalized.magnitude * _speed);
         transform.position += Time.deltaTime * _speed * 2 * MovingDirection.normalized;
     }
 
@@ -420,7 +408,7 @@ public class ParticipantMover : MonoBehaviour
         {
             _rigidbody.velocity = Vector3.zero;
             _speed = 0;
-            _animator.SetFloat("Speed", 0);
+            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
         }
         else
         {
@@ -439,7 +427,7 @@ public class ParticipantMover : MonoBehaviour
         }
 
         IsFlying = true;
-        _animator.SetBool("Fly", true);
+        _animator.SetBool(AnimatorParticipantController.Params.Fly, true);
 
         var startPosition = transform.position;
         var heihgestPosition = startPosition + directionWithoutY.normalized * 8 + new Vector3(0, 5, 0);

@@ -26,7 +26,6 @@ public class FoodGeneration : MonoBehaviour
         _endPosition = _rightUpPoint.position;
         _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; 
         _foodDestroying = new Queue<Vector3Int>();
-        // _generationHeight = _ground.position.y + 0.7f + 2.56f;
         _generationHeight = _ground.position.y + 0.35f + 2.56f;
         FillArea(_startPosition);
     }
@@ -106,17 +105,12 @@ public class FoodGeneration : MonoBehaviour
     {
         int rotateY = Random.Range(0, 180);
         Quaternion quaternionY = Quaternion.Euler(0, rotateY, 0);
-
         Vector3 position = GridToWorldPosition(gridPosition) + GetRandomOffset();
-        // Vector3 position = isSmoothShowing
-        //     ? GridToWorldPosition(gridPosition) + GetRandomOffset()
-        //     : GridToWorldPosition(gridPosition);
-        
         var gridObject = Instantiate(template, position + new Vector3(0, _generationHeight, 0), quaternionY, transform);
-        
         Vector3 scale = gridObject.transform.localScale;
         gridObject.Died += OnDied;
         gridObject.SetCoordinads(gridPosition);
+        
         if (isSmoothShowing)
         {
             gridObject.transform.DOScale(0, 0);

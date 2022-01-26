@@ -9,6 +9,7 @@ public class BotRuler : MonoBehaviour
     [SerializeField] private Transform _leftUpAngle;
     [SerializeField] private Transform _rightUpAngle;
     [SerializeField] private Transform _rightDownAngle;
+    
     public Vector3 MovingDirection { get; private set; }
 
     private ParticipantMover _participantMover;
@@ -20,24 +21,20 @@ public class BotRuler : MonoBehaviour
     private Animator _animator;
     private Vector3 _newPosition;
     private TouchBorder _touchBorder;
-
     private bool _isRepulsion;
-
-    // private bool _isFlying;
     private Participant[] _participants;
     private bool _isRopeNextTo;
 
     private void Start()
     {
         _isRepulsion = false;
-        // _isFlying = false;
         _isRopeNextTo = false;
         _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
         MovingDirection = Vector3.zero;
         _participantMover = GetComponent<ParticipantMover>();
         _foodGeneration = FindObjectOfType<FoodGeneration>();
         _animator = GetComponentInChildren<Animator>();
-        _animator.SetFloat("Speed", _participantMover.Speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
         GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
         _target = GetNearestFood().transform;
 
@@ -206,28 +203,16 @@ public class BotRuler : MonoBehaviour
     private bool IsNextToAngle(float distance)
     {
         if (Vector3.Distance(transform.position, _leftDownAngle.position) < distance)
-        {
-            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftDownAngle.position));
             return true;
-        }
 
         if (Vector3.Distance(transform.position, _leftUpAngle.position) < distance)
-        {
-            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _leftUpAngle.position));
             return true;
-        }
 
         if (Vector3.Distance(transform.position, _rightUpAngle.position) < distance)
-        {
-            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightUpAngle.position));
             return true;
-        }
 
         if (Vector3.Distance(transform.position, _rightDownAngle.position) < distance)
-        {
-            // Debug.Log("QA distance : " + Vector3.Distance(transform.position, _rightDownAngle.position));
             return true;
-        }
 
         return false;
     }
