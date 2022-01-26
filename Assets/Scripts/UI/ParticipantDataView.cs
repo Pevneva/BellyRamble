@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,7 @@ public class ParticipantDataView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _score;
     [SerializeField] private float _offsetY;
+    [SerializeField] private RectTransform _area;
 
     public void Render(Participant participant)
     {
@@ -16,10 +18,21 @@ public class ParticipantDataView : MonoBehaviour
 
     private void SetPosition(Participant participant, float offsetY)
     {
-        Vector3 position = participant.transform.position;
-        Vector3 positionOnScreen = Camera.main.WorldToScreenPoint(position);
+        Camera camera = Camera.main;
+        Vector3 worldPosition = participant.transform.position;
+
+        Vector3 screenPoint = camera.WorldToScreenPoint(worldPosition);
+        screenPoint.z = 0;
+        Vector2 screenPos;
         
-        positionOnScreen.y += offsetY;
-        transform.position = positionOnScreen;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_area, screenPoint, camera, out screenPos))
+        {
+            transform.localPosition = screenPos;
+            return;
+        }
+        else
+        {
+            throw new Exception();
+        }
     }
 }
