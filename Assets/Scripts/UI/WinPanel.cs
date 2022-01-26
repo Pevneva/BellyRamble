@@ -28,9 +28,9 @@ public class WinPanel : MonoBehaviour
         _isResetMoney = false;
         _rewardValue = 90;
         _getMoneyText.text = _rewardValue.ToString();
-
         _moneyAnimator = FindObjectOfType<MoneyAnimator>();
         _moneyAnimator.SetTargets(_targetPoint, _beforeFlyInPoint);
+        _moneyAnimator.InitFlyingData();
         _changeMoneyStep = _rewardValue / _moneyAnimator.CountMoneyTime;
         _moneyAnimator.InitializePool();
         _moneyAnimator.InitFlyingData();
@@ -58,24 +58,22 @@ public class WinPanel : MonoBehaviour
 
     private void AddListenerGetMoneyButton()
     {
-        Debug.Log("AAA AddListenerGetMoneyButton");
         _getMoneyButton.onClick.AddListener(OnGetMoneyButton);
     }
 
     private void OnGetMoneyButton()
     {
-        Debug.Log("OnGetMoneyButton");
         _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton); //uncomment to do
         string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
         int rewardMoney;
-        if (int.TryParse(rewardMoneyText, out rewardMoney))
-        {
-            Debug.Log("[ZAZ] rewardMoney : " + rewardMoney); 
-        }
-        else
+        if (int.TryParse(rewardMoneyText, out rewardMoney) == false)
         {
             rewardMoney = 0;
         }
+        // else
+        // {
+        //     rewardMoney = 0;
+        // } AAA
 
         _moneyAnimator.CreateAndAnimateMoney();
         _isResetMoney = true;

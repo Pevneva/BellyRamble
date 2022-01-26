@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Fixed showing of score in case of Camera render mode of canvas.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Removed unnecessary data.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +63,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/ArrowRotation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Game.cs" root0="SKIP_HIGHLIGHTING" />
@@ -144,8 +136,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -234,7 +226,7 @@
       <workItem from="1642401572820" duration="9804000" />
       <workItem from="1642444188638" duration="95242000" />
       <workItem from="1643147068017" duration="1787000" />
-      <workItem from="1643186154756" duration="7818000" />
+      <workItem from="1643186154756" duration="8531000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -299,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643189984999</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Removed unnecessary data.">
+      <created>1643199535551</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643199535551</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +332,8 @@
     <MESSAGE value="Added moving of money and counters." />
     <MESSAGE value="Refactored code. Added possibility to add FX on UI." />
     <MESSAGE value="Fixed showing of score in case of Camera render mode of canvas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed showing of score in case of Camera render mode of canvas." />
+    <MESSAGE value="Removed unnecessary data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary data." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
