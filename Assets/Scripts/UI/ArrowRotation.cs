@@ -15,7 +15,6 @@ public class ArrowRotation : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("EEE _rectTransform.rotation.z : " + _rectTransform.rotation.z);
         _rectTransform.rotation = Quaternion.Euler(0, 0, 0);
         _speed = 250f;
         _zRotation = 0;

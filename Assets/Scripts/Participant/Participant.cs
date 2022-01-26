@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,11 +13,7 @@ public class Participant : MonoBehaviour
     [SerializeField] private GameObject _backParticipant;
 
     public event UnityAction<int> ScoreChanged;
-    public event UnityAction RopeTouchDuringMoving;
     public event UnityAction<Food> FoodEatenByBot;
-    public event UnityAction RopeTouchEnded;
-    public event UnityAction<Participant> ParticipantsTouched;
-    public bool IsRopeTouching;
 
     private Vector3 _scale;
     private Rigidbody _rigidbody;
@@ -35,7 +29,6 @@ public class Participant : MonoBehaviour
 
     protected void Start()
     {
-        IsRopeTouching = false;
         _collisionCounter = 0;
         _collisionDelay = 0.75f;
         _rigidbody = GetComponent<Rigidbody>();
@@ -58,7 +51,6 @@ public class Participant : MonoBehaviour
 
     private void SetScale(int score)
     {
-        // _scale += _scale * score/(float)450;
         _scale += new Vector3(1f, 0.1f, 1f) * 0.01f / (float) score;
         transform.localScale = _scale;
     }
@@ -67,7 +59,6 @@ public class Participant : MonoBehaviour
     {
         _score += score;
         _view.Render(this);
-        // Debug.Log("SCORE: " + Score);
         ScoreChanged?.Invoke(score);
     }
 
@@ -117,12 +108,6 @@ public class Participant : MonoBehaviour
         rigidbody2.isKinematic = true;
     }
 
-    private IEnumerator DoActiveCollisionObject(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        _collisionGameObject.SetActive(true);
-    }
-
     private Participant GetLoser(Participant first, Participant second)
     {
         return first.Score < second.Score ? first : second;
@@ -130,7 +115,6 @@ public class Participant : MonoBehaviour
 
     private void OnDestroy()
     {
-        // _battleController.RemoveParticipant(this);
         Destroy(_view.gameObject);
     }
     

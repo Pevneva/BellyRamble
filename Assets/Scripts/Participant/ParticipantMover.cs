@@ -12,7 +12,6 @@ public class ParticipantMover : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _boost;
     [SerializeField] private float _boostTime = 0.65f;
-    // [SerializeField]
 
     public bool IsMoving { get; private set; }
     public bool IsPushing { get; private set; }
@@ -41,14 +40,12 @@ public class ParticipantMover : MonoBehaviour
     private float _turnOverTime;
     private float _preparingPushTime;
     private float _offsetToPush;
-
     private float _pushDistanceKoef;
     private float _pushTime;
     private bool _isTouchBreak;
     private Vector3 _discardingDirection;
     private float _angleRotateBeforePushing;
     private float _angleRotation;
-
     private bool _isLeftBorder;
     private bool _isRightBorder;
     private bool _isUpBorder;
@@ -61,10 +58,7 @@ public class ParticipantMover : MonoBehaviour
     private float _rotateCounter;
     private float _movingCounter;
     private float _pushingDistance;
-
     private Sequence _turnOverSequence;
-
-    // private Vector3 NewPosition;
     private Camera _mainCamera;
     private bool _isNotBot;
     private BattleController _battleController;
@@ -84,20 +78,10 @@ public class ParticipantMover : MonoBehaviour
         _rotateCounter = 0;
         _offsetToPush = -0.1f;
         _delayCounter = 0;
-
-        // _turnOverTime = 1f;
-        // _preparingPushTime = 1f;
-        // _angleRotateBeforePushing = 45;
-        // _pushTime = 1f; 
-        //
         _turnOverTime = 0.2f;
         _preparingPushTime = 0.3f;
         _angleRotateBeforePushing = 15;
         _pushTime = 0.2f;
-
-        // _delayTime = 0.55f;
-        // _pushDistanceKoef = 0.25f;
-        // _pushTime = 0.025f;
         _angleRotation = 180;
         _pushDistanceKoef = 2f;
         _positionY = transform.position.y;
@@ -106,14 +90,12 @@ public class ParticipantMover : MonoBehaviour
         _participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
         _animator = GetComponentInChildren<Animator>();
-        // _fxContainer = FindObjectOfType<FXContainer>();
         _participant.StopParticipantEffects();
         if (GetComponent<PlayerInput>() != null)
             _animator.SetFloat("Speed", 0f);
         _movingCounter = 0;
         _pushingDistance = 0;
         _flyingTime = _battleController.ParticipantFlyingTime;
-
         IsPushing = false;
         _isTouchBreak = false;
         IsBoosting = false;
@@ -123,9 +105,7 @@ public class ParticipantMover : MonoBehaviour
             _leftDownPointBorder.position.z + _offsetMovingArea);
         _radius = Vector2.Distance(_centerPositionXZ, _planeStartPoint);
         _mainCamera = Camera.main;
-
         _isNotBot = GetComponent<Bot>() is null;
-        // _participant.ParticipantsTouched += AddForceFly;
     }
 
     private void Update()
@@ -197,7 +177,7 @@ public class ParticipantMover : MonoBehaviour
             .SetEase(Ease.Linear));
         RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), _turnOverSequence);
         _turnOverSequence.Append(transform.DOMove(NewPosition, isBot ? _pushTime * 0.75f : _pushTime)
-            .SetEase(Ease.Flash)); //to do uncomment <<==
+            .SetEase(Ease.Flash)); 
 
         StartCoroutine(StartRunAnimation(_turnOverTime + _preparingPushTime, _pushTime));
         _boostCoroutine = StartCoroutine(StartBoost(_turnOverTime + _preparingPushTime + _pushTime));
@@ -311,15 +291,6 @@ public class ParticipantMover : MonoBehaviour
         float positionX = position.x;
         float positionZ = position.z;
 
-        // Debug.Log("============================ AAA GetDiscardingDirection ========================== ");
-        // Debug.Log("AAA positionX :  " + positionX);
-        // Debug.Log("AAA positionZ :  " + positionZ);
-        // Debug.Log("AAA _leftDownPointBorder.position.x + 0.5f :  " + (_leftDownPointBorder.position.x + 0.65f));
-        // Debug.Log("AAA _leftDownPointBorder.position.z + 0.5f :  " + (_leftDownPointBorder.position.z + 0.65f));
-        // Debug.Log("AAA _rightUpPointBorder.position.x - 0.5f :  " + (_rightUpPointBorder.position.x - 0.65f));
-        // Debug.Log("AAA _rightUpPointBorder.position.z - 0.5f :  " + (_rightUpPointBorder.position.z - 0.65f));        
-        // Debug.Log("============================ ====================== ========================== ");
-
         if (positionX < _leftDownPointBorder.position.x + 0.65f || positionX > _rightUpPointBorder.position.x - 0.65f)
         {
             return new Vector3(-direction.x, direction.y, direction.z);
@@ -329,13 +300,6 @@ public class ParticipantMover : MonoBehaviour
         {
             return new Vector3(direction.x, direction.y, -direction.z);
         }
-
-        /*Debug.Log("AAA positionX :  " + positionX);
-        Debug.Log("AAA positionZ :  " + positionZ);
-        Debug.Log("AAA _leftDownPointBorder.position.x + 0.5f :  " + (_leftDownPointBorder.position.x + 0.5f));
-        Debug.Log("AAA _leftDownPointBorder.position.z + 0.5f :  " + (_leftDownPointBorder.position.z + 0.5f));
-        Debug.Log("AAA _rightUpPointBorder.position.x - 0.5f :  " + (_rightUpPointBorder.position.x - 0.5f));
-        Debug.Log("AAA _rightUpPointBorder.position.z - 0.5f :  " + (_rightUpPointBorder.position.z - 0.5f));*/
 
         return Vector3.zero;
     }
@@ -409,9 +373,6 @@ public class ParticipantMover : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         IsMoving = true;
         yield return new WaitForSeconds(runnigTime);
-        // _participant.StopParticipantEffects();
-        // _animator.SetFloat("Speed", _startSpeed);
-        // _animator.SetFloat("Speed", _speed);
         yield break;
     }
 
@@ -464,7 +425,6 @@ public class ParticipantMover : MonoBehaviour
         else
         {
             _isTouchBreak = true;
-            // Debug.Log("SAS Мы отжали кнопку мыши во время толчка");
         }
     }
 
@@ -484,9 +444,7 @@ public class ParticipantMover : MonoBehaviour
         var startPosition = transform.position;
         var heihgestPosition = startPosition + directionWithoutY.normalized * 8 + new Vector3(0, 5, 0);
         var endPosition = heihgestPosition + directionWithoutY.normalized * 16 + new Vector3(0, -10, 0);
-        Debug.Log("QA startPosition : " + startPosition);
-        Debug.Log("QA directionWithoutY : " + directionWithoutY);
-        Debug.Log("QA heihgestPosition : " + heihgestPosition);
+        
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(heihgestPosition, _flyingTime / 3).SetEase(Ease.Linear));
         sequence.Append(transform.DOMove(endPosition, 2 * _flyingTime / 3).SetEase(Ease.Linear));

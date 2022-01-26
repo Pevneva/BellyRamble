@@ -9,12 +9,10 @@ public class WinPanel : MonoBehaviour
 {
     [SerializeField] private Button _getMoneyButton;
     [SerializeField] private Button _adsGetMoneyButton;
-
     [SerializeField] private CanvasGroup _getMoneyButtonGroup;
     [SerializeField] private float _showingDuration;
     [SerializeField] private TMP_Text _getMoneyText;
     [SerializeField] private Transform _targetPoint;
-
     [SerializeField] private Transform _beforeFlyInPoint;
 
     public event UnityAction GetMoneyButtonPressed;
@@ -25,7 +23,7 @@ public class WinPanel : MonoBehaviour
     private float _changeMoneyStep;
     private Player _player;
 
-    private void OnEnable()
+    private void Start()
     {
         _isResetMoney = false;
         _rewardValue = 90;
@@ -38,7 +36,6 @@ public class WinPanel : MonoBehaviour
         _moneyAnimator.InitFlyingData();
         _player = FindObjectOfType<Player>();
         _showingDuration = 3;
-        Debug.Log("EEE OnEnable WinPanel");
         ShowGetMoneyButton(_showingDuration);
         Invoke(nameof(AddListenerGetMoneyButton), _showingDuration - _showingDuration / 4);
     }
@@ -55,19 +52,20 @@ public class WinPanel : MonoBehaviour
                 return;
             }
 
-            Debug.Log("RRR _rewardValue : " + Mathf.Round(_rewardValue));
             _getMoneyText.text = Mathf.Round(_rewardValue).ToString();
         }
     }
 
     private void AddListenerGetMoneyButton()
     {
+        Debug.Log("AAA AddListenerGetMoneyButton");
         _getMoneyButton.onClick.AddListener(OnGetMoneyButton);
     }
 
     private void OnGetMoneyButton()
     {
         Debug.Log("OnGetMoneyButton");
+        _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton); //uncomment to do
         string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
         int rewardMoney;
         if (int.TryParse(rewardMoneyText, out rewardMoney))
@@ -81,10 +79,8 @@ public class WinPanel : MonoBehaviour
 
         _moneyAnimator.CreateAndAnimateMoney();
         _isResetMoney = true;
-
         _player.AddMoney(rewardMoney);
-
-        _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton); //uncomment to do
+        
         GetMoneyButtonPressed?.Invoke();
     }
 

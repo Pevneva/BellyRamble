@@ -12,18 +12,13 @@ public class Game : MonoBehaviour
 
     private Camera _camera;
     private CameraMover _cameraMover;
+    
     private void Start()
     {
-        Debug.Log("GAME: Start");
-        // HideWinPanel(); //to do uncomment
+        HideWinPanel();
         _camera = Camera.main;
         _cameraMover = _camera.GetComponent<CameraMover>();
         _battleController.PlayerWon += OnWinPanelShown;
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log("GAME: OnEnable");
     }
 
     public void ShowWinPanel()
@@ -40,6 +35,7 @@ public class Game : MonoBehaviour
     private void OnWinPanelShown()
     {
         _winPanel.GetMoneyButtonPressed += OnGetMoneyButtonPressed;
+        _battleController.PlayerWon -= OnWinPanelShown;
     }
 
     private void OnGetMoneyButtonPressed()

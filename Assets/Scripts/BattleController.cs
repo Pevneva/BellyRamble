@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,20 +9,15 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Game _game;
 
     [SerializeField] private float _participantFlyingTime;
-    // [SerializeField] private GameObject _winPanel;
 
     public float ParticipantFlyingTime => _participantFlyingTime;
+    public event UnityAction PlayerWon; 
 
     private Participant _currentWinner;
     private float _counter;
-    // private Camera _mainCamera;
-    
-    public event UnityAction PlayerWon; 
 
     private void Start()
     {
-        // _winPanel.SetActive(false); //todo uncomment
-        // _mainCamera = Camera.main;
         InitParticipants();
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);
         _counter = 0f;
@@ -74,10 +67,7 @@ public class BattleController : MonoBehaviour
         {
             Vector3 movingDirection =
                 participant1.gameObject.transform.position - participant2.gameObject.transform.position;
-            // Vector3 movingDirection = participant2 is Bot
-            //     ? participant1.GetComponent<BotRuler>().MovingDirection
-            //     : participant1.GetComponent<ParticipantMover>().MovingDirection;
-            
+
             participant1.GetComponent<ParticipantMover>().Fly(movingDirection, isBottleWillBeEnded);
             RemoveParticipant(participant1);
         }
@@ -97,16 +87,5 @@ public class BattleController : MonoBehaviour
     public bool IsBottleEnded()
     {
         return _participants.Count <= 1;
-    }
-
-    public void ShowWinPanel()
-    {
-        // _winPanel.SetActive(true);
-        // Invoke(nameof(StopTime),2f);
-    }
-
-    private void StopTime()
-    {
-        Time.timeScale = 0;
     }
 }

@@ -24,10 +24,7 @@ public class MoneyView : MonoBehaviour
         _moneyAnimator = FindObjectOfType<MoneyAnimator>();
         _startMoney = _player.Money;
         _moneyText.text = _player.Money.ToString();
-        Debug.Log("MONEY_PLAYER SEE: _moneyAnimator :" + _moneyAnimator);
-        Debug.Log("MONEY_PLAYER SEE: FlyInMoneyTime :" + _moneyAnimator.FlyInMoneyTime);
         _countTime = _moneyAnimator.FlyInMoneyTime;
-
         _player.MoneyAdded += OnMoneyAdded;
     }
 
