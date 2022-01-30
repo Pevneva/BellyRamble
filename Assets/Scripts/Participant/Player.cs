@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 
 public class Player : Participant
 {
@@ -17,10 +12,8 @@ public class Player : Participant
     
     private void OnEnable()
     {
-        // base.Start();
         Money = _startMoney;
         _startPosition = transform.position;
-        // MoneyAdded?.Invoke(Money);
     }
 
     public void AddMoney(int money)

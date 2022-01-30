@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Removed unnecessary data.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +37,8 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEngine.TestRunner/Utils/IPrebuildSceneSetup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BattleController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Participant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
@@ -110,9 +107,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TestParent.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" />
       <option value="$PROJECT_DIR$/Assets/GreySetter.cs" />
@@ -120,12 +115,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev2.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
       <option value="$PROJECT_DIR$/../../TestProject/Assets/Scripts/ScoreView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
@@ -137,11 +129,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -232,7 +229,7 @@
       <workItem from="1643147068017" duration="1787000" />
       <workItem from="1643186154756" duration="12798000" />
       <workItem from="1643390901970" duration="7448000" />
-      <workItem from="1643467739544" duration="1347000" />
+      <workItem from="1643467739544" duration="3665000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -318,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643201778294</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Removed unnecessary data.">
+      <created>1643535411660</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1643535411660</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,9 +356,9 @@
     <MESSAGE value="Added moving of money and counters." />
     <MESSAGE value="Refactored code. Added possibility to add FX on UI." />
     <MESSAGE value="Fixed showing of score in case of Camera render mode of canvas." />
-    <MESSAGE value="Removed unnecessary data." />
     <MESSAGE value="Improved code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved code." />
+    <MESSAGE value="Removed unnecessary data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary data." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

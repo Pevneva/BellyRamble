@@ -11,15 +11,11 @@ public class BattleController : MonoBehaviour
 
     public float ParticipantFlyingTime => _participantFlyingTime;
     public event UnityAction PlayerWon; 
-
-    private Participant _currentWinner;
-    private float _counter;
-
+    
     private void Start()
     {
         InitParticipants();
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);
-        _counter = 0f;
     }
 
     private void SetCrownToWinner()
@@ -57,16 +53,12 @@ public class BattleController : MonoBehaviour
         
         if (participant1 == winner)
         {
-            Vector3 movingDirection =
-                participant2.gameObject.transform.position - participant1.gameObject.transform.position;
+            Vector3 movingDirection = participant2.gameObject.transform.position - participant1.gameObject.transform.position;
             participant2.GetComponent<ParticipantMover>().Fly(movingDirection, isBottleWillBeEnded);
-            
             RemoveParticipant(participant2);
         } else if (participant2 == winner)
         {
-            Vector3 movingDirection =
-                participant1.gameObject.transform.position - participant2.gameObject.transform.position;
-
+            Vector3 movingDirection = participant1.gameObject.transform.position - participant2.gameObject.transform.position;
             participant1.GetComponent<ParticipantMover>().Fly(movingDirection, isBottleWillBeEnded);
             RemoveParticipant(participant1);
         }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -10,14 +7,12 @@ public class Game : MonoBehaviour
     [SerializeField] private WinPanel _winPanel;
     [SerializeField] private FXContainer _fxContainer;
 
-    private Camera _camera;
     private CameraMover _cameraMover;
     
     private void Start()
     {
         HideWinPanel();
-        _camera = Camera.main;
-        _cameraMover = _camera.GetComponent<CameraMover>();
+        _cameraMover = Camera.main.GetComponent<CameraMover>();
         _battleController.PlayerWon += OnWinPanelShown;
     }
 

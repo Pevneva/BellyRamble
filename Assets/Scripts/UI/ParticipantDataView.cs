@@ -18,19 +18,13 @@ public class ParticipantDataView : MonoBehaviour
     {
         Camera camera = Camera.main;
         Vector3 worldPosition = participant.transform.position;
-
         Vector3 screenPoint = camera.WorldToScreenPoint(worldPosition);
         screenPoint.z = 0;
         Vector2 screenPos;
         
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_area, screenPoint, camera, out screenPos))
-        {
             transform.localPosition = screenPos;
-            return;
-        }
         else
-        {
             throw new Exception();
-        }
     }
 }

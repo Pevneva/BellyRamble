@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(MoneyAnimator))]
 public class WinPanel : MonoBehaviour
 {
     [SerializeField] private Button _getMoneyButton;
@@ -63,7 +62,7 @@ public class WinPanel : MonoBehaviour
 
     private void OnGetMoneyButton()
     {
-        _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton); //uncomment to do
+        _getMoneyButton.onClick.RemoveListener(OnGetMoneyButton);
         string rewardMoneyText = _getMoneyButton.gameObject.GetComponentInChildren<TMP_Text>().text;
         int rewardMoney;
         if (int.TryParse(rewardMoneyText, out rewardMoney) == false)
