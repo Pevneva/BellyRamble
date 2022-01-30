@@ -19,20 +19,15 @@ public class ParticipantMover : MonoBehaviour
     public Vector3 MovingDirection { get; private set; }
     public float Speed => _speed;
     public float BoostTime => _boostTime;
-    public float RepulsionTime { get { return _turnOverTime + _preparingPushTime + _pushTime; } }
+    public float RepulsionTime => _turnOverTime + _preparingPushTime + _pushTime; 
 
-    private TouchBorder _touchBorder;
-    private bool _isForcing;
     private bool _isRuling;
-    private bool _isDelayingPushing;
     private float _positionY;
     private float _startSpeed;
-    private float _delayCounter;
     private Rigidbody _rigidbody;
     private Participant _participant;
     private Coroutine _boostCoroutine;
     private Animator _animator;
-    private FXContainer _fxContainer;
     private Quaternion _lookRotation;
     private Vector3 _startPosition;
     private float _turnOverTime;
@@ -52,30 +47,18 @@ public class ParticipantMover : MonoBehaviour
     private float _offsetMovingArea;
     private Vector2 _planeStartPoint;
     private Vector2 _centerPositionXZ;
-    private float _rotateStep;
-    private float _rotateCounter;
-    private float _movingCounter;
-    private float _pushingDistance;
     private Sequence _turnOverSequence;
     private Camera _mainCamera;
     private bool _isNotBot;
     private BattleController _battleController;
-    private bool _isBottleEnded;
     private float _flyingTime;
 
     private void Start()
     {
-        _isBottleEnded = false;
         IsFlying = false;
-        _touchBorder = TouchBorder.NULL;
         IsMoving = false;
-        _isForcing = false;
         _isRuling = true;
-        _isDelayingPushing = false;
-        _rotateStep = 0.15f;
-        _rotateCounter = 0;
         _offsetToPush = -0.1f;
-        _delayCounter = 0;
         _turnOverTime = 0.2f;
         _preparingPushTime = 0.3f;
         _angleRotateBeforePushing = 15;
@@ -88,12 +71,9 @@ public class ParticipantMover : MonoBehaviour
         _participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
         _animator = GetComponentInChildren<Animator>();
-        // _participant.StopParticipantEffects();
         _participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
             _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
-        _movingCounter = 0;
-        _pushingDistance = 0;
         _flyingTime = _battleController.ParticipantFlyingTime;
         IsPushing = false;
         _isTouchBreak = false;
@@ -162,7 +142,7 @@ public class ParticipantMover : MonoBehaviour
         _startPosition = transform.position;
         _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.75f : _pushDistanceKoef;
         NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
-        _pushingDistance = Vector3.Distance(_startPosition, NewPosition);
+        // _pushingDistance = Vector3.Distance(_startPosition, NewPosition);
         
         _turnOverSequence = DOTween.Sequence();
         _angleRotation = GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
@@ -323,7 +303,6 @@ public class ParticipantMover : MonoBehaviour
         IsBoosting = false;
         _isRuling = true;
         IsPushing = false;
-        // _participant.StopParticipantEffects();
         _participant.SetBoostEffectsVisibility(false);
     }
 
@@ -341,7 +320,6 @@ public class ParticipantMover : MonoBehaviour
         }
 
         yield return new WaitForSeconds(delay);
-        // _participant.PlayParticipantEffects();
         _participant.SetBoostEffectsVisibility(true);
         _speed *= _boost;
         IsBoosting = true;
@@ -351,7 +329,6 @@ public class ParticipantMover : MonoBehaviour
         _speed = _startSpeed;
         IsBoosting = false;
         _rigidbody.isKinematic = true;
-        // _participant.StopParticipantEffects();
         _participant.SetBoostEffectsVisibility(false);
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
     }
@@ -360,7 +337,6 @@ public class ParticipantMover : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
-        // _participant.PlayParticipantEffects();
         _participant.SetBoostEffectsVisibility(true);
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
@@ -448,12 +424,6 @@ public class ParticipantMover : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         if (_battleController.IsBottleEnded() == false)
-        {
             Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }
