@@ -14,10 +14,7 @@ public class MoneyAnimator : MonoBehaviour
 
     public float CountMoneyTime => _countMoneyTime;
     public float FlyInMoneyTime => _flyInMoneyTime;
-    public float BeforeFlyInMoneyTime
-    {
-        get { return _flyMoneyTime + CountMoneyTime; }
-    }
+    public float BeforeFlyInMoneyTime => _flyMoneyTime + CountMoneyTime;
 
     private Transform _targetPoint;
     private Transform _beforeFlyInPoint;

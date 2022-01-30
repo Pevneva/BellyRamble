@@ -88,7 +88,8 @@ public class ParticipantMover : MonoBehaviour
         _participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
         _animator = GetComponentInChildren<Animator>();
-        _participant.StopParticipantEffects();
+        // _participant.StopParticipantEffects();
+        _participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
             _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
         _movingCounter = 0;
@@ -322,7 +323,8 @@ public class ParticipantMover : MonoBehaviour
         IsBoosting = false;
         _isRuling = true;
         IsPushing = false;
-        _participant.StopParticipantEffects();
+        // _participant.StopParticipantEffects();
+        _participant.SetBoostEffectsVisibility(false);
     }
 
     private IEnumerator StartBoost(float delay)
@@ -339,7 +341,8 @@ public class ParticipantMover : MonoBehaviour
         }
 
         yield return new WaitForSeconds(delay);
-        _participant.PlayParticipantEffects();
+        // _participant.PlayParticipantEffects();
+        _participant.SetBoostEffectsVisibility(true);
         _speed *= _boost;
         IsBoosting = true;
         _rigidbody.isKinematic = true;
@@ -348,7 +351,8 @@ public class ParticipantMover : MonoBehaviour
         _speed = _startSpeed;
         IsBoosting = false;
         _rigidbody.isKinematic = true;
-        _participant.StopParticipantEffects();
+        // _participant.StopParticipantEffects();
+        _participant.SetBoostEffectsVisibility(false);
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
     }
 
@@ -356,7 +360,8 @@ public class ParticipantMover : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
-        _participant.PlayParticipantEffects();
+        // _participant.PlayParticipantEffects();
+        _participant.SetBoostEffectsVisibility(true);
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
         IsMoving = true;

@@ -4,26 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Removed unnecessary data.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/Run.anim.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run2.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Run2.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/Walk With Briefcase.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX/ParticipantEffects.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX/ParticipantEffects.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Food.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Food.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,14 +39,11 @@
     <setting file="file://$PROJECT_DIR$/../../TestProject/Assets/Epic Toon FX/Demo/Scripts/ETFXLoopScript.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/WinPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEngine.TestRunner/Utils/IPrebuildSceneSetup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Participant.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/MoneyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Rope/Rope.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Participant.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_GlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -65,38 +55,29 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2e/e7a7722c/Camera.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/ArrowRotation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.recorder@2.5.7/Editor/Sources/Recorders/_Legacy/FrameCapturer/Scripts/Encoder/WEBMEncoder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEngine.TestRunner/Assertions/LogAssert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestLaunchers/RemotePlayerLogController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scenes/Test.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scenes/Test.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/ParticipantDataView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ads@3.7.5/Runtime/Advertisement/Platform/iOS/IosNativeObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/ArrowRotation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Animation/TimelineAnimationUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Editor/PlasticSCM/Views/Welcome/DownloadAndInstallOperation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/WinPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/GUI/Views/EditModeTestListGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/ServiceActivationPopup/Visuals/ExceptionVisual.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Utilities/TrackResourceCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD0A7939-8190-48A0-A161-F66558C98867/e6/b089f8b7/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.purchasing@4.0.3/Runtime/Common/VersionCheck.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BattleController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/EditorGameService/EditorGameServiceFlagEnabler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/UI/MoneyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Window/TimelineWindow_StateChange.cs" root0="SKIP_HIGHLIGHTING" />
@@ -129,13 +110,11 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SphereCreater.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TestParent.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BigPillar.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
       <option value="$PROJECT_DIR$/Assets/GreySetter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Border.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev.cs" />
@@ -146,20 +125,23 @@
       <option value="$PROJECT_DIR$/../../TestProject/Assets/Scripts/ScoreView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Food.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorParticipantController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/Rope.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreater.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Rope/RopeCreaterJoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Bot.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorParticipantController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -248,7 +230,9 @@
       <workItem from="1642401572820" duration="9804000" />
       <workItem from="1642444188638" duration="95242000" />
       <workItem from="1643147068017" duration="1787000" />
-      <workItem from="1643186154756" duration="10197000" />
+      <workItem from="1643186154756" duration="12798000" />
+      <workItem from="1643390901970" duration="7448000" />
+      <workItem from="1643467739544" duration="1347000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -327,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643200252808</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Improved code.">
+      <created>1643201778294</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1643201778294</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +353,8 @@
     <MESSAGE value="Refactored code. Added possibility to add FX on UI." />
     <MESSAGE value="Fixed showing of score in case of Camera render mode of canvas." />
     <MESSAGE value="Removed unnecessary data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary data." />
+    <MESSAGE value="Improved code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved code." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

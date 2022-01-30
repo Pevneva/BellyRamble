@@ -17,21 +17,17 @@ public class Participant : MonoBehaviour
 
     private Vector3 _scale;
     private Rigidbody _rigidbody;
-    private float _collisionCounter;
-    private float _collisionDelay;
-    private GameObject _collisionGameObject;
     private BattleController _battleController;
 
-    public int Score
-    {
-        get { return _score; }
-    }
+    public int Score => _score;
 
     protected void Start()
     {
-        _collisionCounter = 0;
-        _collisionDelay = 0.75f;
+        _scale = transform.localScale;
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.isKinematic = true;
+        _battleController = FindObjectOfType<BattleController>();
+        
         _view.Render(this);
         _scale = transform.localScale;
         _rigidbody.isKinematic = true;
@@ -87,9 +83,7 @@ public class Participant : MonoBehaviour
             {
                 bot.GetComponent<ParticipantMover>().StopBoost();
                 GetComponent<ParticipantMover>().StopBoost();
-
-                _battleController.DoImpact(bot, this); //uncomment to do
-
+                _battleController.DoImpact(bot, this);
                 return;
             } 
 
@@ -108,36 +102,20 @@ public class Participant : MonoBehaviour
         rigidbody2.isKinematic = true;
     }
 
-    private Participant GetLoser(Participant first, Participant second)
-    {
-        return first.Score < second.Score ? first : second;
-    }
-
     private void OnDestroy()
     {
         Destroy(_view.gameObject);
     }
-    
-    public void PlayParticipantEffects()
+
+    public void SetBoostEffectsVisibility(bool isVisible)
     {
-        _lefLegParticipant.SetActive(true);
-        _rightLegParticipant.SetActive(true);
-        _backParticipant.SetActive(true);
+        _lefLegParticipant.SetActive(isVisible);
+        _rightLegParticipant.SetActive(isVisible);
+        _backParticipant.SetActive(isVisible);        
     }
 
-    public void StopParticipantEffects()
+    public void SetCrownVisibility(bool isVisible)
     {
-        _lefLegParticipant.SetActive(false);
-        _rightLegParticipant.SetActive(false);
-        _backParticipant.SetActive(false);        
-    }
-
-    public void TurnOnCrown()
-    {
-        _crown.SetActive(true);
-    }
-    public void TurnOffCrown()
-    {
-        _crown.SetActive(false);
+        _crown.SetActive(isVisible);
     }
 }

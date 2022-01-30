@@ -11,8 +11,6 @@ public class RopeCreaterJoint : MonoBehaviour
     [SerializeField] private Transform _parent;
     [SerializeField] private int _segments;
 
-    private Vector3 _currentPosition;
-    private float _offsetSegment;
     private Rigidbody _previousJoint;
     
     private void Start()
@@ -22,22 +20,9 @@ public class RopeCreaterJoint : MonoBehaviour
         var startCenterPosition = _startPointRB.gameObject.transform.position;
         var localScaleSegment = _partOfRope.transform.localScale;
         var startPosition = new Vector3(startCenterPosition.x, startCenterPosition.y + localScaleSegment.y / 4, startCenterPosition.z);
-        
-        // _offsetSegment = ;
-        // _offsetSegment = _partOfRope.gameObject.GetComponent<CapsuleCollider>().height / 2;
-        _currentPosition = startPosition;
-        
-        var wholeDistanceRb = Vector3.Distance(startPosition, _endPointRB.gameObject.transform.position);
-        var segmentDistanceRb = (float) wholeDistanceRb / _segments;
-
         var posX = startPosition.x;
         var posY = startPosition.y;
         var posZ = startPosition.z;
-
-        Debug.Log("localScaleSegment : " + localScaleSegment);
-        Debug.Log("_segments : " + _segments);
-        Debug.Log("wholeDistanceRB : " + wholeDistanceRb);
-        Debug.Log("segmentDistanceRB : " + segmentDistanceRb);
 
         for (int i = 0; i < _segments; i++)
         {
@@ -46,7 +31,6 @@ public class RopeCreaterJoint : MonoBehaviour
             var rope = Instantiate(_partOfRope, position, Quaternion.Euler(90, 0, 0));
             rope.transform.parent = _parent;
             var joint = rope.GetComponent<ConfigurableJoint>();
-            // var joint = rope.GetComponent<SpringJoint>();
 
             if (i == 0)
             {
@@ -66,13 +50,6 @@ public class RopeCreaterJoint : MonoBehaviour
                     joint.transform.position += new Vector3(0.1f, 0, 0.05f);
                 }
             }
-            
-            // _endPointRB.GetComponent<HingeJoint>().connectedBody = _previousJoint;
-
-            
-            
-
-            // posZ += _offsetSegment;
         }
     }
 }

@@ -26,10 +26,10 @@ public class BattleController : MonoBehaviour
     {
         foreach (var participant in _participants)
         {
-            participant.TurnOffCrown();
+            participant.SetCrownVisibility(false);
         }
 
-        GetWinner().TurnOnCrown();
+        GetWinner().SetCrownVisibility(true);
     }
 
     private void InitParticipants()

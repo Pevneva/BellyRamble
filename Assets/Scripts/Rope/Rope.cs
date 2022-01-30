@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    // private Vector3 _startScale;
     private Rigidbody _connectedRigidbody;
     private Rigidbody _rigidbody;
     private GameObject _parent;
