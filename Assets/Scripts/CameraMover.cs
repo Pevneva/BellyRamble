@@ -14,6 +14,7 @@ public class CameraMover : MonoBehaviour
     private Camera _camera;
     private float _zoom;
     private float _offsetY;
+    private float _offsetZ;
 
     private void Start()
     {
@@ -22,15 +23,15 @@ public class CameraMover : MonoBehaviour
         _camera.fieldOfView = 40;
         _zoom = 20;
         _offsetY = 16.5f;
+        _offsetZ = -8;
     }
 
     private void Update()
     {
         if (_trackTarget == null)
             return; 
-
-        _positionY = _isHorizontalTracking ? transform.position.y : _trackTarget.position.y + _offsetY;
-        _positionZ = _isHorizontalTracking ? transform.position.z : _trackTarget.position.z - 8;
+        
+        SetXY(_trackTarget.position);
         _target = new Vector3(_trackTarget.position.x, _positionY, _positionZ);
         
         _currentPosition = Vector3.Lerp(transform.position, _target, _trackingSpeed * Time.deltaTime);
@@ -44,9 +45,14 @@ public class CameraMover : MonoBehaviour
 
     public void SetPosition(Vector3 position)
     {
-        _positionY = _isHorizontalTracking ? transform.position.y : position.y + _offsetY;
-        _positionZ = _isHorizontalTracking ? transform.position.z : position.z - 8;
+        SetXY(position);
         transform.position = new Vector3(position.x, _positionY, _positionZ);        
+    }
+
+    private void SetXY(Vector3 position)
+    {
+        _positionY = _isHorizontalTracking ? transform.position.y : position.y + _offsetY;
+        _positionZ = _isHorizontalTracking ? transform.position.z : position.z + _offsetZ;        
     }
 
     public void SetTarget(Transform newTarget)

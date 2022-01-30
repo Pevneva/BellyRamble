@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Removed unnecessary data.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Cleared code.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +71,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Utilities/TrackResourceCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AD0A7939-8190-48A0-A161-F66558C98867/e6/b089f8b7/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.purchasing@4.0.3/Runtime/Common/VersionCheck.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BattleController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/EditorGameService/EditorGameServiceFlagEnabler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ChairsGeneration.cs" root0="FORCE_HIGHLIGHTING" />
@@ -115,12 +113,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderPrev2.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
       <option value="$PROJECT_DIR$/../../TestProject/Assets/Scripts/ScoreView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Food.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorParticipantController.cs" />
@@ -135,10 +130,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TouchBorder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CameraMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -229,7 +227,7 @@
       <workItem from="1643147068017" duration="1787000" />
       <workItem from="1643186154756" duration="12798000" />
       <workItem from="1643390901970" duration="7448000" />
-      <workItem from="1643467739544" duration="3665000" />
+      <workItem from="1643467739544" duration="5454000" />
     </task>
     <task id="LOCAL-00004" summary="Improved ropes.">
       <created>1639308078286</created>
@@ -322,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643535411660</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Cleared code.">
+      <created>1643537843802</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1643537843802</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +363,8 @@
     <MESSAGE value="Fixed showing of score in case of Camera render mode of canvas." />
     <MESSAGE value="Improved code." />
     <MESSAGE value="Removed unnecessary data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary data." />
+    <MESSAGE value="Cleared code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleared code." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

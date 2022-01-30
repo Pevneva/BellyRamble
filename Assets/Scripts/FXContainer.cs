@@ -10,9 +10,4 @@ public class FXContainer : MonoBehaviour
     {
         _winPanelFx.SetActive(true);
     }
-    
-    public void HideWinPanelFx()
-    {
-        _winPanelFx.SetActive(false);
-    }
 }

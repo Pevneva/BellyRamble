@@ -11,6 +11,7 @@ public class BattleController : MonoBehaviour
 
     public float ParticipantFlyingTime => _participantFlyingTime;
     public event UnityAction PlayerWon; 
+    public event UnityAction PlayerLoosed; 
     
     private void Start()
     {
@@ -63,11 +64,17 @@ public class BattleController : MonoBehaviour
             RemoveParticipant(participant1);
         }
 
-        if (isBottleWillBeEnded) //&& winner is Player)
+        var isPlayerLoosed = winner is Player == false;
+
+        if (isPlayerLoosed)
+        {
+            PlayerLoosed?.Invoke();
+        }
+        else if (isBottleWillBeEnded)
         {
             _game.EndBottle();
             PlayerWon?.Invoke();
-        } 
+        }
     }
 
     public void RemoveParticipant(Participant participant)
