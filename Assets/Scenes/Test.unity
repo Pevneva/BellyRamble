@@ -21278,7 +21278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
