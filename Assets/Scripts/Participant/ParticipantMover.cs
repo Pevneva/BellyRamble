@@ -32,33 +32,26 @@ public class ParticipantMover : MonoBehaviour
     private Vector3 _startPosition;
     private float _turnOverTime;
     private float _preparingPushTime;
-    private float _offsetToPush;
+    // private float _offsetToPush;
     private float _pushDistanceKoef;
     private float _pushTime;
     private bool _isTouchBreak;
     private Vector3 _discardingDirection;
     private float _angleRotateBeforePushing;
     private float _angleRotation;
-    private bool _isLeftBorder;
-    private bool _isRightBorder;
-    private bool _isUpBorder;
-    private bool _isDownBorder;
-    private float _radius;
-    private float _offsetMovingArea;
-    private Vector2 _planeStartPoint;
-    private Vector2 _centerPositionXZ;
     private Sequence _turnOverSequence;
     private Camera _mainCamera;
     private bool _isNotBot;
     private BattleController _battleController;
     private float _flyingTime;
 
+    private BorderChecker _borderChecker;
+
     private void Start()
     {
         IsFlying = false;
         IsMoving = false;
         _isRuling = true;
-        _offsetToPush = -0.1f;
         _turnOverTime = 0.2f;
         _preparingPushTime = 0.3f;
         _angleRotateBeforePushing = 15;
@@ -70,6 +63,7 @@ public class ParticipantMover : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
+        _borderChecker = FindObjectOfType<BorderChecker>();
         _animator = GetComponentInChildren<Animator>();
         _participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
@@ -78,11 +72,6 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = false;
         _isTouchBreak = false;
         IsBoosting = false;
-        _offsetMovingArea = 0.35f;
-        _centerPositionXZ = GetRingCenter();
-        _planeStartPoint = new Vector2(_leftDownPointBorder.position.x + _offsetMovingArea,
-            _leftDownPointBorder.position.z + _offsetMovingArea);
-        _radius = Vector2.Distance(_centerPositionXZ, _planeStartPoint);
         _mainCamera = Camera.main;
         _isNotBot = GetComponent<Bot>() is null;
     }
@@ -92,9 +81,9 @@ public class ParticipantMover : MonoBehaviour
         if (IsFlying)
             return;
 
-        if (IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
+        if (_borderChecker.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
         {
-            if (IsOutField(transform.position, out TouchBorder startTouchBorder))
+            if (_borderChecker.IsOutField(transform.position, out TouchBorder startTouchBorder))
             {
                 float offset = 0.35f;
                 if (startTouchBorder == TouchBorder.LEFT)
@@ -114,7 +103,7 @@ public class ParticipantMover : MonoBehaviour
         if (_isNotBot == false)
             return;
 
-        if (IsOutField(transform.position, out TouchBorder touchBorder))
+        if (_borderChecker.IsOutField(transform.position, out TouchBorder touchBorder))
         {
             if (IsPushing == false)
             {
@@ -165,11 +154,6 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = true;
     }
 
-    public bool IsOutsideMovingArea(Vector2 positionXZ)
-    {
-        return Vector2.Distance(_centerPositionXZ, positionXZ) > (_radius - _offsetMovingArea);
-    }
-
     private float GetTurnOverAngle(Vector3 moveDirection, Vector3 discardingDirection, TouchBorder touchBorder)
     {
         if (touchBorder == TouchBorder.LEFT && moveDirection.z > 0)
@@ -199,15 +183,6 @@ public class ParticipantMover : MonoBehaviour
         return 0;
     }
 
-    private Vector2 GetRingCenter()
-    {
-        Vector2 startPosition = new Vector2(_leftDownPointBorder.position.x, _leftDownPointBorder.position.z);
-        Vector2 endPosition = new Vector2(_rightUpPointBorder.position.x, _rightUpPointBorder.position.z);
-
-        return new Vector2((endPosition.x - startPosition.x) / 2 + startPosition.x,
-            (endPosition.y - startPosition.y) / 2 + startPosition.y);
-    }
-
     private void RotateBeforePushing(Vector2 angle, Sequence seq)
     {
         seq.Append(transform
@@ -218,40 +193,6 @@ public class ParticipantMover : MonoBehaviour
         seq.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0), _preparingPushTime / 2)
             .SetEase(Ease.Linear));
-    }
-
-    public bool IsOutField(Vector3 position, out TouchBorder touchBorder)
-    {
-        if (position.x < _leftDownPointBorder.position.x - _offsetToPush)
-        {
-            _isLeftBorder = true;
-            touchBorder = TouchBorder.LEFT;
-            return true;
-        }
-
-        if (position.x > _rightUpPointBorder.position.x + _offsetToPush)
-        {
-            _isRightBorder = true;
-            touchBorder = TouchBorder.RIGHT;
-            return true;
-        }
-
-        if (position.z < _leftDownPointBorder.position.z - _offsetToPush)
-        {
-            _isDownBorder = true;
-            touchBorder = TouchBorder.DOWN;
-            return true;
-        }
-
-        if (position.z > _rightUpPointBorder.position.z + _offsetToPush)
-        {
-            touchBorder = TouchBorder.UP;
-            _isUpBorder = true;
-            return true;
-        }
-
-        touchBorder = TouchBorder.NULL;
-        return false;
     }
 
     private Vector3 GetDiscardingDirection(Vector3 direction)
@@ -286,10 +227,11 @@ public class ParticipantMover : MonoBehaviour
             _speed = 0;
         }
 
-        _isDownBorder = false;
-        _isUpBorder = false;
-        _isLeftBorder = false;
-        _isRightBorder = false;
+        _borderChecker.ResetBorders();
+        // _isDownBorder = false;
+        // _isUpBorder = false;
+        // _isLeftBorder = false;
+        // _isRightBorder = false;
         IsMoving = false;
     }
 
@@ -352,7 +294,7 @@ public class ParticipantMover : MonoBehaviour
 
         Vector2 positionXZ = new Vector2(transform.position.x, transform.position.z);
 
-        if (IsOutsideMovingArea(positionXZ) && (Vector2.Angle(direction, _centerPositionXZ - positionXZ) > 90))
+        if (_borderChecker.IsOutsideMovingArea(positionXZ) && (Vector2.Angle(direction, _borderChecker.CenterPositionXZ - positionXZ) > 90))
             return;
 
         Rotate(direction);

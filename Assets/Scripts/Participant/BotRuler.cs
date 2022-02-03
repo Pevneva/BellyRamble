@@ -14,6 +14,7 @@ public class BotRuler : MonoBehaviour
 
     private ParticipantMover _participantMover;
     private FoodGeneration _foodGeneration;
+    private BorderChecker _borderChecker;
     private Food[] _foods;
     private Food _nearestFood;
     private Transform _target;
@@ -33,6 +34,7 @@ public class BotRuler : MonoBehaviour
         MovingDirection = Vector3.zero;
         _participantMover = GetComponent<ParticipantMover>();
         _foodGeneration = FindObjectOfType<FoodGeneration>();
+        _borderChecker = FindObjectOfType<BorderChecker>();
         _animator = GetComponentInChildren<Animator>();
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
         GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
@@ -105,14 +107,14 @@ public class BotRuler : MonoBehaviour
 
     private bool IsRopeNextTo(out TouchBorder touchBorder)
     {
-        if (_participantMover.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
+        if (_borderChecker.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
         {
             touchBorder = TouchBorder.NULL;
             return false;
         }
 
         Vector3 newPosition = 1.3f * MovingDirection.normalized + transform.position;
-        if (_participantMover.IsOutField(newPosition, out TouchBorder touchBorder2))
+        if (_borderChecker.IsOutField(newPosition, out TouchBorder touchBorder2))
         {
             _newPosition = newPosition;
             touchBorder = touchBorder2;
