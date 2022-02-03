@@ -5,11 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(ParticipantMover))]
 public class BotRuler : MonoBehaviour
 {
-    [SerializeField] private Transform _leftDownAngle;
-    [SerializeField] private Transform _leftUpAngle;
-    [SerializeField] private Transform _rightUpAngle;
-    [SerializeField] private Transform _rightDownAngle;
-    
     public Vector3 MovingDirection { get; private set; }
 
     private ParticipantMover _participantMover;
@@ -86,11 +81,11 @@ public class BotRuler : MonoBehaviour
         temp.Clear();
         _foods = temp.ToArray();
 
-        if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false && IsNextToAngle(2) == false)
+        if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2) == false)
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
         }
-        else if (_isRopeNextTo == false && IsNextToAngle(2) == false)
+        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2) == false)
         {
             _isRopeNextTo = true;
             Transform targetTransform = new GameObject().transform;
@@ -99,7 +94,7 @@ public class BotRuler : MonoBehaviour
             _touchBorder = touchBorder;
             Destroy(targetTransform.gameObject, 5);
         }
-        else if (_isRopeNextTo == false && IsNextToAngle(2))
+        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2))
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
         }
@@ -200,22 +195,5 @@ public class BotRuler : MonoBehaviour
 
         Gizmos.color = Color.green;
         if (_newPosition != null) Gizmos.DrawWireSphere(_newPosition, 0.35f);
-    }
-
-    private bool IsNextToAngle(float distance)
-    {
-        if (Vector3.Distance(transform.position, _leftDownAngle.position) < distance)
-            return true;
-
-        if (Vector3.Distance(transform.position, _leftUpAngle.position) < distance)
-            return true;
-
-        if (Vector3.Distance(transform.position, _rightUpAngle.position) < distance)
-            return true;
-
-        if (Vector3.Distance(transform.position, _rightDownAngle.position) < distance)
-            return true;
-
-        return false;
     }
 }

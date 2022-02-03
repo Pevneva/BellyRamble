@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ParticipantMover : MonoBehaviour
 {
-    [SerializeField] private Transform _leftDownPointBorder;
-    [SerializeField] private Transform _rightUpPointBorder;
     [SerializeField] private float _speed;
     [SerializeField] private float _boost;
     [SerializeField] private float _boostTime = 0.65f;
@@ -127,14 +125,13 @@ public class ParticipantMover : MonoBehaviour
 
     public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
     {
-        _discardingDirection = GetDiscardingDirection(moveDirection).normalized;
+        _discardingDirection = _borderChecker.GetDiscardingDirection(moveDirection, transform.position).normalized;
         _startPosition = transform.position;
         _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.75f : _pushDistanceKoef;
         NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
-        // _pushingDistance = Vector3.Distance(_startPosition, NewPosition);
         
         _turnOverSequence = DOTween.Sequence();
-        _angleRotation = GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
+        _angleRotation = _borderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
         _turnOverSequence.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
@@ -154,35 +151,6 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = true;
     }
 
-    private float GetTurnOverAngle(Vector3 moveDirection, Vector3 discardingDirection, TouchBorder touchBorder)
-    {
-        if (touchBorder == TouchBorder.LEFT && moveDirection.z > 0)
-            return 2 * Vector3.Angle(Vector3.forward, discardingDirection);
-
-        if (touchBorder == TouchBorder.LEFT && moveDirection.z < 0)
-            return -2 * Vector3.Angle(Vector3.back, discardingDirection);
-
-        if (touchBorder == TouchBorder.RIGHT && moveDirection.z > 0)
-            return -2 * Vector3.Angle(Vector3.forward, discardingDirection);
-
-        if (touchBorder == TouchBorder.RIGHT && moveDirection.z < 0)
-            return 2 * Vector3.Angle(Vector3.back, discardingDirection);
-
-        if (touchBorder == TouchBorder.UP && moveDirection.x > 0)
-            return 2 * Vector3.Angle(Vector3.right, discardingDirection);
-
-        if (touchBorder == TouchBorder.UP && moveDirection.x < 0)
-            return -2 * Vector3.Angle(Vector3.left, discardingDirection);
-
-        if (touchBorder == TouchBorder.DOWN && moveDirection.x > 0)
-            return -2 * Vector3.Angle(Vector3.right, discardingDirection);
-
-        if (touchBorder == TouchBorder.DOWN && moveDirection.x < 0)
-            return 2 * Vector3.Angle(Vector3.left, discardingDirection);
-
-        return 0;
-    }
-
     private void RotateBeforePushing(Vector2 angle, Sequence seq)
     {
         seq.Append(transform
@@ -195,24 +163,23 @@ public class ParticipantMover : MonoBehaviour
             .SetEase(Ease.Linear));
     }
 
-    private Vector3 GetDiscardingDirection(Vector3 direction)
-    {
-        Vector3 position = transform.position;
-        float positionX = position.x;
-        float positionZ = position.z;
-
-        if (positionX < _leftDownPointBorder.position.x + 0.65f || positionX > _rightUpPointBorder.position.x - 0.65f)
-        {
-            return new Vector3(-direction.x, direction.y, direction.z);
-        }
-
-        if (positionZ < _leftDownPointBorder.position.z + 0.65f || positionZ > _rightUpPointBorder.position.z - 0.65f)
-        {
-            return new Vector3(direction.x, direction.y, -direction.z);
-        }
-
-        return Vector3.zero;
-    }
+    // private Vector3 GetDiscardingDirection(Vector3 direction, Vector3 position)
+    // {
+    //     float positionX = position.x;
+    //     float positionZ = position.z;
+    //
+    //     if (positionX < _leftDownPointBorder.position.x + 0.65f || positionX > _rightUpPointBorder.position.x - 0.65f)
+    //     {
+    //         return new Vector3(-direction.x, direction.y, direction.z);
+    //     }
+    //
+    //     if (positionZ < _leftDownPointBorder.position.z + 0.65f || positionZ > _rightUpPointBorder.position.z - 0.65f)
+    //     {
+    //         return new Vector3(direction.x, direction.y, -direction.z);
+    //     }
+    //
+    //     return Vector3.zero;
+    // }
 
     public IEnumerator Reset(float delay)
     {
@@ -228,10 +195,6 @@ public class ParticipantMover : MonoBehaviour
         }
 
         _borderChecker.ResetBorders();
-        // _isDownBorder = false;
-        // _isUpBorder = false;
-        // _isLeftBorder = false;
-        // _isRightBorder = false;
         IsMoving = false;
     }
 

@@ -94,4 +94,64 @@ public class BorderChecker : MonoBehaviour
         _isLeftBorder = false;
         _isRightBorder = false;
     }
+    
+    public float GetTurnOverAngle(Vector3 moveDirection, Vector3 discardingDirection, TouchBorder touchBorder)
+    {
+        if (touchBorder == TouchBorder.LEFT && moveDirection.z > 0)
+            return 2 * Vector3.Angle(Vector3.forward, discardingDirection);
+
+        if (touchBorder == TouchBorder.LEFT && moveDirection.z < 0)
+            return -2 * Vector3.Angle(Vector3.back, discardingDirection);
+
+        if (touchBorder == TouchBorder.RIGHT && moveDirection.z > 0)
+            return -2 * Vector3.Angle(Vector3.forward, discardingDirection);
+
+        if (touchBorder == TouchBorder.RIGHT && moveDirection.z < 0)
+            return 2 * Vector3.Angle(Vector3.back, discardingDirection);
+
+        if (touchBorder == TouchBorder.UP && moveDirection.x > 0)
+            return 2 * Vector3.Angle(Vector3.right, discardingDirection);
+
+        if (touchBorder == TouchBorder.UP && moveDirection.x < 0)
+            return -2 * Vector3.Angle(Vector3.left, discardingDirection);
+
+        if (touchBorder == TouchBorder.DOWN && moveDirection.x > 0)
+            return -2 * Vector3.Angle(Vector3.right, discardingDirection);
+
+        if (touchBorder == TouchBorder.DOWN && moveDirection.x < 0)
+            return 2 * Vector3.Angle(Vector3.left, discardingDirection);
+
+        return 0;
+    }
+    
+    public Vector3 GetDiscardingDirection(Vector3 direction, Vector3 position)
+    {
+        float positionX = position.x;
+        float positionZ = position.z;
+
+        if (positionX < _leftDownShperePosition.x + 0.65f || positionX > _rightUpShperePosition.x - 0.65f)
+            return new Vector3(-direction.x, direction.y, direction.z);
+
+        if (positionZ < _leftDownShperePosition.z + 0.65f || positionZ > _rightUpShperePosition.z - 0.65f)
+            return new Vector3(direction.x, direction.y, -direction.z);
+
+        return Vector3.zero;
+    }
+    
+    public bool IsNextToAngle(Vector3 position, float distance)
+    {
+        if (Vector3.Distance(position, _leftDownPilliar.position) < distance)
+            return true;
+
+        if (Vector3.Distance(position, _leftUpPilliar.position) < distance)
+            return true;
+
+        if (Vector3.Distance(position, _rightUpPilliar.position) < distance)
+            return true;
+
+        if (Vector3.Distance(position, _rightDownPilliar.position) < distance)
+            return true;
+
+        return false;
+    }
 }
