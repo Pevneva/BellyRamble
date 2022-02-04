@@ -9,37 +9,35 @@ public class ParticipantMover : MonoBehaviour
     [SerializeField] private float _boost;
     [SerializeField] private float _boostTime = 0.65f;
 
-    public bool IsMoving { get; private set; }
-    public bool IsPushing { get; protected set; }
+    protected bool IsPushing;
+    protected bool IsRuling;
+    protected Vector3 StartPosition;
+    protected Coroutine BoostCoroutine;
+    protected BorderChecker BorderChecker;
+    protected Sequence TurnOverSequence;
+    protected Vector3 MovingDirection { get; private set; }
     public bool IsBoosting { get; private set; }
     public bool IsFlying { get; private set; }
     public Vector3 NewPosition { get; protected set; }
-    public Vector3 MovingDirection { get; private set; }
     public float Speed => _speed;
     public float BoostTime => _boostTime;
-    protected bool IsRuling;
 
+    private bool _isMoving;
     private float _positionY;
     private float _startSpeed;
     private Rigidbody _rigidbody;
     private Participant _participant;
     private Animator _animator;
     private Quaternion _lookRotation;
-    protected Vector3 StartPosition;
-
-    protected Coroutine BoostCoroutine;
     private bool _isTouchBreak;
-    protected Sequence TurnOverSequence;
     private Camera _mainCamera;
     private BattleController _battleController;
     private float _flyingTime;
-
-    protected BorderChecker BorderChecker;
-
+    
     protected void Start()
     {
         IsFlying = false;
-        IsMoving = false;
+        _isMoving = false;
         IsRuling = true;
 
         _positionY = transform.position.y;
@@ -97,7 +95,7 @@ public class ParticipantMover : MonoBehaviour
         }
 
         BorderChecker.ResetBorders();
-        IsMoving = false;
+        _isMoving = false;
     }
 
     public void StopBoost()
@@ -147,7 +145,7 @@ public class ParticipantMover : MonoBehaviour
         _participant.SetBoostEffectsVisibility(true);
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
-        IsMoving = true;
+        _isMoving = true;
         yield return new WaitForSeconds(runnigTime);
         yield break;
     }

@@ -7,23 +7,19 @@ public class ParticipantPusherOut : ParticipantMover
 {
     public float RepulsionTime => _turnOverTime + _preparingPushTime + _pushTime;
 
-    private float _turnOverTime;
-    private Vector3 _discardingDirection;
-    private float _preparingPushTime;
-    private float _angleRotateBeforePushing;
+    private readonly float _turnOverTime = 0.2f;
+    private readonly float _preparingPushTime = 0.3f;
+    private readonly float _angleRotateBeforePushing = 15;
+    private readonly float _pushTime = 0.2f;
+    private float _pushDistanceKoef = 2;
     private float _angleRotation;
-    private float _pushDistanceKoef;
-    private float _pushTime;
     private bool _isNotBot;
+    private Vector3 _discardingDirection;
+
 
     private void Start()
     {
         base.Start();
-        _turnOverTime = 0.2f;
-        _preparingPushTime = 0.3f;
-        _angleRotateBeforePushing = 15;
-        _pushDistanceKoef = 2f;
-        _pushTime = 0.2f;
         _isNotBot = GetComponent<Bot>() is null;
     }
 
