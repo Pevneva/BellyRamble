@@ -1,16 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantPusherOut))]
+[RequireComponent(typeof(ParticipantMover))]
 public class PlayerInput : MonoBehaviour
 {
-    private ParticipantPusherOut _participantPusherOut;
+    private readonly float _range = 5;
+    private ParticipantMover _participantMover;
     private Vector2 _direction;
     private Vector2 _startPosition;
     private bool _isDirectionChosen;
 
     private void Start()
     {
-        _participantPusherOut = GetComponent<ParticipantPusherOut>();
+        _participantMover = GetComponent<ParticipantPusherOut>();
     }
 
     private void FixedUpdate()
@@ -19,7 +20,7 @@ public class PlayerInput : MonoBehaviour
 
         if (_isDirectionChosen)
         {
-            _participantPusherOut.TryMove(_direction);
+            _participantMover.TryMove(_direction);
         }
     }
 
@@ -43,7 +44,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _isDirectionChosen = false;
-            _participantPusherOut.StopMoving();            
+            _participantMover.StopMoving();            
         }
     }
 
@@ -53,7 +54,7 @@ public class PlayerInput : MonoBehaviour
         {
             Vector2 currentMousePosition = Input.mousePosition;
             
-            if (Vector2.Distance(_startPosition, currentMousePosition) > 5f) //to do radius variable instead of number
+            if (Vector2.Distance(_startPosition, currentMousePosition) > _range) 
             {
                 _direction = currentMousePosition - _startPosition;
                 _isDirectionChosen = true;
