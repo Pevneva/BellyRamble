@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Updated BotRuler,ParticipantMover and BotRuler scripts.">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs.meta" afterDir="false" />
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Refactored BotRuler.cs.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,15 +65,18 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Manipulators/TimeAreaAutoPanner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_GlyphPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Editor/PlasticSCM/AssetsUtils/RefreshAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food/FoodGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/TrackAssetExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/DocCodeExamples/ActionExamples.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_PreBuildProcessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food/FoodUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BorderChecker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.recorder@2.5.7/Editor/Sources/Recorders/_Inputs/RenderTextureSampler/RenderTextureSampler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Analytics/TimelineAnalytics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" root0="FORCE_HIGHLIGHTING" />
@@ -105,12 +107,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ParticipantDataView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/WinPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Graphics.meta" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/FoodGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEngine.TestRunner/Utils/IPrebuildSceneSetup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Window/TimelineWindow_StateChange.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoodGeneration/GridObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Bot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_ScrollbarEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/Bot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Utilities/TrackResourceCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
@@ -160,6 +162,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Food/FoodUtils.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
     </changedPaths>
   </component>

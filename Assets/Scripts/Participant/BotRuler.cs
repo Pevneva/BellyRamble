@@ -11,8 +11,7 @@ public class BotRuler : MonoBehaviour
     private FoodGeneration _foodGeneration;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
-    private Food[] _foods;
-    private Food _nearestFood;
+    private FoodUtils _foodUtils;
     private Transform _target;
     private Quaternion _lookRotation;
     private Animator _animator;
@@ -37,11 +36,12 @@ public class BotRuler : MonoBehaviour
         _foodGeneration = FindObjectOfType<FoodGeneration>();
         _borderChecker = FindObjectOfType<BorderChecker>();
         _battleController = FindObjectOfType<BattleController>();
+        _foodUtils = FindObjectOfType<FoodUtils>();
         _animator = GetComponentInChildren<Animator>();
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
         GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
         
-        _target = GetNearestFood().transform;
+        _target = _foodUtils.GetNearestFood(transform).transform;
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
     }
 
@@ -73,21 +73,17 @@ public class BotRuler : MonoBehaviour
             }
             else
             {
-                _target = GetNearestFood();
+                _target = _foodUtils.GetNearestFood(transform);
             }
         }
         else
         {
-            _target = GetNearestFood();
+            _target = _foodUtils.GetNearestFood(transform);
         }
     }
 
     private void OnFoodEaten(Food food)
     {
-        List<Food> temp = _foods.ToList();
-        temp.Clear();
-        _foods = temp.ToArray();
-
         if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2) == false)
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
@@ -130,7 +126,7 @@ public class BotRuler : MonoBehaviour
     private void SetNewTarget()
     {
         _isRopeNextTo = false;
-        _target = GetNearestFood();
+        _target = _foodUtils.GetNearestFood(transform);
     }
 
     private void SetParticipantDirection()
@@ -152,25 +148,6 @@ public class BotRuler : MonoBehaviour
 
         _lookRotation = Quaternion.LookRotation(_target.position - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.85f);
-    }
-
-    private Transform GetNearestFood()
-    {
-        _foods = _foodGeneration.gameObject.GetComponentsInChildren<Food>();
-        float shortestDistance = Mathf.Infinity;
-        _nearestFood = null;
-
-        foreach (Food food in _foods)
-        {
-            float distanceToFood = Vector3.Distance(transform.position, food.gameObject.transform.position);
-            if (distanceToFood < shortestDistance)
-            {
-                shortestDistance = distanceToFood;
-                _nearestFood = food;
-            }
-        }
-
-        return _nearestFood != null ? _nearestFood.transform : null;
     }
 
     private void OnDrawGizmos()
