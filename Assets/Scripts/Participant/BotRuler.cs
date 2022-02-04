@@ -8,16 +8,15 @@ public class BotRuler : MonoBehaviour
     public Vector3 MovingDirection { get; private set; }
 
     private ParticipantMover _participantMover;
-    private FoodGeneration _foodGeneration;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
     private FoodUtils _foodUtils;
     private Transform _target;
     private Quaternion _lookRotation;
     private Animator _animator;
-    private Vector3 _newPosition;
+    private Vector3 _ropePoint;
     private TouchBorder _touchBorder;
-    private bool _isRepulsion;
+    private bool _isPushingOut;
     private Participant[] _participants;
     private bool _isRopeNextTo;
     private BotMover _botMover;
@@ -28,37 +27,41 @@ public class BotRuler : MonoBehaviour
 
         _participantMover = GetComponent<ParticipantMover>();
         _botMover = GetComponent<BotMover>();
-        _foodGeneration = FindObjectOfType<FoodGeneration>();
         _borderChecker = FindObjectOfType<BorderChecker>();
         _battleController = FindObjectOfType<BattleController>();
         _foodUtils = FindObjectOfType<FoodUtils>();
         _animator = GetComponentInChildren<Animator>();
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
-        
-        GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
+        _target = _foodUtils.GetNearestFood(transform);
 
-        _target = _foodUtils.GetNearestFood(transform).transform;
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
+        GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
     }
 
     private void Update()
     {
-        if (_isRepulsion)
+        if (_isPushingOut)
             return;
 
         if (_participantMover.IsFlying)
             return;
 
-        if (Vector3.Distance(transform.position, _newPosition) < 0.35f)
-        {
-            _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
-            _participantMover.DoRepulsion(MovingDirection * 100, _touchBorder, true);
-            _target.position = _participantMover.NewPosition;
-            _isRepulsion = true;
-            Invoke(nameof(SetParticipantDirection), _participantMover.RepulsionTime);
-            Invoke(nameof(SetNewTarget), _participantMover.RepulsionTime + _participantMover.BoostTime);
-        }
+        if (_borderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
+            SetNewTarget();
 
+        if (Vector3.Distance(transform.position, _ropePoint) < 0.35f)
+            PushOut();
+
+        // bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
+        // if (_target != null && (isParticipant && participantMover.IsFlying == false || isParticipant == false))
+        // {
+        //     MovingDirection = (_target.position - transform.position).normalized;
+        //     transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
+        // }
+        // else
+        // {
+        //     _target = _foodUtils.GetNearestFood(transform);
+        // }
         if (_target != null)
         {
             bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
@@ -80,15 +83,25 @@ public class BotRuler : MonoBehaviour
 
     private void Reset()
     {
-        _isRepulsion = false;
+        _isPushingOut = false;
         _isRopeNextTo = false;
-        _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
+        _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
         MovingDirection = Vector3.zero;
+    }
+
+    private void PushOut()
+    {
+        _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
+        _participantMover.DoRepulsion(MovingDirection * 100, _touchBorder, true);
+        _target.position = _participantMover.NewPosition;
+        _isPushingOut = true;
+        Invoke(nameof(SetParticipantDirection), _participantMover.RepulsionTime);
+        Invoke(nameof(SetNewTarget), _participantMover.RepulsionTime + _participantMover.BoostTime);
     }
 
     private void OnFoodEaten(Food food)
     {
-        if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false &&
+        if (IsRopeNextTo(out TouchBorder touchBorder, out Vector3 newPosition) == false && _isRopeNextTo == false &&
             _borderChecker.IsNextToAngle(transform.position, 2) == false)
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
@@ -97,7 +110,7 @@ public class BotRuler : MonoBehaviour
         {
             _isRopeNextTo = true;
             Transform targetTransform = new GameObject().transform;
-            targetTransform.position = _newPosition;
+            targetTransform.position = _ropePoint;
             _target = targetTransform;
             _touchBorder = touchBorder;
             Destroy(targetTransform.gameObject, 5);
@@ -108,23 +121,19 @@ public class BotRuler : MonoBehaviour
         }
     }
 
-    private bool IsRopeNextTo(out TouchBorder touchBorder)
+    private bool IsRopeNextTo(out TouchBorder touchBorder, out Vector3 targetPoint)
     {
-        if (_borderChecker.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
-        {
-            touchBorder = TouchBorder.NULL;
-            return false;
-        }
-
         Vector3 newPosition = 1.3f * MovingDirection.normalized + transform.position;
         if (_borderChecker.IsOutField(newPosition, out TouchBorder touchBorder2))
         {
-            _newPosition = newPosition;
+            _ropePoint = newPosition;
             touchBorder = touchBorder2;
+            targetPoint = newPosition;
             return true;
         }
 
         touchBorder = TouchBorder.NULL;
+        targetPoint = Vector3.zero;
         return false;
     }
 
@@ -137,7 +146,7 @@ public class BotRuler : MonoBehaviour
     private void SetParticipantDirection()
     {
         _target = _battleController.GetNearestParticipant(gameObject.GetComponent<Bot>()).gameObject.transform;
-        _isRepulsion = false;
+        _isPushingOut = false;
     }
 
     private void TryRotate()
@@ -145,7 +154,7 @@ public class BotRuler : MonoBehaviour
         if (_target == null)
             return;
 
-        if (_isRepulsion)
+        if (_isPushingOut)
             return;
 
         if (_participantMover.IsFlying)
@@ -160,7 +169,11 @@ public class BotRuler : MonoBehaviour
         Gizmos.color = Color.blue;
         if (_target != null) Gizmos.DrawWireSphere(_target.transform.position, 0.5f);
 
-        Gizmos.color = Color.green;
-        if (_newPosition != null) Gizmos.DrawWireSphere(_newPosition, 0.35f);
+        // Gizmos.color = Color.green;
+        // if (_newPosition != null) Gizmos.DrawWireSphere(_newPosition, 0.35f);
+    }
+
+    public void MoveDirection(Transform target, Vector3 direction)
+    {
     }
 }

@@ -48,7 +48,7 @@ public class BorderChecker : MonoBehaviour
             (endPosition.y - startPosition.y) / 2 + startPosition.y);
     }
 
-    public bool IsOutsideMovingArea(Vector2 positionXZ)
+    public bool IsOutsideRing(Vector2 positionXZ)
     {
         return Vector2.Distance(CenterPositionXZ, positionXZ) > _radius - _offset;
     }

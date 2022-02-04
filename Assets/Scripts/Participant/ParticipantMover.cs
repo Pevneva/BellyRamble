@@ -43,7 +43,7 @@ public class ParticipantMover : MonoBehaviour
     private BattleController _battleController;
     private float _flyingTime;
 
-    private BorderChecker _borderChecker;
+    private BorderChecker BorderChecker;
 
     private void Start()
     {
@@ -61,7 +61,7 @@ public class ParticipantMover : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
-        _borderChecker = FindObjectOfType<BorderChecker>();
+        BorderChecker = FindObjectOfType<BorderChecker>();
         _animator = GetComponentInChildren<Animator>();
         _participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
@@ -79,9 +79,9 @@ public class ParticipantMover : MonoBehaviour
         if (IsFlying)
             return;
 
-        if (_borderChecker.IsOutsideMovingArea(new Vector2(transform.position.x, transform.position.z)))
+        if (BorderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
         {
-            if (_borderChecker.IsOutField(transform.position, out TouchBorder startTouchBorder))
+            if (BorderChecker.IsOutField(transform.position, out TouchBorder startTouchBorder))
             {
                 float offset = 0.35f;
                 if (startTouchBorder == TouchBorder.LEFT)
@@ -101,7 +101,7 @@ public class ParticipantMover : MonoBehaviour
         if (_isNotBot == false)
             return;
 
-        if (_borderChecker.IsOutField(transform.position, out TouchBorder touchBorder))
+        if (BorderChecker.IsOutField(transform.position, out TouchBorder touchBorder))
         {
             if (IsPushing == false)
             {
@@ -125,13 +125,13 @@ public class ParticipantMover : MonoBehaviour
 
     public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
     {
-        _discardingDirection = _borderChecker.GetDiscardingDirection(moveDirection, transform.position).normalized;
+        _discardingDirection = BorderChecker.GetDiscardingDirection(moveDirection, transform.position).normalized;
         _startPosition = transform.position;
         _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.75f : _pushDistanceKoef;
         NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
         
         _turnOverSequence = DOTween.Sequence();
-        _angleRotation = _borderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
+        _angleRotation = BorderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
         _turnOverSequence.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
@@ -176,7 +176,7 @@ public class ParticipantMover : MonoBehaviour
             _speed = 0;
         }
 
-        _borderChecker.ResetBorders();
+        BorderChecker.ResetBorders();
         IsMoving = false;
     }
 
@@ -239,7 +239,7 @@ public class ParticipantMover : MonoBehaviour
 
         Vector2 positionXZ = new Vector2(transform.position.x, transform.position.z);
 
-        if (_borderChecker.IsOutsideMovingArea(positionXZ) && (Vector2.Angle(direction, _borderChecker.CenterPositionXZ - positionXZ) > 90))
+        if (BorderChecker.IsOutsideRing(positionXZ) && (Vector2.Angle(direction, BorderChecker.CenterPositionXZ - positionXZ) > 90))
             return;
 
         Rotate(direction);
