@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantMover))]
+[RequireComponent(typeof(ParticipantPusherOut))]
 public class PlayerInput : MonoBehaviour
 {
     private readonly float _range = 5;
