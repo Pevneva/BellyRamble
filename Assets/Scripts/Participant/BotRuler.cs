@@ -24,13 +24,8 @@ public class BotRuler : MonoBehaviour
 
     private void Start()
     {
-        // reset 
-        _isRepulsion = false;
-        _isRopeNextTo = false;
-        _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
-        MovingDirection = Vector3.zero;
-        //end reset
-        
+        Reset();
+
         _participantMover = GetComponent<ParticipantMover>();
         _botMover = GetComponent<BotMover>();
         _foodGeneration = FindObjectOfType<FoodGeneration>();
@@ -39,8 +34,9 @@ public class BotRuler : MonoBehaviour
         _foodUtils = FindObjectOfType<FoodUtils>();
         _animator = GetComponentInChildren<Animator>();
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
-        GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
         
+        GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
+
         _target = _foodUtils.GetNearestFood(transform).transform;
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
     }
@@ -82,13 +78,22 @@ public class BotRuler : MonoBehaviour
         }
     }
 
+    private void Reset()
+    {
+        _isRepulsion = false;
+        _isRopeNextTo = false;
+        _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
+        MovingDirection = Vector3.zero;
+    }
+
     private void OnFoodEaten(Food food)
     {
-        if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2) == false)
+        if (IsRopeNextTo(out TouchBorder touchBorder) == false && _isRopeNextTo == false &&
+            _borderChecker.IsNextToAngle(transform.position, 2) == false)
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
         }
-        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2) == false)
+        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position, 2) == false)
         {
             _isRopeNextTo = true;
             Transform targetTransform = new GameObject().transform;
@@ -97,7 +102,7 @@ public class BotRuler : MonoBehaviour
             _touchBorder = touchBorder;
             Destroy(targetTransform.gameObject, 5);
         }
-        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position,2))
+        else if (_isRopeNextTo == false && _borderChecker.IsNextToAngle(transform.position, 2))
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
         }
@@ -110,7 +115,7 @@ public class BotRuler : MonoBehaviour
             touchBorder = TouchBorder.NULL;
             return false;
         }
-    
+
         Vector3 newPosition = 1.3f * MovingDirection.normalized + transform.position;
         if (_borderChecker.IsOutField(newPosition, out TouchBorder touchBorder2))
         {
@@ -118,7 +123,7 @@ public class BotRuler : MonoBehaviour
             touchBorder = touchBorder2;
             return true;
         }
-    
+
         touchBorder = TouchBorder.NULL;
         return false;
     }
