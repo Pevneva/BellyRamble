@@ -86,4 +86,26 @@ public class BattleController : MonoBehaviour
     {
         return _participants.Count <= 1;
     }
+
+    public Participant GetNearestParticipant(Participant target)
+    {
+        var listTargetParticipants = _participants;
+        var exceptedParticipant = listTargetParticipants
+            .Where(p => p == gameObject.GetComponent<Bot>() || p == gameObject.GetComponent<Player>());
+
+        listTargetParticipants = listTargetParticipants.Except(exceptedParticipant).ToList();
+        
+        Participant targetParticipant = listTargetParticipants[0];
+        var distanceTarget = Vector3.Distance(transform.position, targetParticipant.gameObject.transform.position);
+        foreach (var participant in listTargetParticipants)
+        {
+            var distance = Vector3.Distance(transform.position, participant.gameObject.transform.position);
+            if (distance < distanceTarget)
+            {
+                targetParticipant = participant;
+                distanceTarget = distance;
+            }
+        }
+        return targetParticipant;
+    }
 }

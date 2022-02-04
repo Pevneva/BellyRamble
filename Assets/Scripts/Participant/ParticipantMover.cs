@@ -163,24 +163,6 @@ public class ParticipantMover : MonoBehaviour
             .SetEase(Ease.Linear));
     }
 
-    // private Vector3 GetDiscardingDirection(Vector3 direction, Vector3 position)
-    // {
-    //     float positionX = position.x;
-    //     float positionZ = position.z;
-    //
-    //     if (positionX < _leftDownPointBorder.position.x + 0.65f || positionX > _rightUpPointBorder.position.x - 0.65f)
-    //     {
-    //         return new Vector3(-direction.x, direction.y, direction.z);
-    //     }
-    //
-    //     if (positionZ < _leftDownPointBorder.position.z + 0.65f || positionZ > _rightUpPointBorder.position.z - 0.65f)
-    //     {
-    //         return new Vector3(direction.x, direction.y, -direction.z);
-    //     }
-    //
-    //     return Vector3.zero;
-    // }
-
     public IEnumerator Reset(float delay)
     {
         yield return new WaitForSeconds(delay);

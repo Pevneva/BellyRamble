@@ -17,7 +17,7 @@ public class BorderChecker : MonoBehaviour
     private Vector3 _leftDownShperePosition;
     private Vector3 _rightUpShperePosition;
     private float _radius;
-    private float _offsetMovingArea;
+    private float _offset;
     private Vector2 _planeStartPoint;
     private bool _isLeftBorder;
     private bool _isRightBorder;
@@ -27,15 +27,15 @@ public class BorderChecker : MonoBehaviour
 
     private void Start()
     {
-        _offsetMovingArea = 0.35f;
+        _offset = 0.35f;
         _offsetToPush = -0.1f;
 
         _leftDownShperePosition = _leftDownShpere.position;
         _rightUpShperePosition = _rightUpShpere.position;
 
         CenterPositionXZ = GetRingCenter();
-        _planeStartPoint = new Vector2(_leftDownShperePosition.x + _offsetMovingArea,
-            _leftDownShperePosition.z + _offsetMovingArea);
+        _planeStartPoint = new Vector2(_leftDownShperePosition.x + _offset,
+            _leftDownShperePosition.z + _offset);
         _radius = Vector2.Distance(CenterPositionXZ, _planeStartPoint);
     }
 
@@ -50,7 +50,7 @@ public class BorderChecker : MonoBehaviour
 
     public bool IsOutsideMovingArea(Vector2 positionXZ)
     {
-        return Vector2.Distance(CenterPositionXZ, positionXZ) > (_radius - _offsetMovingArea);
+        return Vector2.Distance(CenterPositionXZ, positionXZ) > _radius - _offset;
     }
 
     public bool IsOutField(Vector3 position, out TouchBorder touchBorder)

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantMover))]
+[RequireComponent(typeof(ParticipantMover), typeof(BotMover))]
 public class BotRuler : MonoBehaviour
 {
     public Vector3 MovingDirection { get; private set; }
@@ -10,6 +10,7 @@ public class BotRuler : MonoBehaviour
     private ParticipantMover _participantMover;
     private FoodGeneration _foodGeneration;
     private BorderChecker _borderChecker;
+    private BattleController _battleController;
     private Food[] _foods;
     private Food _nearestFood;
     private Transform _target;
@@ -20,21 +21,27 @@ public class BotRuler : MonoBehaviour
     private bool _isRepulsion;
     private Participant[] _participants;
     private bool _isRopeNextTo;
+    private BotMover _botMover;
 
     private void Start()
     {
+        // reset 
         _isRepulsion = false;
         _isRopeNextTo = false;
         _newPosition = new Vector3(Mathf.Infinity, Mathf.Infinity);
         MovingDirection = Vector3.zero;
+        //end reset
+        
         _participantMover = GetComponent<ParticipantMover>();
+        _botMover = GetComponent<BotMover>();
         _foodGeneration = FindObjectOfType<FoodGeneration>();
         _borderChecker = FindObjectOfType<BorderChecker>();
+        _battleController = FindObjectOfType<BattleController>();
         _animator = GetComponentInChildren<Animator>();
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
         GetComponent<Participant>().FoodEatenByBot += OnFoodEaten;
+        
         _target = GetNearestFood().transform;
-
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
     }
 
@@ -107,7 +114,7 @@ public class BotRuler : MonoBehaviour
             touchBorder = TouchBorder.NULL;
             return false;
         }
-
+    
         Vector3 newPosition = 1.3f * MovingDirection.normalized + transform.position;
         if (_borderChecker.IsOutField(newPosition, out TouchBorder touchBorder2))
         {
@@ -115,7 +122,7 @@ public class BotRuler : MonoBehaviour
             touchBorder = touchBorder2;
             return true;
         }
-
+    
         touchBorder = TouchBorder.NULL;
         return false;
     }
@@ -128,29 +135,7 @@ public class BotRuler : MonoBehaviour
 
     private void SetParticipantDirection()
     {
-        _participants = FindObjectsOfType<Participant>();
-        var listTargetParticipants = _participants.ToList();
-        foreach (var participant in _participants)
-        {
-            if (participant.gameObject == gameObject)
-            {
-                listTargetParticipants.Remove(participant);
-            }
-        }
-
-        Participant targetParticipant = listTargetParticipants[0];
-        var distanceTarget = Vector3.Distance(transform.position, targetParticipant.gameObject.transform.position);
-        foreach (var participant in listTargetParticipants)
-        {
-            var distance = Vector3.Distance(transform.position, participant.gameObject.transform.position);
-            if (distance < distanceTarget)
-            {
-                targetParticipant = participant;
-                distanceTarget = distance;
-            }
-        }
-
-        _target = targetParticipant.gameObject.transform;
+        _target = _battleController.GetNearestParticipant(gameObject.GetComponent<Bot>()).gameObject.transform;
         _isRepulsion = false;
     }
 
