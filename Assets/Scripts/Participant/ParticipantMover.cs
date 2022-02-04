@@ -10,52 +10,38 @@ public class ParticipantMover : MonoBehaviour
     [SerializeField] private float _boostTime = 0.65f;
 
     public bool IsMoving { get; private set; }
-    public bool IsPushing { get; private set; }
+    public bool IsPushing { get; protected set; }
     public bool IsBoosting { get; private set; }
     public bool IsFlying { get; private set; }
-    public Vector3 NewPosition { get; private set; }
+    public Vector3 NewPosition { get; protected set; }
     public Vector3 MovingDirection { get; private set; }
     public float Speed => _speed;
     public float BoostTime => _boostTime;
-    public float RepulsionTime => _turnOverTime + _preparingPushTime + _pushTime; 
+    protected bool IsRuling;
 
-    private bool _isRuling;
     private float _positionY;
     private float _startSpeed;
     private Rigidbody _rigidbody;
     private Participant _participant;
-    private Coroutine _boostCoroutine;
     private Animator _animator;
     private Quaternion _lookRotation;
-    private Vector3 _startPosition;
-    private float _turnOverTime;
-    private float _preparingPushTime;
-    // private float _offsetToPush;
-    private float _pushDistanceKoef;
-    private float _pushTime;
+    protected Vector3 StartPosition;
+
+    protected Coroutine BoostCoroutine;
     private bool _isTouchBreak;
-    private Vector3 _discardingDirection;
-    private float _angleRotateBeforePushing;
-    private float _angleRotation;
-    private Sequence _turnOverSequence;
+    protected Sequence TurnOverSequence;
     private Camera _mainCamera;
-    private bool _isNotBot;
     private BattleController _battleController;
     private float _flyingTime;
 
-    private BorderChecker BorderChecker;
+    protected BorderChecker BorderChecker;
 
-    private void Start()
+    protected void Start()
     {
         IsFlying = false;
         IsMoving = false;
-        _isRuling = true;
-        _turnOverTime = 0.2f;
-        _preparingPushTime = 0.3f;
-        _angleRotateBeforePushing = 15;
-        _pushTime = 0.2f;
-        _angleRotation = 180;
-        _pushDistanceKoef = 2f;
+        IsRuling = true;
+
         _positionY = transform.position.y;
         _startSpeed = _speed;
         _rigidbody = GetComponent<Rigidbody>();
@@ -71,10 +57,9 @@ public class ParticipantMover : MonoBehaviour
         _isTouchBreak = false;
         IsBoosting = false;
         _mainCamera = Camera.main;
-        _isNotBot = GetComponent<Bot>() is null;
     }
 
-    private void Update()
+    protected void Update()
     {
         if (IsFlying)
             return;
@@ -94,81 +79,16 @@ public class ParticipantMover : MonoBehaviour
                     transform.position += new Vector3(0, 0, offset);
             }
 
-            _turnOverSequence.Kill();
+            TurnOverSequence.Kill();
         }
-
-
-        if (_isNotBot == false)
-            return;
-
-        if (BorderChecker.IsOutField(transform.position, out TouchBorder touchBorder))
-        {
-            if (IsPushing == false)
-            {
-                DoRepulsion(MovingDirection, touchBorder);
-            }
-        }
-    }
-
-    public void DoRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
-    {
-        if (IsBoosting == false)
-        {
-            DoRopeRepulsion(moveDirection, touchBorder);
-        }
-        else
-        {
-            StopBoost();
-            DoRopeRepulsion(moveDirection, touchBorder);
-        }
-    }
-
-    public void DoRopeRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
-    {
-        _discardingDirection = BorderChecker.GetDiscardingDirection(moveDirection, transform.position).normalized;
-        _startPosition = transform.position;
-        _pushDistanceKoef = isBot ? _pushDistanceKoef * 0.75f : _pushDistanceKoef;
-        NewPosition = _startPosition + _discardingDirection * _pushDistanceKoef;
-        
-        _turnOverSequence = DOTween.Sequence();
-        _angleRotation = BorderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
-
-        _turnOverSequence.Append(transform
-            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
-                _turnOverTime)
-            .SetEase(Ease.Linear));
-        _turnOverSequence.Insert(0, transform
-            .DOMove(transform.position - _discardingDirection * 0.15f, _turnOverTime)
-            .SetEase(Ease.Linear));
-        RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), _turnOverSequence);
-        _turnOverSequence.Append(transform.DOMove(NewPosition, isBot ? _pushTime * 0.75f : _pushTime)
-            .SetEase(Ease.Flash)); 
-
-        StartCoroutine(StartRunAnimation(_turnOverTime + _preparingPushTime, _pushTime));
-        _boostCoroutine = StartCoroutine(StartBoost(_turnOverTime + _preparingPushTime + _pushTime));
-        StartCoroutine(Reset(_turnOverTime + _preparingPushTime + _pushTime + 0.025f));
-        _isRuling = false;
-        IsPushing = true;
-    }
-
-    private void RotateBeforePushing(Vector2 angle, Sequence seq)
-    {
-        seq.Append(transform
-            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(angle.x, _angleRotation, angle.y),
-                _preparingPushTime / 2)
-            .SetEase(Ease.Linear));
-
-        seq.Append(transform
-            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0), _preparingPushTime / 2)
-            .SetEase(Ease.Linear));
     }
 
     public IEnumerator Reset(float delay)
     {
         yield return new WaitForSeconds(delay);
         _rigidbody.isKinematic = true;
-        _isRuling = true;
-        _startPosition = Vector3.zero;
+        IsRuling = true;
+        StartPosition = Vector3.zero;
         IsPushing = false;
         if (_isTouchBreak)
         {
@@ -182,28 +102,28 @@ public class ParticipantMover : MonoBehaviour
 
     public void StopBoost()
     {
-        if (_boostCoroutine != null)
-            StopCoroutine(_boostCoroutine);
+        if (BoostCoroutine != null)
+            StopCoroutine(BoostCoroutine);
 
         _speed = _startSpeed;
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
         IsBoosting = false;
-        _isRuling = true;
+        IsRuling = true;
         IsPushing = false;
         _participant.SetBoostEffectsVisibility(false);
     }
 
-    private IEnumerator StartBoost(float delay)
+    protected IEnumerator StartBoost(float delay)
     {
         _rigidbody.isKinematic = true;
 
         if (IsBoosting)
             _speed /= _boost;
 
-        if (_boostCoroutine != null)
+        if (BoostCoroutine != null)
         {
             _speed = _startSpeed;
-            StopCoroutine(_boostCoroutine);
+            StopCoroutine(BoostCoroutine);
         }
 
         yield return new WaitForSeconds(delay);
@@ -220,7 +140,7 @@ public class ParticipantMover : MonoBehaviour
         _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
     }
 
-    private IEnumerator StartRunAnimation(float delayTime, float runnigTime)
+    protected IEnumerator StartRunAnimation(float delayTime, float runnigTime)
     {
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
@@ -234,12 +154,13 @@ public class ParticipantMover : MonoBehaviour
 
     public void TryMove(Vector2 direction)
     {
-        if (_isRuling == false)
+        if (IsRuling == false)
             return;
 
         Vector2 positionXZ = new Vector2(transform.position.x, transform.position.z);
 
-        if (BorderChecker.IsOutsideRing(positionXZ) && (Vector2.Angle(direction, BorderChecker.CenterPositionXZ - positionXZ) > 90))
+        if (BorderChecker.IsOutsideRing(positionXZ) &&
+            (Vector2.Angle(direction, BorderChecker.CenterPositionXZ - positionXZ) > 90))
             return;
 
         Rotate(direction);
@@ -300,7 +221,7 @@ public class ParticipantMover : MonoBehaviour
         var startPosition = transform.position;
         var heihgestPosition = startPosition + directionWithoutY.normalized * 8 + new Vector3(0, 5, 0);
         var endPosition = heihgestPosition + directionWithoutY.normalized * 16 + new Vector3(0, -10, 0);
-        
+
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(heihgestPosition, _flyingTime / 3).SetEase(Ease.Linear));
         sequence.Append(transform.DOMove(endPosition, 2 * _flyingTime / 3).SetEase(Ease.Linear));

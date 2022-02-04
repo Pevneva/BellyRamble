@@ -7,7 +7,7 @@ public class BotRuler : MonoBehaviour
 {
     public Vector3 MovingDirection { get; private set; }
 
-    private ParticipantMover _participantMover;
+    private ParticipantPusherOut _participantPusherOut;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
     private FoodUtils _foodUtils;
@@ -25,13 +25,13 @@ public class BotRuler : MonoBehaviour
     {
         Reset();
 
-        _participantMover = GetComponent<ParticipantMover>();
+        _participantPusherOut = GetComponent<ParticipantPusherOut>();
         _botMover = GetComponent<BotMover>();
         _borderChecker = FindObjectOfType<BorderChecker>();
         _battleController = FindObjectOfType<BattleController>();
         _foodUtils = FindObjectOfType<FoodUtils>();
         _animator = GetComponentInChildren<Animator>();
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantMover.Speed);
+        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantPusherOut.Speed);
         _target = _foodUtils.GetNearestFood(transform);
 
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
@@ -43,7 +43,7 @@ public class BotRuler : MonoBehaviour
         if (_isPushingOut)
             return;
 
-        if (_participantMover.IsFlying)
+        if (_participantPusherOut.IsFlying)
             return;
 
         if (_borderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
@@ -68,7 +68,7 @@ public class BotRuler : MonoBehaviour
             if (isParticipant && participantMover.IsFlying == false || isParticipant == false)
             {
                 MovingDirection = (_target.position - transform.position).normalized;
-                transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
+                transform.Translate(Time.deltaTime * _participantPusherOut.Speed * MovingDirection, Space.World);
             }
             else
             {
@@ -92,11 +92,11 @@ public class BotRuler : MonoBehaviour
     private void PushOut()
     {
         _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
-        _participantMover.DoRepulsion(MovingDirection * 100, _touchBorder, true);
-        _target.position = _participantMover.NewPosition;
+        _participantPusherOut.DoRepulsion(MovingDirection * 100, _touchBorder, true);
+        _target.position = _participantPusherOut.NewPosition;
         _isPushingOut = true;
-        Invoke(nameof(SetParticipantDirection), _participantMover.RepulsionTime);
-        Invoke(nameof(SetNewTarget), _participantMover.RepulsionTime + _participantMover.BoostTime);
+        Invoke(nameof(SetParticipantDirection), _participantPusherOut.RepulsionTime);
+        Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + _participantPusherOut.BoostTime);
     }
 
     private void OnFoodEaten(Food food)
@@ -157,7 +157,7 @@ public class BotRuler : MonoBehaviour
         if (_isPushingOut)
             return;
 
-        if (_participantMover.IsFlying)
+        if (_participantPusherOut.IsFlying)
             return;
 
         _lookRotation = Quaternion.LookRotation(_target.position - transform.position);

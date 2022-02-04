@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class BotMover : ParticipantMover
+public class BotMover : MonoBehaviour
 {
     public void TryMoveToTarget(Transform target)
     {

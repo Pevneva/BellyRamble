@@ -6363,10 +6363,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2056715691905524894}
   - component: {fileID: 2056715691905524884}
+  - component: {fileID: 2056715691905524881}
   - component: {fileID: 2056715691905524882}
   - component: {fileID: 2056715691905524883}
   - component: {fileID: 2056715691905524880}
-  - component: {fileID: 2056715691905524881}
+  - component: {fileID: 751686489350637317}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6407,6 +6408,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &2056715691905524881
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056715691905524895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.29749346
+  m_Height: 1.7821274
+  m_Direction: 1
+  m_Center: {x: 0.046406984, y: 0.8838048, z: 0.1987729}
 --- !u!114 &2056715691905524882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6426,13 +6441,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056715691905524895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c7ba63777270b847ae4a550d85a02cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftDownPointBorder: {fileID: 0}
-  _rightUpPointBorder: {fileID: 0}
   _speed: 1.5
   _boost: 2.4
   _boostTime: 0.85
@@ -6450,21 +6463,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _score: 100
   _view: {fileID: 0}
-  IsRopeTouching: 0
---- !u!136 &2056715691905524881
-CapsuleCollider:
+  _crown: {fileID: 0}
+  _lefLegParticipant: {fileID: 0}
+  _rightLegParticipant: {fileID: 0}
+  _backParticipant: {fileID: 0}
+  _startMoney: 0
+--- !u!114 &751686489350637317
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056715691905524895}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.29749346
-  m_Height: 1.7821274
-  m_Direction: 1
-  m_Center: {x: 0.046406984, y: 0.8838048, z: 0.1987729}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7489ec66a0dab7341a0de087cd3146dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1.5
+  _boost: 2.4
+  _boostTime: 0.65
 --- !u!1 &2056715692169207687
 GameObject:
   m_ObjectHideFlags: 0

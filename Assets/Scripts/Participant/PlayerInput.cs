@@ -1,16 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantMover))]
+[RequireComponent(typeof(ParticipantPusherOut))]
 public class PlayerInput : MonoBehaviour
 {
-    private ParticipantMover _participantMover;
+    private ParticipantPusherOut _participantPusherOut;
     private Vector2 _direction;
     private Vector2 _startPosition;
     private bool _isDirectionChosen;
 
     private void Start()
     {
-        _participantMover = GetComponent<ParticipantMover>();
+        _participantPusherOut = GetComponent<ParticipantPusherOut>();
     }
 
     private void FixedUpdate()
@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
 
         if (_isDirectionChosen)
         {
-            _participantMover.TryMove(_direction);
+            _participantPusherOut.TryMove(_direction);
         }
     }
 
@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _isDirectionChosen = false;
-            _participantMover.StopMoving();            
+            _participantPusherOut.StopMoving();            
         }
     }
 

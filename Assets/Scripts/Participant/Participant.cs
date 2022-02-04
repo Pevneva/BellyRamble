@@ -32,7 +32,6 @@ public class Participant : MonoBehaviour
         _scale = transform.localScale;
         _rigidbody.isKinematic = true;
         ScoreChanged += OnScoreChanged;
-        _battleController = FindObjectOfType<BattleController>();
     }
 
     private void Update()
