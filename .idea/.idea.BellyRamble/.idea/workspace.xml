@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Improved PlayerInput.cs.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/CodeInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/CodeInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ReorderableLayoutList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ReorderableLayoutList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/SGUILayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/SGUILayout.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ShaderProperty.CustomMaterialProperty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ShaderProperty.CustomMaterialProperty.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ShaderProperty.Implementations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/ShaderProperty.Implementations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/Tooltip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Editor/Shader Generator/Tooltip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" afterDir="false" />
     </list>
@@ -52,6 +59,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.purchasing@4.0.3/Runtime/Common/VersionCheck.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BorderChecker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestLaunchers/RemotePlayerLogController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -173,11 +181,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/DelayedController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -438,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643997672039</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Improved ParticipantMover.cs and ParticipantPusherOut.cs scripts.">
+      <created>1643998998228</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1643998998228</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +498,8 @@
     <MESSAGE value="Added FoodUtils.cs." />
     <MESSAGE value="Refactored ParticipantMover.cs." />
     <MESSAGE value="Improved PlayerInput.cs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved PlayerInput.cs." />
+    <MESSAGE value="Improved ParticipantMover.cs and ParticipantPusherOut.cs scripts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved ParticipantMover.cs and ParticipantPusherOut.cs scripts." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

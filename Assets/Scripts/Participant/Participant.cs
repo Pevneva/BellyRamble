@@ -80,8 +80,8 @@ public class Participant : MonoBehaviour
             
             if (mover.IsBoosting || otherMover.IsBoosting)
             {
-                bot.GetComponent<ParticipantMover>().StopBoost();
-                GetComponent<ParticipantMover>().StopBoost();
+                bot.GetComponent<ParticipantPusherOut>().StopBoost();
+                GetComponent<ParticipantPusherOut>().StopBoost();
                 _battleController.DoImpact(bot, this);
                 return;
             } 

@@ -7,7 +7,7 @@ public class ParticipantMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _boost;
-    [SerializeField] private float _boostTime = 0.65f;
+    [SerializeField] private float _boostTime;
 
     protected bool IsPushing;
     protected bool IsRuling;
@@ -15,25 +15,30 @@ public class ParticipantMover : MonoBehaviour
     protected Coroutine BoostCoroutine;
     protected BorderChecker BorderChecker;
     protected Sequence TurnOverSequence;
+    protected Rigidbody Rigidbody;
+    protected Animator Animator;
+    protected Participant Participant;
+    protected float Boost => _boost;
     protected Vector3 MovingDirection { get; private set; }
-    public bool IsBoosting { get; private set; }
+    protected float StartSpeed { get; private set; }
+    public bool IsBoosting { get; protected set; }
     public bool IsFlying { get; private set; }
     public Vector3 NewPosition { get; protected set; }
-    public float Speed => _speed;
     public float BoostTime => _boostTime;
-
+    public float Speed
+    {
+        get { return _speed; }
+        protected set { _speed = value; }
+    }
+    
     private bool _isMoving;
     private float _positionY;
-    private float _startSpeed;
-    private Rigidbody _rigidbody;
-    private Participant _participant;
-    private Animator _animator;
     private Quaternion _lookRotation;
     private bool _isTouchBreak;
     private Camera _mainCamera;
     private BattleController _battleController;
     private float _flyingTime;
-    
+
     protected void Start()
     {
         IsFlying = false;
@@ -41,15 +46,15 @@ public class ParticipantMover : MonoBehaviour
         IsRuling = true;
 
         _positionY = transform.position.y;
-        _startSpeed = _speed;
-        _rigidbody = GetComponent<Rigidbody>();
-        _participant = GetComponent<Participant>();
+        StartSpeed = _speed;
+        Rigidbody = GetComponent<Rigidbody>();
+        Participant = GetComponent<Participant>();
         _battleController = FindObjectOfType<BattleController>();
         BorderChecker = FindObjectOfType<BorderChecker>();
-        _animator = GetComponentInChildren<Animator>();
-        _participant.SetBoostEffectsVisibility(false);
+        Animator = GetComponentInChildren<Animator>();
+        Participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
-            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
+            Animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
         _flyingTime = _battleController.ParticipantFlyingTime;
         IsPushing = false;
         _isTouchBreak = false;
@@ -64,33 +69,37 @@ public class ParticipantMover : MonoBehaviour
 
         if (BorderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
         {
-            if (BorderChecker.IsOutField(transform.position, out TouchBorder startTouchBorder))
-            {
-                float offset = 0.35f;
-                if (startTouchBorder == TouchBorder.LEFT)
-                    transform.position += new Vector3(offset, 0, 0);
-                else if (startTouchBorder == TouchBorder.RIGHT)
-                    transform.position += new Vector3(-offset, 0, 0);
-                else if (startTouchBorder == TouchBorder.UP)
-                    transform.position += new Vector3(0, 0, -offset);
-                else if (startTouchBorder == TouchBorder.DOWN)
-                    transform.position += new Vector3(0, 0, offset);
-            }
-
+            TryMoveToRing();
             TurnOverSequence.Kill();
+        }
+    }
+
+    private void TryMoveToRing()
+    {
+        if (BorderChecker.IsOutField(transform.position, out TouchBorder startTouchBorder))
+        {
+            float offset = 0.35f;
+            if (startTouchBorder == TouchBorder.LEFT)
+                transform.position += new Vector3(offset, 0, 0);
+            else if (startTouchBorder == TouchBorder.RIGHT)
+                transform.position += new Vector3(-offset, 0, 0);
+            else if (startTouchBorder == TouchBorder.UP)
+                transform.position += new Vector3(0, 0, -offset);
+            else if (startTouchBorder == TouchBorder.DOWN)
+                transform.position += new Vector3(0, 0, offset);
         }
     }
 
     public IEnumerator Reset(float delay)
     {
         yield return new WaitForSeconds(delay);
-        _rigidbody.isKinematic = true;
+        Rigidbody.isKinematic = true;
         IsRuling = true;
         StartPosition = Vector3.zero;
         IsPushing = false;
         if (_isTouchBreak)
         {
-            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
+            Animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
             _speed = 0;
         }
 
@@ -98,56 +107,15 @@ public class ParticipantMover : MonoBehaviour
         _isMoving = false;
     }
 
-    public void StopBoost()
-    {
-        if (BoostCoroutine != null)
-            StopCoroutine(BoostCoroutine);
-
-        _speed = _startSpeed;
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
-        IsBoosting = false;
-        IsRuling = true;
-        IsPushing = false;
-        _participant.SetBoostEffectsVisibility(false);
-    }
-
-    protected IEnumerator StartBoost(float delay)
-    {
-        _rigidbody.isKinematic = true;
-
-        if (IsBoosting)
-            _speed /= _boost;
-
-        if (BoostCoroutine != null)
-        {
-            _speed = _startSpeed;
-            StopCoroutine(BoostCoroutine);
-        }
-
-        yield return new WaitForSeconds(delay);
-        _participant.SetBoostEffectsVisibility(true);
-        _speed *= _boost;
-        IsBoosting = true;
-        _rigidbody.isKinematic = true;
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
-        yield return new WaitForSeconds(_boostTime);
-        _speed = _startSpeed;
-        IsBoosting = false;
-        _rigidbody.isKinematic = true;
-        _participant.SetBoostEffectsVisibility(false);
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _speed);
-    }
-
     protected IEnumerator StartRunAnimation(float delayTime, float runnigTime)
     {
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
-        _participant.SetBoostEffectsVisibility(true);
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
+        Participant.SetBoostEffectsVisibility(true);
+        Animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
         _isMoving = true;
         yield return new WaitForSeconds(runnigTime);
-        yield break;
     }
 
     public void TryMove(Vector2 direction)
@@ -180,12 +148,12 @@ public class ParticipantMover : MonoBehaviour
     {
         MovingDirection = new Vector3(direction.x, 0, direction.y);
 
-        if (_speed < _startSpeed)
+        if (_speed < StartSpeed)
         {
-            _speed = IsBoosting ? _boost * _startSpeed : _startSpeed;
+            _speed = IsBoosting ? _boost * StartSpeed : StartSpeed;
         }
 
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, MovingDirection.normalized.magnitude * _speed);
+        Animator.SetFloat(AnimatorParticipantController.Params.Speed, MovingDirection.normalized.magnitude * _speed);
         transform.position += Time.deltaTime * _speed * 2 * MovingDirection.normalized;
     }
 
@@ -193,9 +161,9 @@ public class ParticipantMover : MonoBehaviour
     {
         if (IsPushing == false)
         {
-            _rigidbody.velocity = Vector3.zero;
+            Rigidbody.velocity = Vector3.zero;
             _speed = 0;
-            _animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
+            Animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
         }
         else
         {
@@ -214,7 +182,7 @@ public class ParticipantMover : MonoBehaviour
         }
 
         IsFlying = true;
-        _animator.SetBool(AnimatorParticipantController.Params.Fly, true);
+        Animator.SetBool(AnimatorParticipantController.Params.Fly, true);
 
         var startPosition = transform.position;
         var heihgestPosition = startPosition + directionWithoutY.normalized * 8 + new Vector3(0, 5, 0);
