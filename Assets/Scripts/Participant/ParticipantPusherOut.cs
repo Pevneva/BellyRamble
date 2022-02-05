@@ -47,16 +47,16 @@ public class ParticipantPusherOut : ParticipantMover
         NewPosition = StartPosition + _discardingDirection * _pushDistanceKoef;
         _angleRotation = BorderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
-        TurnOverSequence = DOTween.Sequence();
-        TurnOverSequence.Append(transform
+        PushingOutSequence = DOTween.Sequence();
+        PushingOutSequence.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
                 _turnOverTime)
             .SetEase(Ease.Linear));
-        TurnOverSequence.Insert(0, transform
+        PushingOutSequence.Insert(0, transform
             .DOMove(StartPosition - _discardingDirection * _backStepKoef, _turnOverTime)
             .SetEase(Ease.Linear));
-        RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), TurnOverSequence);
-        TurnOverSequence.Append(transform.DOMove(NewPosition, isBot ? _pushTime * _botReduceKoef : _pushTime)
+        RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), PushingOutSequence);
+        PushingOutSequence.Append(transform.DOMove(NewPosition, isBot ? _pushTime * _botReduceKoef : _pushTime)
             .SetEase(Ease.Flash));
 
         StartCoroutine(StartRunAnimation(_turnOverTime + _preparingPushTime, _pushTime));

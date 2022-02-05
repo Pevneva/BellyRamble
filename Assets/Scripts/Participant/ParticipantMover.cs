@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class ParticipantMover : MonoBehaviour
     protected Vector3 StartPosition;
     protected Coroutine BoostCoroutine;
     protected BorderChecker BorderChecker;
-    protected Sequence TurnOverSequence;
+    protected Sequence PushingOutSequence;
     protected Rigidbody Rigidbody;
     protected Animator Animator;
     protected Participant Participant;
@@ -22,7 +23,7 @@ public class ParticipantMover : MonoBehaviour
     protected Vector3 MovingDirection { get; private set; }
     protected float StartSpeed { get; private set; }
     public bool IsBoosting { get; protected set; }
-    public bool IsFlying { get; private set; }
+    public bool IsFlying { get; protected set; }
     public Vector3 NewPosition { get; protected set; }
     public float BoostTime => _boostTime;
     public float Speed
@@ -31,35 +32,35 @@ public class ParticipantMover : MonoBehaviour
         protected set { _speed = value; }
     }
     
-    private bool _isMoving;
     private float _positionY;
     private Quaternion _lookRotation;
     private bool _isTouchBreak;
-    private Camera _mainCamera;
-    private BattleController _battleController;
-    private float _flyingTime;
+    private ParticipantFlyer _participantFlyer;
 
     protected void Start()
     {
         IsFlying = false;
-        _isMoving = false;
         IsRuling = true;
 
         _positionY = transform.position.y;
         StartSpeed = _speed;
         Rigidbody = GetComponent<Rigidbody>();
         Participant = GetComponent<Participant>();
-        _battleController = FindObjectOfType<BattleController>();
         BorderChecker = FindObjectOfType<BorderChecker>();
         Animator = GetComponentInChildren<Animator>();
         Participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
             Animator.SetFloat(AnimatorParticipantController.Params.Speed, 0f);
-        _flyingTime = _battleController.ParticipantFlyingTime;
         IsPushing = false;
         _isTouchBreak = false;
         IsBoosting = false;
-        _mainCamera = Camera.main;
+        _participantFlyer = GetComponent<ParticipantFlyer>();
+        _participantFlyer.FlyStarted += OnFlyStarted;
+    }
+
+    private void OnDisable()
+    {
+        _participantFlyer.FlyStarted -= OnFlyStarted;
     }
 
     protected void Update()
@@ -70,7 +71,7 @@ public class ParticipantMover : MonoBehaviour
         if (BorderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
         {
             TryMoveToRing();
-            TurnOverSequence.Kill();
+            PushingOutSequence.Kill();
         }
     }
 
@@ -104,7 +105,6 @@ public class ParticipantMover : MonoBehaviour
         }
 
         BorderChecker.ResetBorders();
-        _isMoving = false;
     }
 
     protected IEnumerator StartRunAnimation(float delayTime, float runnigTime)
@@ -114,7 +114,6 @@ public class ParticipantMover : MonoBehaviour
         Participant.SetBoostEffectsVisibility(true);
         Animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
         yield return new WaitForSeconds(0.05f);
-        _isMoving = true;
         yield return new WaitForSeconds(runnigTime);
     }
 
@@ -171,33 +170,9 @@ public class ParticipantMover : MonoBehaviour
         }
     }
 
-    public void Fly(Vector3 direction, bool isCameraMoving)
+    private void OnFlyStarted()
     {
-        Vector3 directionWithoutY = new Vector3(direction.x, 0, direction.z);
-        if (isCameraMoving)
-        {
-            CameraMover cameraMover = _mainCamera.gameObject.GetComponent<CameraMover>();
-            cameraMover.SetKindMoving(false);
-            cameraMover.SetTarget(transform);
-        }
-
         IsFlying = true;
-        Animator.SetBool(AnimatorParticipantController.Params.Fly, true);
-
-        var startPosition = transform.position;
-        var heihgestPosition = startPosition + directionWithoutY.normalized * 8 + new Vector3(0, 5, 0);
-        var endPosition = heihgestPosition + directionWithoutY.normalized * 16 + new Vector3(0, -10, 0);
-
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(heihgestPosition, _flyingTime / 3).SetEase(Ease.Linear));
-        sequence.Append(transform.DOMove(endPosition, 2 * _flyingTime / 3).SetEase(Ease.Linear));
-        StartCoroutine(CheckBottleEnded(_flyingTime));
-    }
-
-    private IEnumerator CheckBottleEnded(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (_battleController.IsBottleEnded() == false)
-            Destroy(gameObject);
+        Animator.SetBool(AnimatorParticipantController.Params.Fly, true);        
     }
 }

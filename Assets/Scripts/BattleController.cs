@@ -7,9 +7,9 @@ public class BattleController : MonoBehaviour
 {
     [SerializeField] private List<Participant> _participants;
     [SerializeField] private Game _game;
-    [SerializeField] private float _participantFlyingTime;
+    // [SerializeField] private float _participantFlyingTime;
 
-    public float ParticipantFlyingTime => _participantFlyingTime;
+    // public float ParticipantFlyingTime => _participantFlyingTime;
     public event UnityAction PlayerWon; 
     public event UnityAction PlayerLoosed; 
     
@@ -55,12 +55,12 @@ public class BattleController : MonoBehaviour
         if (participant1 == winner)
         {
             Vector3 movingDirection = participant2.gameObject.transform.position - participant1.gameObject.transform.position;
-            participant2.GetComponent<ParticipantMover>().Fly(movingDirection, isBottleWillBeEnded);
+            participant2.GetComponent<ParticipantFlyer>().Fly(movingDirection, isBottleWillBeEnded);
             RemoveParticipant(participant2);
         } else if (participant2 == winner)
         {
             Vector3 movingDirection = participant1.gameObject.transform.position - participant2.gameObject.transform.position;
-            participant1.GetComponent<ParticipantMover>().Fly(movingDirection, isBottleWillBeEnded);
+            participant1.GetComponent<ParticipantFlyer>().Fly(movingDirection, isBottleWillBeEnded);
             RemoveParticipant(participant1);
         }
 
