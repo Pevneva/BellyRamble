@@ -51,7 +51,6 @@ public class Game : MonoBehaviour
 
     public void EndBottle()
     {
-        // Invoke(nameof(ShowWinPanel), _battleController.ParticipantFlyingTime);
-        Invoke(nameof(ShowWinPanel), 2.1f);
+        Invoke(nameof(ShowWinPanel), MovingController.FlyingTime);
     }
 }

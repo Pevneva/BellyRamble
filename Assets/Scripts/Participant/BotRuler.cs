@@ -96,7 +96,7 @@ public class BotRuler : MonoBehaviour
         _target.position = _participantPusherOut.NewPosition;
         _isPushingOut = true;
         Invoke(nameof(SetParticipantDirection), _participantPusherOut.RepulsionTime);
-        Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + _participantPusherOut.BoostTime);
+        Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + MovingController.BoostTime);
     }
 
     private void OnFoodEaten(Food food)

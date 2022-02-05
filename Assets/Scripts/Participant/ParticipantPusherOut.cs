@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ParticipantPusherOut : ParticipantMover
 {
-    public float RepulsionTime => _turnOverTime + _preparingPushTime + _pushTime;
+    public float RepulsionTime => MovingController.TurnOverTime + MovingController.PreparingPushTime + MovingController.PushTime;
 
-    private readonly float _turnOverTime = 0.2f;
-    private readonly float _preparingPushTime = 0.3f;
-    private readonly float _angleRotateBeforePushing = 15;
-    private readonly float _pushTime = 0.2f;
     private float _pushDistanceKoef = 2;
-    private float _botReduceKoef = 0.75f;
-    private float _backStepKoef = 0.15f;
     private float _angleRotation;
     private bool _isBot;
     private Vector3 _discardingDirection;
@@ -43,25 +37,25 @@ public class ParticipantPusherOut : ParticipantMover
     {
         StartPosition = transform.position;
         _discardingDirection = BorderChecker.GetDiscardingDirection(moveDirection, StartPosition).normalized;
-        _pushDistanceKoef = isBot ? _pushDistanceKoef * _botReduceKoef : _pushDistanceKoef;
+        _pushDistanceKoef = isBot ? _pushDistanceKoef * MovingController.BotReduceKoef : _pushDistanceKoef;
         NewPosition = StartPosition + _discardingDirection * _pushDistanceKoef;
         _angleRotation = BorderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
         PushingOutSequence = DOTween.Sequence();
         PushingOutSequence.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
-                _turnOverTime)
+                MovingController.TurnOverTime)
             .SetEase(Ease.Linear));
         PushingOutSequence.Insert(0, transform
-            .DOMove(StartPosition - _discardingDirection * _backStepKoef, _turnOverTime)
+            .DOMove(StartPosition - _discardingDirection * MovingController.BackStepKoef, MovingController.TurnOverTime)
             .SetEase(Ease.Linear));
-        RotateBeforePushing(new Vector2(-_angleRotateBeforePushing, 0), PushingOutSequence);
-        PushingOutSequence.Append(transform.DOMove(NewPosition, isBot ? _pushTime * _botReduceKoef : _pushTime)
+        RotateBeforePushing(new Vector2(-MovingController.AngleRotateBeforePushing, 0), PushingOutSequence);
+        PushingOutSequence.Append(transform.DOMove(NewPosition, isBot ? MovingController.PushTime * MovingController.BotReduceKoef : MovingController.PushTime)
             .SetEase(Ease.Flash));
 
-        StartCoroutine(StartRunAnimation(_turnOverTime + _preparingPushTime, _pushTime));
-        BoostCoroutine = StartCoroutine(StartBoost(_turnOverTime + _preparingPushTime + _pushTime));
-        StartCoroutine(Reset(_turnOverTime + _preparingPushTime + _pushTime + Time.deltaTime));
+        StartCoroutine(StartRunAnimation(MovingController.TurnOverTime + MovingController.PreparingPushTime, MovingController.PushTime));
+        BoostCoroutine = StartCoroutine(StartBoost(RepulsionTime));
+        StartCoroutine(Reset(RepulsionTime + Time.deltaTime));
         IsRuling = false;
         IsPushing = true;
     }
@@ -70,11 +64,11 @@ public class ParticipantPusherOut : ParticipantMover
     {
         seq.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(angle.x, _angleRotation, angle.y),
-                _preparingPushTime / 2)
+                MovingController.PreparingPushTime / 2)
             .SetEase(Ease.Linear));
 
         seq.Append(transform
-            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0), _preparingPushTime / 2)
+            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0), MovingController.PreparingPushTime / 2)
             .SetEase(Ease.Linear));
     }
 
@@ -91,7 +85,7 @@ public class ParticipantPusherOut : ParticipantMover
         Rigidbody.isKinematic = true;
 
         if (IsBoosting) 
-            Speed /= Boost;
+            Speed /= MovingController.Boost;
 
         if (BoostCoroutine != null)
         {
@@ -101,11 +95,11 @@ public class ParticipantPusherOut : ParticipantMover
 
         yield return new WaitForSeconds(delay);
         Participant.SetBoostEffectsVisibility(true);
-        Speed *= Boost;
+        Speed *= MovingController.Boost;
         IsBoosting = true;
         Rigidbody.isKinematic = true;
         Animator.SetFloat(AnimatorParticipantController.Params.Speed, Speed);
-        yield return new WaitForSeconds(BoostTime);
+        yield return new WaitForSeconds(MovingController.BoostTime);
         Speed = StartSpeed;
         IsBoosting = false;
         Rigidbody.isKinematic = true;

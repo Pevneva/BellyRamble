@@ -7,9 +7,7 @@ using UnityEngine;
 public class ParticipantMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _boost;
-    [SerializeField] private float _boostTime;
-
+    
     protected bool IsPushing;
     protected bool IsRuling;
     protected Vector3 StartPosition;
@@ -19,13 +17,13 @@ public class ParticipantMover : MonoBehaviour
     protected Rigidbody Rigidbody;
     protected Animator Animator;
     protected Participant Participant;
-    protected float Boost => _boost;
+    // protected float Boost => _boost;
     protected Vector3 MovingDirection { get; private set; }
     protected float StartSpeed { get; private set; }
     public bool IsBoosting { get; protected set; }
     public bool IsFlying { get; protected set; }
     public Vector3 NewPosition { get; protected set; }
-    public float BoostTime => _boostTime;
+    // public float BoostTime => _boostTime;
     public float Speed
     {
         get { return _speed; }
@@ -149,7 +147,7 @@ public class ParticipantMover : MonoBehaviour
 
         if (_speed < StartSpeed)
         {
-            _speed = IsBoosting ? _boost * StartSpeed : StartSpeed;
+            _speed = IsBoosting ? MovingController.Boost * StartSpeed : StartSpeed;
         }
 
         Animator.SetFloat(AnimatorParticipantController.Params.Speed, MovingDirection.normalized.magnitude * _speed);

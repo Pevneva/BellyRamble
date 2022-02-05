@@ -8,10 +8,9 @@ public class ParticipantFlyer : MonoBehaviour
 {
     public event UnityAction FlyStarted;
     
-    private readonly float _flyingTime = 2.1f;
     private Camera _mainCamera;
 
-    protected void Start()
+    private void Start()
     {
         _mainCamera = Camera.main;
     }
@@ -33,15 +32,16 @@ public class ParticipantFlyer : MonoBehaviour
         var endPosition = heihgestPosition + directionWithoutY.normalized * 16 + new Vector3(0, -10, 0);
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(heihgestPosition, _flyingTime / 3).SetEase(Ease.Linear));
-        sequence.Append(transform.DOMove(endPosition, 2 * _flyingTime / 3).SetEase(Ease.Linear));
-        StartCoroutine(CheckBottleEnded(_flyingTime));
+        sequence.Append(transform.DOMove(heihgestPosition, MovingController.FlyingTime / 3).SetEase(Ease.Linear));
+        sequence.Append(transform.DOMove(endPosition, 2 * MovingController.FlyingTime / 3).SetEase(Ease.Linear)
+            .OnComplete(() => { }));
+        StartCoroutine(CheckBottleEnded(MovingController.FlyingTime));
     }
     
     private IEnumerator CheckBottleEnded(float delay)
     {
         yield return new WaitForSeconds(delay);
         // if (BattleController.IsBottleEnded() == false)
-        //     Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
