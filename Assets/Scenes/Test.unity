@@ -385,6 +385,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5740389584940972639, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
   m_PrefabInstance: {fileID: 2144800154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &53828432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5740389584940972624, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
+  m_PrefabInstance: {fileID: 2144800154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53828428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a863579c0030cb48acd486aa9836b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &53828433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,8 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1.5
-  _boost: 2.4
-  _boostTime: 1.15
 --- !u!4 &85004994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2548089201970362302, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
@@ -29387,6 +29396,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2548089201107220731, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
   m_PrefabInstance: {fileID: 2144800154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &977488897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2548089201107220724, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
+  m_PrefabInstance: {fileID: 2144800154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977488893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a863579c0030cb48acd486aa9836b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &977488898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29426,8 +29446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1.5
-  _boost: 2.4
-  _boostTime: 1.15
 --- !u!1 &994599724
 GameObject:
   m_ObjectHideFlags: 0
@@ -32042,9 +32060,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18481d1b82090984b8c412896a77c978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _participants: []
-  _game: {fileID: 21612721}
-  _participantFlyingTime: 2.1
+  _participants:
+  - {fileID: 1432564948}
+  - {fileID: 53828432}
+  - {fileID: 977488897}
 --- !u!1 &1340786069
 GameObject:
   m_ObjectHideFlags: 0

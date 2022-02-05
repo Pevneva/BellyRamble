@@ -17,13 +17,11 @@ public class ParticipantMover : MonoBehaviour
     protected Rigidbody Rigidbody;
     protected Animator Animator;
     protected Participant Participant;
-    // protected float Boost => _boost;
     protected Vector3 MovingDirection { get; private set; }
     protected float StartSpeed { get; private set; }
     public bool IsBoosting { get; protected set; }
     public bool IsFlying { get; protected set; }
     public Vector3 NewPosition { get; protected set; }
-    // public float BoostTime => _boostTime;
     public float Speed
     {
         get { return _speed; }

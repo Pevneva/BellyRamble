@@ -52,23 +52,14 @@ public class BotRuler : MonoBehaviour
         if (Vector3.Distance(transform.position, _ropePoint) < 0.35f)
             PushOut();
 
-        // bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
-        // if (_target != null && (isParticipant && participantMover.IsFlying == false || isParticipant == false))
-        // {
-        //     MovingDirection = (_target.position - transform.position).normalized;
-        //     transform.Translate(Time.deltaTime * _participantMover.Speed * MovingDirection, Space.World);
-        // }
-        // else
-        // {
-        //     _target = _foodUtils.GetNearestFood(transform);
-        // }
         if (_target != null)
         {
             bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
             if (isParticipant && participantMover.IsFlying == false || isParticipant == false)
             {
-                MovingDirection = (_target.position - transform.position).normalized;
-                transform.Translate(Time.deltaTime * _participantPusherOut.Speed * MovingDirection, Space.World);
+                Move();
+                // MovingDirection = (_target.position - transform.position).normalized;
+                // transform.Translate(Time.deltaTime * _participantPusherOut.Speed * MovingDirection, Space.World);
             }
             else
             {
@@ -97,6 +88,12 @@ public class BotRuler : MonoBehaviour
         _isPushingOut = true;
         Invoke(nameof(SetParticipantDirection), _participantPusherOut.RepulsionTime);
         Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + MovingController.BoostTime);
+    }
+
+    private void Move()
+    {
+        MovingDirection = (_target.position - transform.position).normalized;
+        transform.Translate(Time.deltaTime * _participantPusherOut.Speed * MovingDirection, Space.World);        
     }
 
     private void OnFoodEaten(Food food)

@@ -13,13 +13,26 @@ public class Game : MonoBehaviour
     {
         HideWinPanel();
         _cameraMover = Camera.main.GetComponent<CameraMover>();
-        _battleController.PlayerWon += OnWinPanelShown;
+        _battleController.PlayerWon += OnPlayerWon;
+        _battleController.PlayerLoosed += OnPlaeyrLoosed;
+    }
+
+    private void OnPlayerWon()
+    {
+        Invoke(nameof(ShowWinPanel), MovingController.FlyingTime);
+        _battleController.PlayerWon -= OnPlayerWon;
     }
 
     public void ShowWinPanel()
     {
+        _winPanel.GetMoneyButtonPressed += OnGetMoneyButtonPressed;
         _winPanel.gameObject.SetActive(true);
         _fxContainer.ShowWinPanelFx();
+    }
+
+    private void OnGetMoneyButtonPressed()
+    {
+        Invoke(nameof(SetNewLevel), 3.5f);
     }
 
     public void HideWinPanel()
@@ -27,16 +40,12 @@ public class Game : MonoBehaviour
         _winPanel.gameObject.SetActive(false);
     }
 
-    private void OnWinPanelShown()
+    private void OnPlaeyrLoosed()
     {
-        _winPanel.GetMoneyButtonPressed += OnGetMoneyButtonPressed;
-        _battleController.PlayerWon -= OnWinPanelShown;
+        //to do Loose Panel
+        Debug.Log("Game Over");
     }
 
-    private void OnGetMoneyButtonPressed()
-    {
-        Invoke(nameof(SetNewLevel), 3.5f);
-    }
     
     private void SetNewLevel()
     {
@@ -47,10 +56,5 @@ public class Game : MonoBehaviour
         Invoke(nameof(HideWinPanel), 0);
         _cameraMover.ZoomIn();
         _cameraMover.ZoomOut();
-    }
-
-    public void EndBottle()
-    {
-        Invoke(nameof(ShowWinPanel), MovingController.FlyingTime);
     }
 }

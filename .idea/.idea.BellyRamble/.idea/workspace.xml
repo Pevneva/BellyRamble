@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Created ParticipantFlyer.cs.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Added MovingController.cs.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +44,7 @@
     <setting file="file://$PROJECT_DIR$/../../TestProject/Assets/Epic Toon FX/Demo/Scripts/VFX Library/ParticleEffectsLibrary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Extensions/AnimatedParameterExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.core@1.0.1/Editor/Core/ServiceActivationPopup/Visuals/ExceptionVisual.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.1/Editor/PlasticSCM/Views/Welcome/DownloadAndInstallOperation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.recorder@2.5.7/Editor/Sources/Recorders/_Legacy/FrameCapturer/Scripts/Encoder/WEBMEncoder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scenes/Test.unity" root0="SKIP_HIGHLIGHTING" />
@@ -54,6 +55,7 @@
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.23f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.purchasing@4.0.3/Runtime/Common/VersionCheck.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BattleController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_EditorPanelUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
@@ -86,6 +88,7 @@
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BorderChecker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/BorderChecker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_SpriteAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantMover.cs" root0="SKIP_HIGHLIGHTING" />
@@ -107,6 +110,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/BotRuler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FXContainer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -183,13 +187,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/PlayerInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/DelayedController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/MovingController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/MovingController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -471,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644073266568</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added MovingController.cs.">
+      <created>1644084310722</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1644084310722</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fixed project setting." />
     <MESSAGE value="Added food generation. Added bots and animated bots." />
     <MESSAGE value="Improved food generation. Decreased speed of participants." />
     <MESSAGE value="Improved ropes." />
@@ -518,7 +528,8 @@
     <MESSAGE value="Improved ParticipantMover.cs and ParticipantPusherOut.cs scripts." />
     <MESSAGE value="Refactored of moving." />
     <MESSAGE value="Created ParticipantFlyer.cs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created ParticipantFlyer.cs." />
+    <MESSAGE value="Added MovingController.cs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added MovingController.cs." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
