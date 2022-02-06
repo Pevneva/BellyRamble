@@ -19,7 +19,7 @@ public class Game : MonoBehaviour
 
     private void OnPlayerWon()
     {
-        Invoke(nameof(ShowWinPanel), MovingController.FlyingTime);
+        Invoke(nameof(ShowWinPanel), MovingParamsController.FlyingTime);
         _battleController.PlayerWon -= OnPlayerWon;
     }
 

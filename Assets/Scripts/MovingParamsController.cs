@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class MovingController
+public static class MovingParamsController
 {
     public const float FlyingTime = 2.1f;
     public const float TurnOverTime = 0.2f;
@@ -13,4 +13,7 @@ public static class MovingController
     public const float BackStepKoef = 0.15f;
     public const float Boost = 2.4f;
     public const float BoostTime = 1.15f;
+    public const float RopePointDistanceKoef = 1.3f;
+    public const float IgnoredDistanceToAngle = 2f;
+    public const float ProcessedDistanceToRope = 1.5f;
 }

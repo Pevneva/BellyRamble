@@ -32,10 +32,10 @@ public class ParticipantFlyer : MonoBehaviour
         var endPosition = heihgestPosition + directionWithoutY.normalized * 16 + new Vector3(0, -10, 0);
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(heihgestPosition, MovingController.FlyingTime / 3).SetEase(Ease.Linear));
-        sequence.Append(transform.DOMove(endPosition, 2 * MovingController.FlyingTime / 3).SetEase(Ease.Linear)
+        sequence.Append(transform.DOMove(heihgestPosition, MovingParamsController.FlyingTime / 3).SetEase(Ease.Linear));
+        sequence.Append(transform.DOMove(endPosition, 2 * MovingParamsController.FlyingTime / 3).SetEase(Ease.Linear)
             .OnComplete(() => { }));
-        StartCoroutine(CheckBottleEnded(MovingController.FlyingTime));
+        StartCoroutine(CheckBottleEnded(MovingParamsController.FlyingTime));
     }
     
     private IEnumerator CheckBottleEnded(float delay)

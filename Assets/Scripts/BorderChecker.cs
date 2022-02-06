@@ -138,7 +138,7 @@ public class BorderChecker : MonoBehaviour
         return Vector3.zero;
     }
     
-    public bool IsNextToAngle(Vector3 position, float distance)
+    public bool IsAngleNearby(Vector3 position, float distance)
     {
         if (Vector3.Distance(position, _leftDownPilliar.position) < distance)
             return true;

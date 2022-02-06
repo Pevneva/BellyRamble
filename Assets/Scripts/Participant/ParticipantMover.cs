@@ -109,8 +109,8 @@ public class ParticipantMover : MonoBehaviour
         IsPushing = true;
         Participant.SetBoostEffectsVisibility(true);
         Animator.SetFloat(AnimatorParticipantController.Params.Speed, 2f);
-        yield return new WaitForSeconds(0.05f);
-        yield return new WaitForSeconds(runnigTime);
+        // yield return new WaitForSeconds(0.05f);
+        // yield return new WaitForSeconds(runnigTime);
     }
 
     public void TryMove(Vector2 direction)
@@ -145,7 +145,7 @@ public class ParticipantMover : MonoBehaviour
 
         if (_speed < StartSpeed)
         {
-            _speed = IsBoosting ? MovingController.Boost * StartSpeed : StartSpeed;
+            _speed = IsBoosting ? MovingParamsController.Boost * StartSpeed : StartSpeed;
         }
 
         Animator.SetFloat(AnimatorParticipantController.Params.Speed, MovingDirection.normalized.magnitude * _speed);
