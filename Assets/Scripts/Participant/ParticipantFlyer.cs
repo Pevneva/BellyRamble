@@ -7,14 +7,11 @@ using UnityEngine.Events;
 public class ParticipantFlyer : MonoBehaviour
 {
     public event UnityAction FlyStarted;
-    public event UnityAction<Transform> CameraFlyStarted; 
     
-    private Camera _mainCamera;
     private BattleController _battleController;
 
     private void Start()
     {
-        _mainCamera = Camera.main;
         _battleController = FindObjectOfType<BattleController>();
     }
     
@@ -22,14 +19,7 @@ public class ParticipantFlyer : MonoBehaviour
     {
         Vector3 directionWithoutY = new Vector3(direction.x, 0, direction.z);
         if (isCameraMoving)
-        {
-            Debug.Log("AAA transform : " + transform + "; Time: " + Time.deltaTime);
-            // CameraFlyStarted?.Invoke(transform); AAA
             _battleController.FlyingCameraStart(transform);
-            // CameraMover cameraMover = _mainCamera.gameObject.GetComponent<CameraMover>();
-            // cameraMover.SetKindMoving(false);
-            // cameraMover.SetTarget(transform);
-        }
 
         FlyStarted?.Invoke();
 

@@ -2402,7 +2402,6 @@ GameObject:
   - component: {fileID: 275895195}
   - component: {fileID: 275895194}
   - component: {fileID: 275895193}
-  - component: {fileID: 275895192}
   m_Layer: 5
   m_Name: WinPanel
   m_TagString: Untagged
@@ -2438,24 +2437,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &275895192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275895190}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e081ffd509faa44eb3c29ba4d62b7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moneyPrefab: {fileID: 8914402304806161566, guid: 541cae20f355a5046a32492c21f19cab, type: 3}
-  _moneyIconContainer: {fileID: 1253989062}
-  _itemsAmount: 11
-  _countMoneyTime: 0
-  _flyMoneyTime: 0
-  _flyInMoneyTime: 0
 --- !u!114 &275895193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17593,9 +17574,6 @@ MonoBehaviour:
   _moneyPrefab: {fileID: 8914402304806161566, guid: 541cae20f355a5046a32492c21f19cab, type: 3}
   _moneyIconContainer: {fileID: 1505833337}
   _itemsAmount: 7
-  _countMoneyTime: 0
-  _flyMoneyTime: 0
-  _flyInMoneyTime: 0
 --- !u!1001 &362649674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26752,9 +26730,6 @@ MonoBehaviour:
   _moneyPrefab: {fileID: 8914402304806161566, guid: 541cae20f355a5046a32492c21f19cab, type: 3}
   _moneyIconContainer: {fileID: 1505833337}
   _itemsAmount: 11
-  _countMoneyTime: 0
-  _flyMoneyTime: 0
-  _flyInMoneyTime: 0
 --- !u!1 &692888792
 GameObject:
   m_ObjectHideFlags: 0
@@ -40755,9 +40730,6 @@ MonoBehaviour:
   _moneyPrefab: {fileID: 8914402304806161566, guid: 541cae20f355a5046a32492c21f19cab, type: 3}
   _moneyIconContainer: {fileID: 1253989062}
   _itemsAmount: 7
-  _countMoneyTime: 0.35
-  _flyMoneyTime: 1
-  _flyInMoneyTime: 0.55
 --- !u!1 &1652611968
 GameObject:
   m_ObjectHideFlags: 0
