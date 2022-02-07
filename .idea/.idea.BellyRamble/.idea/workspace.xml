@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Integrated CinemaMachine. Removed CameraMover.cs.">
+    <list default="true" id="153cdac1-24b9-4b80-a7a8-d3aa7f035659" name="Default Changelist" comment="Improved MoneyAnimator.cs.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BellyRamble/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Food/FoodGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Food/FoodGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F98083CB-C97E-4FA0-A4EF-2F523FEFF5E1/2d/b9c4f1ac/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Utilities/TimeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Food.cs" root0="FORCE_HIGHLIGHTING" />
@@ -79,6 +81,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BattleController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@4.0.3/Editor/UnityPurchasingEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MovingParamsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/Unity_Projects/!Repo/BellyRamble/Assets/Scripts/Participant/ParticipantFlyer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ArrowRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/TimelineHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" root0="FORCE_HIGHLIGHTING" />
@@ -107,8 +110,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerDataView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/BotRuler.cs" />
@@ -148,16 +149,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/DelayedController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/Participant.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantPusherOut.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/MovingController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/MovingParamsController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BattleController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantMover.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MoneyAnimator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Temp.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/ParticipantFlyer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BorderChecker.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Game.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Food/FoodGeneration.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotMover.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Participant/BotRuler.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="225Stk0XvYyELpkdAZAKhFmYvDP" />
@@ -460,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644233811176</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Improved MoneyAnimator.cs.">
+      <created>1644235313565</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1644235313565</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +492,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Improved ropes." />
     <MESSAGE value="Added the bots' moving." />
     <MESSAGE value="Added chair generation." />
     <MESSAGE value="Added audience." />
@@ -507,7 +516,8 @@
     <MESSAGE value="Added MovingController.cs." />
     <MESSAGE value="Improved BattleController.cs." />
     <MESSAGE value="Integrated CinemaMachine. Removed CameraMover.cs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated CinemaMachine. Removed CameraMover.cs." />
+    <MESSAGE value="Improved MoneyAnimator.cs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved MoneyAnimator.cs." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

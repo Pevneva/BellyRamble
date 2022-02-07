@@ -1,6 +1,5 @@
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {

@@ -8,25 +8,28 @@ public class FoodGeneration : MonoBehaviour
     [SerializeField] private GridObject[] _foodPrefabs;
     [SerializeField] private GridObject[] _primaryFoodPrefabs;
     [SerializeField] private float _cellSize;
-    [SerializeField] private int _cellCount = 5;
+    [SerializeField] private int _cellCount;
     [SerializeField] private Transform _leftDownPoint;
     [SerializeField] private Transform _rightUpPoint;
     [SerializeField] private Transform _ground;
 
+    private readonly float _heightOffset = 2.91f;
+    private readonly float _increasingTime = 0.5f;
+    private readonly int _amountFoodToCreateNew = 5;
+    private readonly int _chancePrimaryFoodInPercentage = 10;
     private List<Vector3Int> _collisionsMatrix = new List<Vector3Int>();
-    private float _generationHeight;
-    private float _delayCreating;
     private Queue<Vector3Int> _foodDestroying;
     private Vector3 _startPosition;
     private Vector3 _endPosition;
-    
+    private float _generationHeight;
+
     private void Awake()
     {
         _startPosition = _leftDownPoint.position;
         _endPosition = _rightUpPoint.position;
         _cellSize = (_endPosition.x - _startPosition.x) / _cellCount; 
         _foodDestroying = new Queue<Vector3Int>();
-        _generationHeight = _ground.position.y + 0.35f + 2.56f;
+        _generationHeight = _ground.position.y + _heightOffset;
         FillArea(_startPosition);
     }
     
@@ -82,7 +85,7 @@ public class FoodGeneration : MonoBehaviour
         TryRemoveFromCollisionsMatrix(gridPosition);
         _foodDestroying.Enqueue(gridPosition);
         
-        if (_foodDestroying.Count > 5)
+        if (_foodDestroying.Count > _amountFoodToCreateNew)
             CreateItemFromFoodQueue();
     }
 
@@ -94,7 +97,7 @@ public class FoodGeneration : MonoBehaviour
 
     private void CreateItemFromFoodQueue()
     {
-        int randomValue = Random.Range(0, 10);
+        int randomValue = Random.Range(0, 100 / _chancePrimaryFoodInPercentage);
         if (randomValue == 0 )
             CreateFood(_primaryFoodPrefabs[0], _foodDestroying.Dequeue(), true);
         else
@@ -114,7 +117,7 @@ public class FoodGeneration : MonoBehaviour
         if (isSmoothShowing)
         {
             gridObject.transform.DOScale(0, 0);
-            gridObject.transform.DOScale(scale, 0.5f);           
+            gridObject.transform.DOScale(scale, _increasingTime);           
         }
     }
 

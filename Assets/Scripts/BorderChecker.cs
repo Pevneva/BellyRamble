@@ -14,22 +14,19 @@ public class BorderChecker : MonoBehaviour
 
     public Vector2 CenterPositionXZ { get; private set; }
 
+    private readonly float _offset = 0.35f;
+    private readonly float _offsetToPush = -0.1f;
     private Vector3 _leftDownShperePosition;
     private Vector3 _rightUpShperePosition;
     private float _radius;
-    private float _offset;
     private Vector2 _planeStartPoint;
     private bool _isLeftBorder;
     private bool _isRightBorder;
     private bool _isUpBorder;
     private bool _isDownBorder;
-    private float _offsetToPush;
 
     private void Start()
     {
-        _offset = 0.35f;
-        _offsetToPush = -0.1f;
-
         _leftDownShperePosition = _leftDownShpere.position;
         _rightUpShperePosition = _rightUpShpere.position;
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantMover))]
+[RequireComponent(typeof(ParticipantPusherOut))]
 public class BotRuler : MonoBehaviour
 {
     public Vector3 MovingDirection { get; private set; }
