@@ -8,12 +8,14 @@ public class BattleController : MonoBehaviour
     [SerializeField] private List<Participant> _participants;
 
     public event UnityAction PlayerWon; 
-    public event UnityAction PlayerLoosed; 
+    public event UnityAction PlayerLoosed;
+    public event UnityAction<Transform> CameraFlyStarted; 
     
     private void Start()
     {
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);
     }
+
 
     private void SetCrownToWinner()
     {
@@ -54,7 +56,7 @@ public class BattleController : MonoBehaviour
             PlayerWon?.Invoke();
     }
     
-    public void RemoveParticipant(Participant participant)
+    private void RemoveParticipant(Participant participant)
     {
         _participants.Remove(participant);
     }
@@ -75,7 +77,11 @@ public class BattleController : MonoBehaviour
                 distanceTarget = distance;
             }
         }
-        Debug.Log("AAA BBB CCC targetParticipant : " + targetParticipant);
         return targetParticipant;
+    }
+
+    public void FlyingCameraStart(Transform transform)
+    {
+        CameraFlyStarted?.Invoke(transform);
     }
 }

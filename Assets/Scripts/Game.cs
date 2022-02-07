@@ -1,4 +1,6 @@
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
@@ -6,15 +8,20 @@ public class Game : MonoBehaviour
     [SerializeField] private BattleController _battleController;
     [SerializeField] private WinPanel _winPanel;
     [SerializeField] private FXContainer _fxContainer;
+    [SerializeField] private CinemachineVirtualCamera _battleCamera;
+    [SerializeField] private CinemachineVirtualCamera _flyingCamera;
+    [SerializeField] private CinemachineVirtualCamera _zoomCamera;
 
-    private CameraMover _cameraMover;
+    private readonly float _delayAfterGetMoneyPressed = 3.5f;
+    private readonly float _delayBeforeRemoteCamera = 0.5f;
     
     private void Start()
     {
         HideWinPanel();
-        _cameraMover = Camera.main.GetComponent<CameraMover>();
+        SetStartCamera();
         _battleController.PlayerWon += OnPlayerWon;
-        _battleController.PlayerLoosed += OnPlaeyrLoosed;
+        _battleController.PlayerLoosed += OnPlayerLoosed;
+        _battleController.CameraFlyStarted += OnCameraFlyStarted;
     }
 
     private void OnPlayerWon()
@@ -32,7 +39,8 @@ public class Game : MonoBehaviour
 
     private void OnGetMoneyButtonPressed()
     {
-        Invoke(nameof(SetNewLevel), 3.5f);
+        Invoke(nameof(SetNewLevel), _delayAfterGetMoneyPressed);
+        _winPanel.GetMoneyButtonPressed -= OnGetMoneyButtonPressed;
     }
 
     public void HideWinPanel()
@@ -40,21 +48,48 @@ public class Game : MonoBehaviour
         _winPanel.gameObject.SetActive(false);
     }
 
-    private void OnPlaeyrLoosed()
+    private void OnPlayerLoosed()
     {
         //to do Loose Panel
-        Debug.Log("Game Over");
+        _battleController.PlayerLoosed -= OnPlayerLoosed;
     }
 
     
     private void SetNewLevel()
     {
         _player.ResetPlayer();
-        _cameraMover.SetPosition(_player.transform.position);
-        _cameraMover.SetTarget(_player.transform);
-        _cameraMover.SetKindMoving(true);
-        Invoke(nameof(HideWinPanel), 0);
-        _cameraMover.ZoomIn();
-        _cameraMover.ZoomOut();
+        DoZoomOut();
+        HideWinPanel();
+    }
+
+    private void SetStartCamera()
+    {
+        _flyingCamera.gameObject.SetActive(false);        
+        _zoomCamera.gameObject.SetActive(false); 
+        _battleCamera.gameObject.SetActive(true);
+    }
+    
+    private void OnCameraFlyStarted(Transform follow)
+    {
+        _flyingCamera.Follow = follow;
+        _flyingCamera.gameObject.transform.position = follow.position;
+        _battleCamera.gameObject.SetActive(false);
+        _zoomCamera.gameObject.SetActive(false);
+        _flyingCamera.gameObject.SetActive(true);          
+    }
+
+    private void DoZoomOut()
+    {
+        _zoomCamera.gameObject.transform.position = _player.gameObject.transform.position;
+        _flyingCamera.gameObject.SetActive(false);        
+        _battleCamera.gameObject.SetActive(false); 
+        _zoomCamera.gameObject.SetActive(true);
+        Invoke(nameof(DoBattleCamera), _delayBeforeRemoteCamera);
+    }
+
+    private void DoBattleCamera()
+    {
+        _zoomCamera.gameObject.SetActive(false); 
+        _battleCamera.gameObject.SetActive(true);          
     }
 }
