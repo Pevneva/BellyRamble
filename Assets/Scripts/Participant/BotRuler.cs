@@ -5,6 +5,7 @@ public class BotRuler : MonoBehaviour
 {
     public Vector3 MovingDirection { get; private set; }
 
+    private readonly float _spreadDistance = 0.35f;
     private ParticipantPusherOut _participantPusherOut;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
@@ -43,7 +44,7 @@ public class BotRuler : MonoBehaviour
         if (_borderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
             SetNewTarget();
 
-        if (Vector3.Distance(transform.position, _ropePoint) < 0.35f) //AAA do const
+        if (Vector3.Distance(transform.position, _ropePoint) < _spreadDistance) 
             PushOut();
 
         if (_target != null)

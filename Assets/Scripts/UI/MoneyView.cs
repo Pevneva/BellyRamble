@@ -14,7 +14,6 @@ public class MoneyView : MonoBehaviour
     private bool _isCounting;
     private float _addedMoney;
     private float _tempAddedMoney;
-    private float _countingMoneyTimeStepPerFrame;
     private int _startMoney;
 
     private void Start()
@@ -35,7 +34,7 @@ public class MoneyView : MonoBehaviour
 
     private void Update()
     {
-        TryStartCounter();
+        TryCount();
     }
 
     private void OnMoneyAdded(int addedMoney)
@@ -51,11 +50,11 @@ public class MoneyView : MonoBehaviour
         _isCounting = true;
     }
 
-    private void TryStartCounter()
+    private void TryCount()
     {
         if (_isCounting)
         {
-            _tempAddedMoney +=  _addedMoney / (_countTime * 2 - 0.25f)  * Time.deltaTime;
+            _tempAddedMoney +=  _addedMoney / (_countTime * 2 - Time.deltaTime)  * Time.deltaTime;
             
             if (_tempAddedMoney >= _addedMoney)
             {

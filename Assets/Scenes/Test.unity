@@ -425,19 +425,6 @@ CapsuleCollider:
   m_Height: 2.4627051
   m_Direction: 1
   m_Center: {x: 0, y: 0.6348288, z: 0.10751468}
---- !u!114 &53828437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53828428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7489ec66a0dab7341a0de087cd3146dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1.5
 --- !u!4 &85004994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2548089201970362302, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
@@ -29545,19 +29532,6 @@ CapsuleCollider:
   m_Height: 2.3611522
   m_Direction: 1
   m_Center: {x: 0, y: 0.6856053, z: 0.10751468}
---- !u!114 &977488902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977488893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7489ec66a0dab7341a0de087cd3146dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1.5
 --- !u!1 &994599724
 GameObject:
   m_ObjectHideFlags: 0
@@ -50260,6 +50234,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 351334959817669816, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
+      propertyPath: _speed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2548089200143249131, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -50435,6 +50413,10 @@ PrefabInstance:
     - target: {fileID: 5740389584940972639, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500011813717196316, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
+      propertyPath: _speed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8443315193218714238, guid: ef6fbbf765fc5774b9899ea683b24cdb, type: 3}
       propertyPath: m_Name

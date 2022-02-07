@@ -9,14 +9,13 @@ public class ArrowRotation : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
 
-    private float _speed;
+    private readonly float _speed = 250;
     private float _zRotation;
     private bool _isClockWise;
 
     private void Start()
     {
         _rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-        _speed = 250f;
         _zRotation = 0;
         _isClockWise = true;
     }
