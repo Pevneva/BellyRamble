@@ -15,6 +15,7 @@ public class Participant : MonoBehaviour
     private Vector3 _scale;
     private Rigidbody _rigidbody;
     private BattleController _battleController;
+    private readonly Vector3 _addedVectorKoef = new Vector3(0.01f, 0.001f, 0.01f);
 
     public int Score => _score;
     public event UnityAction<int> ScoreChanged;
@@ -45,7 +46,7 @@ public class Participant : MonoBehaviour
 
     private void SetScale(int score)
     {
-        _scale += new Vector3(1f, 0.1f, 1f) * 0.01f / (float) score;
+        _scale += _addedVectorKoef / (float) score;
         transform.localScale = _scale;
     }
 
@@ -89,15 +90,15 @@ public class Participant : MonoBehaviour
             otherRigidbody.isKinematic = false;
             _rigidbody.isKinematic = false;
 
-            StartCoroutine(DoKinematic(0.5f, otherRigidbody, _rigidbody));
+            StartCoroutine(DoKinematic(0.5f, otherRigidbody));
         }
     }
     
-    private IEnumerator DoKinematic(float delay, Rigidbody rigidbody1, Rigidbody rigidbody2)
+    private IEnumerator DoKinematic(float delay, Rigidbody otherRigidbody)
     {
         yield return new WaitForSeconds(delay);
-        rigidbody1.isKinematic = true;
-        rigidbody2.isKinematic = true;
+        otherRigidbody.isKinematic = true;
+        _rigidbody.isKinematic = true;
     }
 
     private void OnDestroy()

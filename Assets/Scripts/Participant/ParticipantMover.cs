@@ -99,8 +99,6 @@ public class ParticipantMover : MonoBehaviour
             Animator.SetFloat(AnimatorParticipantController.Params.Speed, 0);
             _speed = 0;
         }
-
-        BorderChecker.ResetBorders();
     }
 
     protected IEnumerator StartRunAnimation(float delayTime, float runnigTime)

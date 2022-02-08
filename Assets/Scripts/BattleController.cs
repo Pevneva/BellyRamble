@@ -16,7 +16,6 @@ public class BattleController : MonoBehaviour
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);
     }
 
-
     private void SetCrownToWinner()
     {
         foreach (var participant in _participants)
