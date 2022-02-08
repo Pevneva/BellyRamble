@@ -5,11 +5,11 @@ public class Player : Participant
 {
     [SerializeField] private int _startMoney;
     
+    private Vector3 _startPosition;
+    
     public int Money { get; private set; }
     public event UnityAction<int> MoneyAdded;
 
-    private Vector3 _startPosition;
-    
     private void OnEnable()
     {
         Money = _startMoney;

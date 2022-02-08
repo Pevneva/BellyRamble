@@ -9,8 +9,8 @@ public class BattleController : MonoBehaviour
 
     public event UnityAction PlayerWon; 
     public event UnityAction PlayerLoosed;
-    public event UnityAction<Transform> CameraFlyStarted; 
-    
+    public event UnityAction<Transform> CameraFlyStarted;
+
     private void Start()
     {
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);

@@ -12,8 +12,6 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private TMP_Text _getMoneyText;
     [SerializeField] private Transform _targetPoint;
     [SerializeField] private Transform _beforeFlyInPoint;
-
-    public event UnityAction GetMoneyButtonPressed;
     
     private readonly float _showingDuration = 3;
     private MoneyAnimator _moneyAnimator;
@@ -21,6 +19,8 @@ public class WinPanel : MonoBehaviour
     private float _rewardValue;
     private float _changeMoneyStep;
     private Player _player;
+    
+    public event UnityAction GetMoneyButtonPressed;
 
     private void Start()
     {

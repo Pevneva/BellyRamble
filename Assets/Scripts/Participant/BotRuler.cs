@@ -3,8 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(ParticipantPusherOut))]
 public class BotRuler : MonoBehaviour
 {
-    public Vector3 MovingDirection { get; private set; }
-
     private readonly float _spreadDistance = 0.35f;
     private ParticipantPusherOut _participantPusherOut;
     private BorderChecker _borderChecker;
@@ -16,6 +14,8 @@ public class BotRuler : MonoBehaviour
     private Vector3 _ropePoint;
     private TouchBorder _touchBorder;
     private bool _isPushingOut;
+    
+    public Vector3 MovingDirection { get; private set; }
 
     private void Start()
     {

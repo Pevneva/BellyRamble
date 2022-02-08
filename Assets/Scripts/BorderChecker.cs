@@ -11,9 +11,7 @@ public class BorderChecker : MonoBehaviour
     [SerializeField] private Transform _leftUpPilliar;
     [SerializeField] private Transform _rightUpPilliar;
     [SerializeField] private Transform _rightDownPilliar;
-
-    public Vector2 CenterPositionXZ { get; private set; }
-
+    
     private readonly float _offset = 0.35f;
     private readonly float _offsetToPush = -0.1f;
     private Vector3 _leftDownShperePosition;
@@ -24,6 +22,8 @@ public class BorderChecker : MonoBehaviour
     private bool _isRightBorder;
     private bool _isUpBorder;
     private bool _isDownBorder;
+
+    public Vector2 CenterPositionXZ { get; private set; }
 
     private void Start()
     {

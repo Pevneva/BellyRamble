@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ParticipantPusherOut : ParticipantMover
 {
-    public float RepulsionTime => MovingParamsController.TurnOverTime + MovingParamsController.PreparingPushTime + MovingParamsController.PushTime;
-
     private float _pushDistanceKoef = 2;
     private float _angleRotation;
     private bool _isBot;
     private Vector3 _discardingDirection;
-    
+ 
+    public float RepulsionTime => MovingParamsController.TurnOverTime + MovingParamsController.PreparingPushTime + MovingParamsController.PushTime;
+
     private void Start()
     {
         base.Start();

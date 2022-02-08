@@ -6,6 +6,7 @@ public class FoodUtils : MonoBehaviour
 {
     private FoodGeneration _foodGeneration;
     private Food[] _foods;
+    
     private void Awake()
     {
         _foodGeneration = FindObjectOfType<FoodGeneration>();

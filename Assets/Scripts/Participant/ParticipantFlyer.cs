@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class ParticipantFlyer : MonoBehaviour
 {
-    public event UnityAction FlyStarted;
-    
     private BattleController _battleController;
+    
+    public event UnityAction FlyStarted;
 
     private void Start()
     {

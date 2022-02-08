@@ -8,6 +8,11 @@ public class ParticipantMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     
+    private float _positionY;
+    private Quaternion _lookRotation;
+    private bool _isTouchBreak;
+    private ParticipantFlyer _participantFlyer;
+    
     protected bool IsPushing;
     protected bool IsRuling;
     protected Vector3 StartPosition;
@@ -27,11 +32,6 @@ public class ParticipantMover : MonoBehaviour
         get { return _speed; }
         protected set { _speed = value; }
     }
-    
-    private float _positionY;
-    private Quaternion _lookRotation;
-    private bool _isTouchBreak;
-    private ParticipantFlyer _participantFlyer;
 
     protected void Start()
     {

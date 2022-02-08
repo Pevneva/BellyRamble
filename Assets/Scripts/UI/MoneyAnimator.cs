@@ -8,10 +8,6 @@ public class MoneyAnimator : MonoBehaviour
     [SerializeField] private Image _moneyPrefab;
     [SerializeField] private GameObject _moneyIconContainer;
     [SerializeField] private int _itemsAmount;
-    
-    public float CountMoneyTime { get; } = 0.35f;
-    public float FlyInMoneyTime { get; } = 0.55f;
-    public float BeforeFlyInMoneyTime => _flyMoneyTime + CountMoneyTime;
 
     private readonly int _capacityPool = 20;
     private readonly float _flyMoneyTime = 1;
@@ -28,6 +24,10 @@ public class MoneyAnimator : MonoBehaviour
     private Image _currentMoneyIcon;
     private float _countingPlayerTimeDelayStep;
     private static float s_delayPlayerTimeItem;
+    
+    public float CountMoneyTime { get; } = 0.35f;
+    public float FlyInMoneyTime { get; } = 0.55f;
+    public float BeforeFlyInMoneyTime => _flyMoneyTime + CountMoneyTime;    
 
     private void Start()
     {

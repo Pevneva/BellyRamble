@@ -12,14 +12,13 @@ public class Participant : MonoBehaviour
     [SerializeField] private GameObject _rightLegParticipant;
     [SerializeField] private GameObject _backParticipant;
 
-    public event UnityAction<int> ScoreChanged;
-    public event UnityAction<Food> FoodEatenByBot;
-
     private Vector3 _scale;
     private Rigidbody _rigidbody;
     private BattleController _battleController;
 
     public int Score => _score;
+    public event UnityAction<int> ScoreChanged;
+    public event UnityAction<Food> FoodEatenByBot;
 
     protected void Start()
     {
