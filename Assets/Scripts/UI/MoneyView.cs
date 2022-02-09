@@ -8,8 +8,8 @@ public class MoneyView : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private TMP_Text _moneyText;
-
-    private MoneyAnimator _moneyAnimator;
+    [SerializeField] private MoneyAnimator _moneyAnimator;
+    
     private float _countTime;
     private bool _isCounting;
     private float _addedMoney;
@@ -20,7 +20,6 @@ public class MoneyView : MonoBehaviour
     {
         _tempAddedMoney = 0;
         _isCounting = false;
-        _moneyAnimator = FindObjectOfType<MoneyAnimator>();
         _startMoney = _player.Money;
         _moneyText.text = _player.Money.ToString();
         _countTime = _moneyAnimator.FlyInMoneyTime;

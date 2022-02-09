@@ -42,25 +42,37 @@ public class ParticipantPusherOut : ParticipantMover
         _angleRotation = BorderChecker.GetTurnOverAngle(moveDirection, _discardingDirection, touchBorder);
 
         PushingOutSequence = DOTween.Sequence();
-        PushingOutSequence.Append(transform
-            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0),
-                MovingParamsController.TurnOverTime)
-            .SetEase(Ease.Linear));
-        PushingOutSequence.Insert(0, transform
-            .DOMove(StartPosition - _discardingDirection * MovingParamsController.BackStepKoef, MovingParamsController.TurnOverTime)
-            .SetEase(Ease.Linear));
-        RotateBeforePushing(new Vector2(-MovingParamsController.AngleRotateBeforePushing, 0), PushingOutSequence);
-        PushingOutSequence.Append(transform.DOMove(NewPosition, isBot ? MovingParamsController.PushTime * MovingParamsController.BotReduceKoef : MovingParamsController.PushTime)
-            .SetEase(Ease.Flash));
+        TurnAround(PushingOutSequence, _angleRotation);
+        DoStepBack(PushingOutSequence, StartPosition - _discardingDirection * MovingParamsController.BackStepKoef);
+        RotateBeforePushing(PushingOutSequence, new Vector2(-MovingParamsController.AngleRotateBeforePushing, 0));
+        Push(PushingOutSequence, NewPosition,
+            isBot
+                ? MovingParamsController.PushTime * MovingParamsController.BotReduceKoef
+                : MovingParamsController.PushTime);
 
-        StartCoroutine(StartRunAnimation(MovingParamsController.TurnOverTime + MovingParamsController.PreparingPushTime, MovingParamsController.PushTime));
-        BoostCoroutine = StartCoroutine(StartBoost(RepulsionTime));
+        StartCoroutine(StartRunAnimation(MovingParamsController.TurnOverTime + MovingParamsController.PreparingPushTime));
+        BoostCoroutine = StartCoroutine(DoBoost(RepulsionTime));
         StartCoroutine(Reset(RepulsionTime + Time.deltaTime));
         IsRuling = false;
         IsPushing = true;
     }
-
-    private void RotateBeforePushing(Vector2 angle, Sequence seq)
+    
+    private void TurnAround(Sequence seq, float angleRotation)
+    {
+        seq.Append(transform
+            .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, angleRotation, 0),
+                MovingParamsController.TurnOverTime)
+            .SetEase(Ease.Linear));
+    }
+    
+    private void DoStepBack(Sequence seq, Vector3 backOffsetPosition)
+    {
+        seq.Insert(0, transform
+            .DOMove(backOffsetPosition, MovingParamsController.TurnOverTime)
+            .SetEase(Ease.Linear));
+    }
+    
+    private void RotateBeforePushing(Sequence seq, Vector2 angle)
     {
         seq.Append(transform
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(angle.x, _angleRotation, angle.y),
@@ -71,6 +83,12 @@ public class ParticipantPusherOut : ParticipantMover
             .DOLocalRotate(transform.rotation.eulerAngles + new Vector3(0, _angleRotation, 0), MovingParamsController.PreparingPushTime / 2)
             .SetEase(Ease.Linear));
     }
+    
+    private void Push(Sequence seq, Vector3 targetPosition, float duration)
+    {
+        seq.Append(transform.DOMove(targetPosition, duration)
+            .SetEase(Ease.Flash));
+    }
 
     public void DoRepulsion(Vector3 moveDirection, TouchBorder touchBorder, bool isBot = false)
     {
@@ -80,7 +98,7 @@ public class ParticipantPusherOut : ParticipantMover
         DoRopeRepulsion(moveDirection, touchBorder);
     }
     
-    private IEnumerator StartBoost(float delay)
+    private IEnumerator DoBoost(float delay)
     {
         Rigidbody.isKinematic = true;
 
@@ -94,17 +112,19 @@ public class ParticipantPusherOut : ParticipantMover
         }
 
         yield return new WaitForSeconds(delay);
+        Boost();
+        
+        yield return new WaitForSeconds(MovingParamsController.BoostTime);
+        StopBoost();
+    }
+
+    private void Boost()
+    {
         Participant.SetBoostEffectsVisibility(true);
         Speed *= MovingParamsController.Boost;
         IsBoosting = true;
         Rigidbody.isKinematic = true;
-        Animator.SetFloat(AnimatorParticipantController.Params.Speed, Speed);
-        yield return new WaitForSeconds(MovingParamsController.BoostTime);
-        Speed = StartSpeed;
-        IsBoosting = false;
-        Rigidbody.isKinematic = true;
-        Participant.SetBoostEffectsVisibility(false);
-        Animator.SetFloat(AnimatorParticipantController.Params.Speed, Speed);
+        Animator.SetFloat(AnimatorParticipantController.Params.Speed, Speed);        
     }
     
     public void StopBoost()

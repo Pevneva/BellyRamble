@@ -3,6 +3,7 @@ using UnityEngine;
 public class Rope : MonoBehaviour
 {
     private readonly float _breakDistance = 1.5f;
+    private readonly float _destroyingDelay = 0.05f;
     private Rigidbody _connectedRigidbody;
     private Rigidbody _rigidbody;
     private GameObject _parent;
@@ -21,7 +22,7 @@ public class Rope : MonoBehaviour
         if (Vector3.Distance(_connectedRigidbody.position, _rigidbody.position) > _breakDistance)
         {
             _parent = transform.parent.gameObject;
-            Destroy(_parent, 0.05f);
+            Destroy(_parent, _destroyingDelay);
         }
     }
 }

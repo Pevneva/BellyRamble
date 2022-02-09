@@ -73,29 +73,29 @@ public class BorderChecker : MonoBehaviour
 
     public float GetTurnOverAngle(Vector3 moveDirection, Vector3 discardingDirection, TouchBorder touchBorder)
     {
-        if (touchBorder == TouchBorder.LEFT && moveDirection.z > 0)
-            return 2 * Vector3.Angle(Vector3.forward, discardingDirection);
-
-        if (touchBorder == TouchBorder.LEFT && moveDirection.z < 0)
-            return -2 * Vector3.Angle(Vector3.back, discardingDirection);
-
-        if (touchBorder == TouchBorder.RIGHT && moveDirection.z > 0)
-            return -2 * Vector3.Angle(Vector3.forward, discardingDirection);
-
-        if (touchBorder == TouchBorder.RIGHT && moveDirection.z < 0)
-            return 2 * Vector3.Angle(Vector3.back, discardingDirection);
-
-        if (touchBorder == TouchBorder.UP && moveDirection.x > 0)
-            return 2 * Vector3.Angle(Vector3.right, discardingDirection);
-
-        if (touchBorder == TouchBorder.UP && moveDirection.x < 0)
-            return -2 * Vector3.Angle(Vector3.left, discardingDirection);
-
-        if (touchBorder == TouchBorder.DOWN && moveDirection.x > 0)
-            return -2 * Vector3.Angle(Vector3.right, discardingDirection);
-
-        if (touchBorder == TouchBorder.DOWN && moveDirection.x < 0)
-            return 2 * Vector3.Angle(Vector3.left, discardingDirection);
+        if (touchBorder == TouchBorder.LEFT)
+            if (moveDirection.z > 0)
+                return 2 * Vector3.Angle(Vector3.forward, discardingDirection);
+            else
+                return -2 * Vector3.Angle(Vector3.back, discardingDirection);
+        
+        if (touchBorder == TouchBorder.RIGHT)
+            if (moveDirection.z > 0)
+                return -2 * Vector3.Angle(Vector3.forward, discardingDirection);
+            else
+                return 2 * Vector3.Angle(Vector3.back, discardingDirection); 
+        
+        if (touchBorder == TouchBorder.UP)
+            if (moveDirection.x > 0)
+                return 2 * Vector3.Angle(Vector3.right, discardingDirection);
+            else
+                return -2 * Vector3.Angle(Vector3.left, discardingDirection); 
+        
+        if (touchBorder == TouchBorder.DOWN)
+            if (moveDirection.x > 0)
+                return -2 * Vector3.Angle(Vector3.right, discardingDirection);
+            else
+                return 2 * Vector3.Angle(Vector3.left, discardingDirection);
 
         return 0;
     }
@@ -129,5 +129,24 @@ public class BorderChecker : MonoBehaviour
             return true;
 
         return false;
+    }
+    
+    public bool IsRopeNearby(Vector3 center)
+    {
+        var colliders = Physics.OverlapSphere(center, MovingParamsController.ProcessedDistanceToRope);
+
+        foreach (var collider in colliders)
+            if (collider.gameObject.TryGetComponent<Rope>(out Rope rope))
+                return true;
+        
+        return false;
+    }
+    
+    public TouchBorder TryGetTouchBorder(Vector3 position)
+    {
+        if (IsOutField(position, out TouchBorder touchBorder))
+            return touchBorder;
+
+        return TouchBorder.NULL;
     }
 }

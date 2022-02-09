@@ -1,32 +1,29 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticipantPusherOut))]
+[RequireComponent(typeof(ParticipantPusherOut), typeof(BotMover))]
 public class BotRuler : MonoBehaviour
 {
     private readonly float _spreadDistance = 0.35f;
     private ParticipantPusherOut _participantPusherOut;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
+    private BotMover _botMover;
     private FoodUtils _foodUtils;
     private Transform _target;
-    private Quaternion _lookRotation;
-    private Animator _animator;
     private Vector3 _ropePoint;
     private TouchBorder _touchBorder;
     private bool _isPushingOut;
-    
-    public Vector3 MovingDirection { get; private set; }
+    private Vector3 _movingDirection;
 
     private void Start()
     {
         Reset();
 
         _participantPusherOut = GetComponent<ParticipantPusherOut>();
-        _borderChecker = FindObjectOfType<BorderChecker>();
-        _battleController = FindObjectOfType<BattleController>();
-        _foodUtils = FindObjectOfType<FoodUtils>();
-        _animator = GetComponentInChildren<Animator>();
-        _animator.SetFloat(AnimatorParticipantController.Params.Speed, _participantPusherOut.Speed);
+        _botMover = GetComponent<BotMover>();
+        
+        // _foodUtils = FindObjectOfType<FoodUtils>(); //AAA
+        GetComponentInChildren<Animator>().SetFloat(AnimatorParticipantController.Params.Speed, _participantPusherOut.Speed);
         _target = _foodUtils.GetNearestFood(transform);
 
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
@@ -51,7 +48,7 @@ public class BotRuler : MonoBehaviour
         {
             bool isParticipant = _target.TryGetComponent(out ParticipantMover participantMover);
             if (isParticipant && participantMover.IsFlying == false || isParticipant == false)
-                Move();
+                _botMover.Move(_target, _participantPusherOut.Speed, out _movingDirection);
             else
                 _target = _foodUtils.GetNearestFood(transform);
         }
@@ -61,32 +58,36 @@ public class BotRuler : MonoBehaviour
         }
     }
 
+    public void Init(BattleController battleController, BorderChecker borderChecker, FoodUtils foodUtils)
+    {
+        _battleController = battleController;
+        _borderChecker = borderChecker;
+        _foodUtils = foodUtils;
+    }
+
     private void Reset()
     {
         _isPushingOut = false;
         _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
-        MovingDirection = Vector3.zero;
+        _movingDirection = Vector3.zero;
     }
 
     private void PushOut()
     {
         _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
-        _participantPusherOut.DoRepulsion(MovingDirection, _touchBorder, true);
+        _participantPusherOut.DoRepulsion(_movingDirection, _touchBorder, true);
         _target.position = _participantPusherOut.NewPosition;
         _isPushingOut = true;
         Invoke(nameof(SetParticipantDirection), _participantPusherOut.RepulsionTime);
         Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + MovingParamsController.BoostTime);
     }
 
-    private void Move()
-    {
-        MovingDirection = (_target.position - transform.position).normalized;
-        transform.Translate(Time.deltaTime * _participantPusherOut.Speed * MovingDirection, Space.World);
-    }
-
     private void OnFoodEaten(Food food)
     {
-        if (IsRopeNearby() == false ||
+        if (_participantPusherOut.Speed > _participantPusherOut.StartSpeed)
+            return;
+        
+        if (_borderChecker.IsRopeNearby(transform.position) == false ||
             _borderChecker.IsAngleNearby(transform.position, MovingParamsController.IgnoredDistanceToAngle))
         {
             Invoke(nameof(SetNewTarget), Time.deltaTime);
@@ -98,21 +99,10 @@ public class BotRuler : MonoBehaviour
         }
     }
 
-    private bool IsRopeNearby()
-    {
-        var colliders = Physics.OverlapSphere(transform.position, MovingParamsController.ProcessedDistanceToRope);
-
-        foreach (var collider in colliders)
-            if (collider.gameObject.TryGetComponent<Rope>(out Rope rope))
-                return true;
-        
-        return false;
-    }
-
     private void SetRopePoint()
     {
-        Vector3 ropePoint = MovingParamsController.RopePointDistanceKoef * MovingDirection.normalized + transform.position;
-        _touchBorder = TryGetTouchBorder(ropePoint);
+        Vector3 ropePoint = MovingParamsController.RopePointDistanceKoef * _movingDirection.normalized + transform.position;
+        _touchBorder = _borderChecker.TryGetTouchBorder(ropePoint);
 
         if (_touchBorder == TouchBorder.NULL)
             _ropePoint = Vector3.zero;
@@ -135,14 +125,6 @@ public class BotRuler : MonoBehaviour
         }
     }
 
-    private TouchBorder TryGetTouchBorder(Vector3 position)
-    {
-        if (_borderChecker.IsOutField(position, out TouchBorder touchBorder))
-            return touchBorder;
-
-        return TouchBorder.NULL;
-    }
-
     private void SetNewTarget()
     {
         _target = _foodUtils.GetNearestFood(transform);
@@ -151,6 +133,7 @@ public class BotRuler : MonoBehaviour
     private void SetParticipantDirection()
     {
         _target = _battleController.GetNearestParticipant(gameObject.GetComponent<Bot>()).gameObject.transform;
+        
         _isPushingOut = false;
     }
 
@@ -158,15 +141,14 @@ public class BotRuler : MonoBehaviour
     {
         if (_target == null)
             return;
-
+    
         if (_isPushingOut)
             return;
-
+    
         if (_participantPusherOut.IsFlying)
             return;
 
-        _lookRotation = Quaternion.LookRotation(_target.position - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.85f);
+        _botMover.Rotate(_target);
     }
 
     private void OnDrawGizmos()

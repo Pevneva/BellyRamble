@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FoodGeneration))]
 public class FoodUtils : MonoBehaviour
 {
     private FoodGeneration _foodGeneration;
     private Food[] _foods;
-    
+
     private void Awake()
     {
-        _foodGeneration = FindObjectOfType<FoodGeneration>();
+        _foodGeneration = GetComponent<FoodGeneration>();
     }
-    
+
     public Transform GetNearestFood(Transform target)
     {
         Food nearestFood = null;
         _foods = _foodGeneration.gameObject.GetComponentsInChildren<Food>();
         float shortestDistance = Mathf.Infinity;
-        
+
         foreach (Food food in _foods)
         {
             float distanceToFood = Vector3.Distance(target.position, food.gameObject.transform.position);

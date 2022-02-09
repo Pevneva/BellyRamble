@@ -3,11 +3,12 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(Participant),typeof(ParticipantFlyer))]
 public class ParticipantMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     
+    private readonly float _speedRotation = 0.5f;
     private float _positionY;
     private Quaternion _lookRotation;
     private bool _isTouchBreak;
@@ -23,7 +24,7 @@ public class ParticipantMover : MonoBehaviour
     protected Animator Animator;
     protected Participant Participant;
     protected Vector3 MovingDirection { get; private set; }
-    protected float StartSpeed { get; private set; }
+    public float StartSpeed { get; private set; }
     public bool IsBoosting { get; protected set; }
     public bool IsFlying { get; protected set; }
     public Vector3 NewPosition { get; protected set; }
@@ -42,7 +43,6 @@ public class ParticipantMover : MonoBehaviour
         StartSpeed = _speed;
         Rigidbody = GetComponent<Rigidbody>();
         Participant = GetComponent<Participant>();
-        BorderChecker = FindObjectOfType<BorderChecker>();
         Animator = GetComponentInChildren<Animator>();
         Participant.SetBoostEffectsVisibility(false);
         if (GetComponent<PlayerInput>() != null)
@@ -69,6 +69,11 @@ public class ParticipantMover : MonoBehaviour
             TryMoveToRing();
             PushingOutSequence.Kill();
         }
+    }
+
+    public void Init(BorderChecker borderChecker)
+    {
+        BorderChecker = borderChecker;
     }
 
     private void TryMoveToRing()
@@ -101,7 +106,7 @@ public class ParticipantMover : MonoBehaviour
         }
     }
 
-    protected IEnumerator StartRunAnimation(float delayTime, float runnigTime)
+    protected IEnumerator StartRunAnimation(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         IsPushing = true;
@@ -127,7 +132,7 @@ public class ParticipantMover : MonoBehaviour
     private void Rotate(Vector2 direction)
     {
         _lookRotation = Quaternion.LookRotation(GetWorldDirection(direction));
-        transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, 0.5f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _lookRotation, _speedRotation);
     }
 
     private Vector3 GetWorldDirection(Vector2 direction)

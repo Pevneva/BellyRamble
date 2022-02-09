@@ -15,7 +15,7 @@ public class Participant : MonoBehaviour
     private Vector3 _scale;
     private Rigidbody _rigidbody;
     private BattleController _battleController;
-    private readonly Vector3 _addedVectorKoef = new Vector3(0.01f, 0.001f, 0.01f);
+    private readonly Vector3 _scaleVector = new Vector3(0.01f, 0.001f, 0.01f);
 
     public int Score => _score;
     public event UnityAction<int> ScoreChanged;
@@ -26,7 +26,7 @@ public class Participant : MonoBehaviour
         _scale = transform.localScale;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
-        _battleController = FindObjectOfType<BattleController>();
+        // _battleController = FindObjectOfType<BattleController>();
         
         _view.Render(this);
         _scale = transform.localScale;
@@ -39,6 +39,11 @@ public class Participant : MonoBehaviour
         _view.Render(this);
     }
 
+    public void Init(BattleController battleController)
+    {
+        _battleController = battleController;
+    }
+    
     private void OnScoreChanged(int score)
     {
         SetScale(score); //to improve
@@ -46,7 +51,7 @@ public class Participant : MonoBehaviour
 
     private void SetScale(int score)
     {
-        _scale += _addedVectorKoef / (float) score;
+        _scale += _scaleVector / (float) score;
         transform.localScale = _scale;
     }
 

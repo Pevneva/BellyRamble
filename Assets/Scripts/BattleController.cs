@@ -6,14 +6,24 @@ using UnityEngine.Events;
 public class BattleController : MonoBehaviour
 {
     [SerializeField] private List<Participant> _participants;
+    [SerializeField] private BorderChecker _borderChecker;
+    [SerializeField] private FoodUtils _foodUtils;
 
     public event UnityAction PlayerWon; 
     public event UnityAction PlayerLoosed;
     public event UnityAction<Transform> CameraFlyStarted;
 
-    private void Start()
+    private void Awake()
     {
         InvokeRepeating(nameof(SetCrownToWinner), 0, 0.5f);
+
+        foreach (var participant in _participants)
+        {
+            participant.Init(this);
+            participant.GetComponent<ParticipantMover>().Init(_borderChecker);
+            if (participant.gameObject.TryGetComponent<BotRuler>(out BotRuler botRuler))
+                botRuler.Init(this, _borderChecker, _foodUtils);
+        }
     }
 
     private void SetCrownToWinner()
@@ -44,7 +54,9 @@ public class BattleController : MonoBehaviour
         Participant looser = participant1.Score <= participant2.Score ? participant1 : participant2;
         
         Vector3 flyingDirection = looser.gameObject.transform.position - winner.gameObject.transform.position;
-        looser.GetComponent<ParticipantFlyer>().Fly(flyingDirection, isBottleWillBeEnded);
+        looser.GetComponent<ParticipantFlyer>().Fly(flyingDirection);
+        if (isBottleWillBeEnded)
+            FlyingCameraStart(looser.gameObject.transform);
         RemoveParticipant(looser);
 
         var isPlayerLoosed = winner is Player == false;

@@ -12,13 +12,13 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private TMP_Text _getMoneyText;
     [SerializeField] private Transform _targetPoint;
     [SerializeField] private Transform _beforeFlyInPoint;
+    [SerializeField] private Player _player;
+    [SerializeField] private MoneyAnimator _moneyAnimator;
     
     private readonly float _showingDuration = 3;
-    private MoneyAnimator _moneyAnimator;
     private bool _isResetMoney;
     private float _rewardValue;
     private float _changeMoneyStep;
-    private Player _player;
     
     public event UnityAction GetMoneyButtonPressed;
 
@@ -27,13 +27,11 @@ public class WinPanel : MonoBehaviour
         _isResetMoney = false;
         _rewardValue = 90;
         _getMoneyText.text = _rewardValue.ToString();
-        _moneyAnimator = FindObjectOfType<MoneyAnimator>();
         _moneyAnimator.SetTargets(_targetPoint, _beforeFlyInPoint);
         _moneyAnimator.InitFlyingData();
         _changeMoneyStep = _rewardValue / _moneyAnimator.CountMoneyTime;
         _moneyAnimator.InitializePool();
         _moneyAnimator.InitFlyingData();
-        _player = FindObjectOfType<Player>();
         ShowGetMoneyButton(_showingDuration);
         Invoke(nameof(AddListenerGetMoneyButton), _showingDuration - _showingDuration / 4);
     }
