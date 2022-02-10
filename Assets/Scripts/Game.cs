@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using UnityEngine;
 
@@ -53,7 +54,6 @@ public class Game : MonoBehaviour
         _battleController.PlayerLoosed -= OnPlayerLoosed;
     }
 
-    
     private void SetNewLevel()
     {
         _player.ResetPlayer();
@@ -63,32 +63,32 @@ public class Game : MonoBehaviour
 
     private void SetStartCamera()
     {
-        _flyingCamera.gameObject.SetActive(false);        
-        _zoomCamera.gameObject.SetActive(false); 
-        _battleCamera.gameObject.SetActive(true);
+        SetActiveCamera(_battleCamera,_flyingCamera, _zoomCamera);
     }
     
     private void OnCameraFlyStarted(Transform follow)
     {
         _flyingCamera.Follow = follow;
         _flyingCamera.gameObject.transform.position = follow.position;
-        _battleCamera.gameObject.SetActive(false);
-        _zoomCamera.gameObject.SetActive(false);
-        _flyingCamera.gameObject.SetActive(true);          
+        SetActiveCamera(_flyingCamera, _battleCamera, _zoomCamera);
     }
 
     private void DoZoomOut()
     {
         _zoomCamera.gameObject.transform.position = _player.gameObject.transform.position;
-        _flyingCamera.gameObject.SetActive(false);        
-        _battleCamera.gameObject.SetActive(false); 
-        _zoomCamera.gameObject.SetActive(true);
+        SetActiveCamera(_zoomCamera, _flyingCamera, _battleCamera);
         Invoke(nameof(DoBattleCamera), _delayBeforeRemoteCamera);
     }
 
     private void DoBattleCamera()
     {
-        _zoomCamera.gameObject.SetActive(false); 
-        _battleCamera.gameObject.SetActive(true);          
+        SetActiveCamera(_battleCamera, _zoomCamera);
+    }
+
+    private void SetActiveCamera(CinemachineVirtualCamera activeCamera, params CinemachineVirtualCamera[] inactiveCameras)
+    {
+        activeCamera.gameObject.SetActive(true);
+        foreach (var inactiveCamera in inactiveCameras)
+            inactiveCamera.gameObject.SetActive(false);
     }
 }

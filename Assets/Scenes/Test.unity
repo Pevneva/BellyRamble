@@ -1821,10 +1821,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftDownShpere: {fileID: 122405184}
   _rightUpShpere: {fileID: 1770327393}
-  _leftDownPilliar: {fileID: 8572459256230666151}
-  _leftUpPilliar: {fileID: 1514055158}
-  _rightUpPilliar: {fileID: 8572459255527110850}
-  _rightDownPilliar: {fileID: 874396505}
+  _pilliars:
+  - {fileID: 8572459256230666151}
+  - {fileID: 1514055158}
+  - {fileID: 8572459255527110850}
+  - {fileID: 874396505}
 --- !u!4 &192309369
 Transform:
   m_ObjectHideFlags: 0

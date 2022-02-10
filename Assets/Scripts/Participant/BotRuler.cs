@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(ParticipantPusherOut), typeof(BotMover))]
 public class BotRuler : MonoBehaviour
 {
-    private readonly float _spreadDistance = 0.35f;
     private ParticipantPusherOut _participantPusherOut;
     private BorderChecker _borderChecker;
     private BattleController _battleController;
@@ -21,9 +20,9 @@ public class BotRuler : MonoBehaviour
 
         _participantPusherOut = GetComponent<ParticipantPusherOut>();
         _botMover = GetComponent<BotMover>();
-        
-        // _foodUtils = FindObjectOfType<FoodUtils>(); //AAA
-        GetComponentInChildren<Animator>().SetFloat(AnimatorParticipantController.Params.Speed, _participantPusherOut.Speed);
+
+        GetComponentInChildren<Animator>()
+            .SetFloat(AnimatorParticipantController.Params.Speed, _participantPusherOut.Speed);
         _target = _foodUtils.GetNearestFood(transform);
 
         InvokeRepeating(nameof(TryRotate), 0.5f, 0.1f);
@@ -41,7 +40,7 @@ public class BotRuler : MonoBehaviour
         if (_borderChecker.IsOutsideRing(new Vector2(transform.position.x, transform.position.z)))
             SetNewTarget();
 
-        if (Vector3.Distance(transform.position, _ropePoint) < _spreadDistance) 
+        if(_botMover.IsReachTarget(_ropePoint))
             PushOut();
 
         if (_target != null)
@@ -67,19 +66,29 @@ public class BotRuler : MonoBehaviour
 
     private void Reset()
     {
-        _isPushingOut = false;
-        _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
         _movingDirection = Vector3.zero;
+        SetPushingState(false);
+        ResetRopePoint();
     }
 
     private void PushOut()
     {
-        _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
+        SetPushingState(true);
+        ResetRopePoint();
         _participantPusherOut.DoRepulsion(_movingDirection, _touchBorder, true);
         _target.position = _participantPusherOut.NewPosition;
-        _isPushingOut = true;
         Invoke(nameof(SetParticipantDirection), _participantPusherOut.RepulsionTime);
         Invoke(nameof(SetNewTarget), _participantPusherOut.RepulsionTime + MovingParamsController.BoostTime);
+    }
+
+    private void SetPushingState(bool isPushing)
+    {
+        _isPushingOut = isPushing;
+    }
+
+    private void ResetRopePoint()
+    {
+        _ropePoint = new Vector3(Mathf.Infinity, Mathf.Infinity);
     }
 
     private void OnFoodEaten(Food food)
@@ -102,7 +111,7 @@ public class BotRuler : MonoBehaviour
     private void SetRopePoint()
     {
         Vector3 ropePoint = MovingParamsController.RopePointDistanceKoef * _movingDirection.normalized + transform.position;
-        _touchBorder = _borderChecker.TryGetTouchBorder(ropePoint);
+        _touchBorder = _borderChecker.GetTouchBorder(ropePoint);
 
         if (_touchBorder == TouchBorder.NULL)
             _ropePoint = Vector3.zero;
